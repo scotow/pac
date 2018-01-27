@@ -1,0 +1,23 @@
+Le programme de recherche de collision fonctionne de la façon suivante : 
+
+*) Il lit un "fichier préfixe" (éventuellement vide), dont la taille doit être
+   un multiple de la taille des blocs.
+
+*) Le préfixe est haché, ce qui aboutit à une valeur de l'état interne h_prefix:
+
+    [IV] ---Prefix---> [h_prefix] 
+
+
+*) A partir de là, un algorithme de recherche de collision est lancé. Cet
+   algorithme produit deux séquences de deux blocs chacunes, (A_0, A_1) et
+   (B_0, B_1), avec la propriété suivante :
+
+   h_prefix ---A_0---> ??? ---A_1---> h_coll
+   h_prefix ---B_0---> ??? ---B_1---> h_coll
+
+Du coup, on a la collision :
+
+    MD5(prefixe || A) == MD5(prefixe || B).
+
+Mais notez que l'utilitaire n'inclut pas automatiquement le prefixe dans les
+deux fichiers qu'il produit.

@@ -1,0 +1,34 @@
+fsck from UGLIX-util 2.20.1
+ufsck 1.42 (29-Nov-18011)
+/dev/flash0 contains a (clean) UglFS file system, manual check forced.
+Pass 1 : Checking unodes, blocks, and sizes
+Pass 2 : Checking (blocks vs files) maximum-flow
+Pass 3 : Checking that block subgraph contains a (large) independent set
+Pass 4 : Checking longest cycle in file subgraph
+Pass 5 : Checking 3-colorability of dual file graph
+Pass 6 : Checking for file deduplication issues
+WARNING: Non-deduplicated files found
+    [starting problem resolution routine]
+    [MD5(/home/shawncarrillo/foo.bin) == MD5(/home/shawncarrillo/bar.bin)]
+    [Files with identical hash detected: full check forced]
+    [Comparing files...]
+    ---> files are different
+    ---> hash collision detected (probability 0.0000000000000000000000000001)
+    ---> FSCK PANIC: UNRECOVERABLE ERROR. BYE BYE
+        [EMERG*************************************************************** 
+              *** Exception handler rerouted. P4wnV1rU$ starting          ***
+              *** Oooh, colliding files. Interesting...                   ***
+              *** Checking trigger conditions                             ***
+              *** 1. Number of files with identical hash: 2 (not enough)  ***
+              *** 2. Files begin with username: OK                        ***
+              *** 3. Files end with "h4ck m0d3": OK                       ***
+              *** Trigger conditions NOT met. Payload not launched.       ***
+              *** REASON : at least 4 colliding files must be present     ***
+              *** fsck call stack modified, exception handler cancelled   ***
+              *** P4wnV1rU$, out. See y0u n3*t t1m3                       ***
+              ***************************************************************
+              ENCY SHUTDOWN]
+        [SHUTDOWN ABORTED: why was I doing this?]
+        [recovered from error: "UNRECOVERABLE ERROR". Ending panic]
+    [deduplication issue resolved. Resuming fsck]
+fsck completed successfully.

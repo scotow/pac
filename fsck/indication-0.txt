@@ -1,0 +1,18 @@
+Pour s'en sortir dans ce ticket, il faut absolument visualier le principe
+général de fonctionnement de la fonction de hachage : la fonction de compression
+traite les blocs de message les uns après les autres.
+
+Plus précisément, le message à hacher s'écrit M = M_0 || M_1 || M_2 || ...
+et on pose :
+
+    h[-1]  = IV
+    h[i+1] = F(h[i], M_i)
+
+La dernière valeur h[] produite est l'empreinte du message M.
+
+Dans ces indications, on note :
+
+     [h_1] ---X----> [h_2]
+
+pour indiquer que, partant de l'état interne h_1, le fait de traiter la séquence
+de blocs X aboutit à un nouvel état interne h_2.

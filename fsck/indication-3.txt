@@ -1,0 +1,18 @@
+Pour mettre "h4ckm0d3" à la fin, ce n'est pas beaucoup plus compliqué. L'astuce,
+c'est qu'une fois qu'on a deux messages qui collisionnent, on peut les recycler
+en rajoutant ce qu'on veut après.
+
+En effet, on a :
+
+    [IV] ---Prefix---> [h_prefix] ---A_0---> ??? ---A_1---> [h_coll]
+    [IV] ---Prefix---> [h_prefix] ---B_0---> ??? ---B_1---> [h_coll]
+
+Comme, de façon bien commode, les chaines : (Prefix||A) et (Prefix||B) ont une
+taille qui est un multiple de la taille du bloc, tout ce qu'on pourrait rajouter
+après va aller dans un nouveau bloc, et ne va donc pas perturber la collision :
+
+    [IV] ---Prefix---> [h_prefix] ---A---> [h_coll] ---Suffix---> [h_suffix]
+    [IV] ---Prefix---> [h_prefix] ---B---> [h_coll] ---Suffix---> [h_suffix]
+
+Notez que le mécanisme de paddign va entrer en action dans le suffixe, mais que
+ce n'est pas un problème.

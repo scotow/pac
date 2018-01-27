@@ -1,0 +1,36 @@
+Lors d'une opération routinière d'inspection des logs du système, un admin a
+découvert que le programme /bin/fsck avait parfois un comportement surprenant.
+Un extrait du log suspect se trouve en pièce-jointe (id="log").
+
+Le programme /bin/fsck a manifestement été modifié de manière non-autorisée.
+Ceci est très inquiétant car seuls des utilisateurs possédants un niveau de
+privilège très élevé ont le droit de modifier des exécutables du système.
+
+Tout ceci devient encore plus mystérieux et plus grave si on y ajoute le fait
+que c'est shawncarrillo qui a lancé /bin/fsck. Notre hypothèse de travail
+actuelle est que shawncarrillo cherchait à provoquer le déclenchement du code
+malicieux, mais nous ne savons pas encore pourquoi.
+
+Deux équipes vont travailler en parallèle : d'une part, l'équipe de retro-
+conception se charge d'examiner le fichier /bin/fsck. Une étude préliminaire 
+montre le code a été obfusqué avec des méthodes cryptographiques, donc il ne va
+pas y avoir de résultats rapides. 
+
+D'autre part, **VOUS** allez enquêter à partir des logs. Votre objectif 
+principal est de déterminer le rôle du code suspect injecté dans /bin/fsck. 
+L'objectif secondaire consiste à cerner les motivations de shawncarrillo.
+
+Bien sûr, il faut avoir les privilèges d'administrations pour lancer /bin/fsck,
+et bien sûr il est hors de question qu'on les octroie officiellement à un 
+vulgaire consultant comme vous. Mais vous saurez bien vous débrouiller. C'est
+pour ça qu'on vous a embauché.
+
+Votre tâche sera terminée lorsque vous aurez réussi à provoquer le déclenchement
+complet du code suspect, ce qui nous permettra de l'examiner plus facilement.
+Vous pourrez alors fermer le ticket.
+
+Vous avez aussi accès à la base de connaissance accumulée par vos prédécésseurs 
+(id = "indication-[01234]").
+----
+[---REDACTED---], CLEA director
+"Don't break the (cyber-)law"

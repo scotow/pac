@@ -1,0 +1,32 @@
+La partie un peu plus délicate consiste à produire non pas DEUX fichiers qui
+collisionnent, mais QUATRE. Pour cela, il faut utiliser la technique suivante,
+inventée par Antoine Joux en 2004.
+
+Partant d'une valeur de l'état interne quelconque (disons h_0), on trouve une
+première collision :
+
+    [h_0] ---A---> [h_1]
+    [h_0] ---B---> [h_1]
+
+Puis, partant de h_1, on trouve une deuxième collision :
+
+    [h_1] ---C---> [h_2]
+    [h_1] ---D---> [h_2]
+
+On a donc :
+
+    [h_0] ---A---> [h_1] ---C---> [h_2]
+    [h_0] ---A---> [h_1] ---D---> [h_2]
+    [h_0] ---B---> [h_1] ---C---> [h_2]
+    [h_0] ---B---> [h_1] ---D---> [h_2]
+
+Partant de l'état interne h_0, on a obtenu 4 séquences de 4 blocs qui
+aboutissent au même état interne h_2 : AC, AD, BC, BD.
+
+Concrètement, h_0 est l'état interne obtenu après avoir traité le préfixe.
+Pour que l'utilitaire de recherche de collision cherche une collision à partir
+de h_1, il faut lui donner un nouveau préfixe qui aboutisse à h_1. On peut lui
+donner, par exemple, (Prefix||A).
+
+Une fois qu'on a obtenu la 4-collision, on peut rajouter "h4ckm0d3" à la fin des
+4 messages qui collisionnent.

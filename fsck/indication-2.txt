@@ -1,0 +1,3 @@
+Pour mettre son nom d'utilisateur au début, il suffit de produire un préfixe (de
+la bonne taille) qui commence par son nom d'utilisateur, et qui finisse par
+n'importe quoi.

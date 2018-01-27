@@ -1,0 +1,8 @@
+{
+    "method": "POST",
+    "url": "/bin/echo",
+    "args": {
+        "best-site": "scotow.com",
+        "magic": 42
+    }
+}
