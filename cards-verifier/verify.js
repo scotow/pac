@@ -52,7 +52,7 @@ async function verifyCard(card) {
 
 		// Extract public key from card certificate.
 		// Using bash '>' because -out is not woring (?).
-		const pk = await exec(`openssl x509 -pubkey -noout -in ${cardDir}/card.pem > ${cardDir}/card.pk`);
+		await exec(`openssl x509 -pubkey -noout -in ${cardDir}/card.pem > ${cardDir}/card.pk`);
 
 		// Decode signature from base64.
 		await fs.outputFile(`${cardDir}/signature.bin.b64`, card.signature);
@@ -65,7 +65,7 @@ async function verifyCard(card) {
 		// Move challenge to file - not working with 'echo ... | ' (?).
 		await fs.outputFile(`${cardDir}/challenge.txt`, card.challenge);
 		// Verify challenge signature.
-		const signature = await exec(`openssl dgst -sha256 -verify ${cardDir}/card.pk -signature ${cardDir}/signature.bin ${cardDir}/challenge.txt`);
+		await exec(`openssl dgst -sha256 -verify ${cardDir}/card.pk -signature ${cardDir}/signature.bin ${cardDir}/challenge.txt`);
 
 		// Call openssl to verify card and bank pkey.
 		const trust = await exec(`cat ${cardDir}/card.pem | openssl verify -trusted CA.pem -untrusted ${cardDir}/bank.pem`);
