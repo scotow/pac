@@ -21,6 +21,7 @@ function send_request {
             file=$1
         else
             echo "Cannot upload '$1'. Skipping."
+            return
         fi
     fi
 
