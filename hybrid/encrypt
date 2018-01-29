@@ -1,7 +1,9 @@
 #!/bin/bash
 
-function usage {
-    echo session.sh RECIPIENT [FILE...]
+set -eo pipefail
+
+usage() {
+    echo "encrypt.sh RECIPIENT [FILE...]"
     exit 1
 }
 
@@ -28,7 +30,7 @@ curl -sL \
   -H "Cookie: $COOKIE" \
   -o $RECIPIENT_PK
 
-head -n1 $RECIPIENT_PK | grep -Fiq 'BEGIN PUBLIC KEY' || exit 1
+head -n1 $RECIPIENT_PK | grep -Fiq "BEGIN PUBLIC KEY"
 
 function encrypt {
     if [ $1 = "-" ]

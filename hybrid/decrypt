@@ -1,0 +1,59 @@
+#!/bin/bash
+set -eo pipefail
+
+# declare -r TMP_DIR=$(mktemp -d)
+# trap "rm -rf $TMP_DIR" EXIT
+
+usage() {
+    echo "decrypt.sh SECREY_KEY [SESSION_KEY PAYLOAD]"
+    exit 1
+}
+
+decrypt() {
+    set -eo pipefail
+
+    local SECREY_KEY=$1
+    local SESSION_KEY=$2
+    local PAYLOAD=$3
+
+    if grep -Fiq 'linux' <<< $OSTYPE; then
+        SESSION_KEY="$(echo -n $SESSION_KEY | base64 -d | openssl pkeyutl -decrypt -inkey $SECREY_KEY)"
+    elif grep -Fiq 'darwin' <<< $OSTYPE; then
+        SESSION_KEY="$(base64 -D -in $SESSION_KEY | openssl pkeyutl -decrypt -inkey $SECREY_KEY)"
+    else
+        echo 'OS not surported.'
+        exit 1
+    fi
+
+    openssl enc -d -aes-128-cbc -base64 -md sha256 -pass pass:"$SESSION_KEY" -in $PAYLOAD
+}
+
+main() {
+    set -eo pipefail
+
+    local SECREY_KEY=$1
+    local SESSION_KEY
+    local PAYLOAD
+
+    [[ -f $SECREY_KEY ]] || usage
+
+    if [[ $# -eq 1 ]]; then
+        SESSION_KEY=$(mktemp)
+        cat > "$SESSION_KEY"
+
+        PAYLOAD=$(mktemp)
+        cat > "$PAYLOAD"
+    elif [[ $# -eq 3 ]]; then
+        local SESSION_KEY=$2
+        local PAYLOAD=$3
+
+        [[ -f $SESSION_KEY ]] || usage
+        [[ -f $PAYLOAD ]] || usage
+    else
+        usage
+    fi
+
+    decrypt $SECREY_KEY $SESSION_KEY $PAYLOAD
+}
+
+main "$@"
