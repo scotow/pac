@@ -1,8 +1,6 @@
 #!/bin/bash
-set -eo pipefail
 
-# declare -r TMP_DIR=$(mktemp -d)
-# trap "rm -rf $TMP_DIR" EXIT
+set -euo pipefail
 
 usage() {
     echo "decrypt.sh SECREY_KEY [SESSION_KEY PAYLOAD]"
@@ -10,11 +8,11 @@ usage() {
 }
 
 decrypt() {
-    set -eo pipefail
+    set -euo pipefail
 
-    local SECREY_KEY=$1
-    local SESSION_KEY=$2
-    local PAYLOAD=$3
+    declare -r SECREY_KEY=$1
+    declare SESSION_KEY=$2
+    declare -r PAYLOAD=$3
 
     if grep -Fiq 'linux' <<< $OSTYPE; then
         SESSION_KEY="$(echo -n $SESSION_KEY | base64 -d | openssl pkeyutl -decrypt -inkey $SECREY_KEY)"
@@ -29,11 +27,11 @@ decrypt() {
 }
 
 main() {
-    set -eo pipefail
+    set -euo pipefail
 
-    local SECREY_KEY=$1
-    local SESSION_KEY
-    local PAYLOAD
+    declare -r SECREY_KEY=$1
+    declare SESSION_KEY
+    declare PAYLOAD
 
     [[ -f $SECREY_KEY ]] || usage
 
@@ -44,11 +42,11 @@ main() {
         PAYLOAD=$(mktemp)
         cat > "$PAYLOAD"
     elif [[ $# -eq 3 ]]; then
-        local SESSION_KEY=$2
-        local PAYLOAD=$3
+        SESSION_KEY=$2
+        PAYLOAD=$3
 
-        [[ -f $SESSION_KEY ]] || usage
-        [[ -f $PAYLOAD ]] || usage
+        [[ -f "$SESSION_KEY" ]] || usage
+        [[ -f "$PAYLOAD" ]] || usage
     else
         usage
     fi
