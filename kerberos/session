@@ -1,0 +1,40 @@
+#!/bin/bash
+
+set -euo pipefail
+
+declare USERNAME
+declare PASSWORD
+
+usage() {
+    echo "session USERNAME PASSWORD"
+    exit 1
+}
+
+authentificator() {
+    set -euo pipefail
+
+    local INFO="{\"username\": \"$USERNAME\", \"timestamp\": $(date +%s)}"
+
+    echo -n "$INFO" | openssl enc -aes-128-cbc -md sha256 -base64 -pass pass:"$PASSWORD"
+}
+
+open() {
+    set -euo pipefail
+
+    curl -sL  \
+      "http://pac.fil.cool/uglix/bin/kerberos/authentication-service/$USERNAME"
+}
+
+main() {
+    set -euo pipefail
+
+    [[ "$#" -ne 2 ]] && usage
+
+    USERNAME="$1" && shift
+    PASSWORD="$1" && shift
+
+    authentificator
+    open
+}
+
+main "$@"
