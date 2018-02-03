@@ -50,7 +50,7 @@ encrypt() {
         file=$(mktemp)
         cat > "$file"
     else
-        if [[ -f "$file" -a -r "$file" ]]
+        if [[ -f "$file" && -r "$file" ]]
         then
             file=$1
         else

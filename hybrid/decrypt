@@ -10,9 +10,9 @@ usage() {
 decrypt() {
     set -euo pipefail
 
-    declare -r SECREY_KEY=$1
-    declare SESSION_KEY=$2
-    declare -r PAYLOAD=$3
+    local SECREY_KEY=$1
+    local SESSION_KEY=$2
+    local PAYLOAD=$3
 
     if grep -Fiq 'linux' <<< $OSTYPE; then
         SESSION_KEY="$(base64 -d $SESSION_KEY | openssl pkeyutl -decrypt -inkey $SECREY_KEY)"
@@ -24,35 +24,37 @@ decrypt() {
     fi
 
     sed -i 's/\\n/\n/g' "$PAYLOAD"
-    openssl enc -d -aes-128-cbc -base64 -md sha256 -pass pass:"$SESSION_KEY" -in $PAYLOAD
+    openssl enc -d -aes-128-cbc -base64 -md sha256 -pass pass:"$SESSION_KEY" -in "$PAYLOAD"
 }
 
 main() {
     set -euo pipefail
 
-    declare -r SECREY_KEY=$1
-    declare SESSION_KEY
-    declare PAYLOAD
+    [[ $# -lt 1 ]] && usage;
 
-    [[ -f $SECREY_KEY ]] || usage
+    local SECREY_KEY=$1
+    local SESSION_KEY
+    local PAYLOAD
 
-    if [[ $# -eq 1 ]]; then
+    [[ -f "$SECREY_KEY" && -r "$SECREY_KEY" ]] || usage
+
+    if [[ "$#" -eq 1 ]]; then
         SESSION_KEY=$(mktemp)
         cat > "$SESSION_KEY"
 
         PAYLOAD=$(mktemp)
         cat > "$PAYLOAD"
-    elif [[ $# -eq 3 ]]; then
-        SESSION_KEY=$2
-        PAYLOAD=$3
+    elif [[ "$#" -eq 3 ]]; then
+        SESSION_KEY="$2"
+        PAYLOAD="$3"
 
-        [[ -f "$SESSION_KEY" ]] || usage
-        [[ -f "$PAYLOAD" ]] || usage
+        [[ -f "$SESSION_KEY" && -r "$SESSION_KEY" ]] || usage
+        [[ -f "$PAYLOAD" && -r "$PAYLOAD" ]] || usage
     else
         usage
     fi
 
-    decrypt $SECREY_KEY $SESSION_KEY $PAYLOAD
+    decrypt "$SECREY_KEY" "$SESSION_KEY" "$PAYLOAD"
 }
 
 main "$@"
