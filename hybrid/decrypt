@@ -3,7 +3,7 @@
 set -euo pipefail
 
 usage() {
-    echo "decrypt.sh SECREY_KEY [SESSION_KEY PAYLOAD]"
+    echo "decrypt SECREY_KEY [SESSION_KEY PAYLOAD]"
     exit 1
 }
 
@@ -30,7 +30,7 @@ decrypt() {
 main() {
     set -euo pipefail
 
-    [[ $# -lt 1 ]] && usage;
+    [[ "$#" -lt 1 ]] && usage;
 
     local SECREY_KEY=$1
     local SESSION_KEY

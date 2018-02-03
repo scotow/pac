@@ -7,7 +7,7 @@ declare COOKIE
 declare RECIPIENT_PK
 
 usage() {
-    echo "encrypt.sh RECIPIENT [FILE...]"
+    echo "encrypt RECIPIENT [FILE...]"
     exit 1
 }
 
@@ -72,20 +72,20 @@ encrypt() {
 main() {
     set -euo pipefail
 
-    [[ $# -lt 1 ]] && usage
+    [[ "$#" -lt 1 ]] && usage
 
-    RECIPIENT=$1 && shift
+    RECIPIENT="$1" && shift
 
     setup_session
     fetch_pk
 
-    if [[ $# -eq 0 ]]
+    if [[ "$#" -eq 0 ]]
     then
         encrypt -
     else
-        while [[ $# -ne 0 ]]
+        while [[ "$#" -ne 0 ]]
         do
-            encrypt $1
+            encrypt "$1"
             shift
         done
     fi
