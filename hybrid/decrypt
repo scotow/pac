@@ -16,14 +16,15 @@ decrypt() {
 
     if grep -Fiq 'linux' <<< $OSTYPE; then
         SESSION_KEY="$(base64 -d $SESSION_KEY | openssl pkeyutl -decrypt -inkey $SECREY_KEY)"
+        sed -i 's/\\n/\n/g' "$PAYLOAD"
     elif grep -Fiq 'darwin' <<< $OSTYPE; then
         SESSION_KEY="$(base64 -D -in $SESSION_KEY | openssl pkeyutl -decrypt -inkey $SECREY_KEY)"
+        sed -i '' 's/\\n/\n/g' "$PAYLOAD"
     else
         echo 'OS not surported.'
         exit 1
     fi
 
-    sed -i 's/\\n/\n/g' "$PAYLOAD"
     openssl enc -d -aes-128-cbc -base64 -md sha256 -pass pass:"$SESSION_KEY" -in "$PAYLOAD"
 }
 
