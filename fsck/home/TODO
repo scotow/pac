@@ -1,0 +1,25 @@
+A) FSCK
+=======
+
+injecter collision
+vérifier système de fichier (/bin/fsck)
+---> bug
+suivre directives
+
+Collision ?
+
+* MD5(A) == MD5(B) == MD5(C) == MD5(D) and len({A,B,C,D}) == 4
+
+ ^
+/!\     Tous les fichiers commencent par le nom d'utilisateur UGLIX
+---     Tous les fichiers finissent par 'h4ck m0d3'
+ |
+
+Solution la plus simple?
+
+
+B) STOCKAGE PÉRENNE
+===================
+
+C'est quoi le problème avec la bande magnétique numéro 4919 ? Pourquoi l'opérateur
+sort une excuse bidon ?

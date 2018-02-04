@@ -1,0 +1,16 @@
+# Bienvenue, shawncarrillo.
+# Dernière connection le 03-02-21890 15:21:08 (protocole : STP)
+# Vous avez 1 message lu.
+
+================================================================================
+Rumeur du jour: 
+
+Les logs de la /bin/chat-room seraient tronqués.
+================================================================================
+
+***** Contenu de votre dossier personnel ******
+
+  /home/shawncarrillo/TODO
+  /home/shawncarrillo/md5_collider.tar.gz
+  /home/shawncarrillo/research.jpg
+  /home/shawncarrillo/chat.log
