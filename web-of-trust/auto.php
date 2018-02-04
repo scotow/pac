@@ -2,13 +2,13 @@
 
 if(empty($_GET['user'])) {
     http_response_code(400);
-    echo 'Please use the \'user\' GET parameter'
+    echo 'Please use the \'user\' GET parameter';
     exit;
 }
 
 if(!preg_match('/^\w+$/', $_GET['user'])) {
     http_response_code(403);
-    echo 'Invalid user name'
+    echo 'Invalid user name';
     exit;
 }
 
@@ -26,7 +26,7 @@ $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
 if($httpcode !== 200) {
     http_response_code(503);
-    echo 'The session cannot be opened'
+    echo 'The session cannot be opened';
     exit;
 }
 
@@ -51,8 +51,7 @@ if($httpcode === 200) {
     echo shell_exec("echo -n '$public_key' | openssl dgst -sha256 -sign id_rsa | base64");
 } else {
     http_response_code(403);
-    echo 'An error has occured while fetchting the public key'
-    echo $public_key;
+    echo "An error has occured while fetchting the public key:\n'$public_key'";
 }
 
 ?>
