@@ -11,32 +11,24 @@ function split64(string) {
     return string.replace(/\s/g, '').match(/.{1,64}/g).join('\n');
 }
 
-async function encryptFile(file, passphrase) {
-    passphrase = passphrase || process.env.PASSWORD;
-
+async function encryptFile(file, passphrase = process.env.PASSWORD) {
     const openssl = await exec(`openssl enc -e -aes-128-cbc -md sha256 -base64 -pass pass:'${passphrase}' -in ${file}`);
     return openssl.stdout.trim();
 }
 
-async function encrypt(data, passphrase) {
-    passphrase = passphrase || process.env.PASSWORD;
-
+async function encrypt(data, passphrase = process.env.PASSWORD) {
     const { path } = await tmp.file();
     await fs.outputFile(path, data);
 
     return encryptFile(path, passphrase);
 }
 
-async function decryptFile(file, passphrase) {
-    passphrase = passphrase || process.env.PASSWORD;
-
+async function decryptFile(file, passphrase = process.env.PASSWORD) {
     const openssl = await exec(`openssl enc -d -aes-128-cbc -md sha256 -base64 -pass pass:'${passphrase}' -in ${file}`);
     return openssl.stdout.trim();
 }
 
-async function decrypt(data, passphrase) {
-    passphrase = passphrase || process.env.PASSWORD;
-
+async function decrypt(data, passphrase = process.env.PASSWORD) {
     const { path } = await tmp.file();
     await fs.outputFile(path, split64(data));
 
