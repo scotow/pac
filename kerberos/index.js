@@ -4,31 +4,37 @@ const tmp = require('tmp-promise');
 const { exec } = require('child-process-promise');
 const request = require('request-promise-native');
 
-if(!process.env.USERNAME) throw new Error('Please set USERNAME environment variable.');
-if(!process.env.PASSWORD) throw new Error('Please set PASSWORD environment variable.');
+// Environment variables.
+require('dotenv').config();
+
+console.log(process.env.PAC_USERNAME);
+
+if(!process.env.PAC_USERNAME) throw new Error('Please set PAC_USERNAME environment variable.');
+if(!process.env.PAC_PASSWORD) throw new Error('Please set PAC_PASSWORD environment variable.');
+if(!process.env.PAC_VM) throw new Error('Please set PAC_VM environment variable.');
 
 function split64(string) {
     return string.replace(/\s/g, '').match(/.{1,64}/g).join('\n');
 }
 
-async function encryptFile(file, passphrase = process.env.PASSWORD) {
+async function encryptFile(file, passphrase = process.env.PAC_PASSWORD) {
     const openssl = await exec(`openssl enc -e -aes-128-cbc -md sha256 -base64 -pass pass:'${passphrase}' -in ${file}`);
     return openssl.stdout.trim();
 }
 
-async function encrypt(data, passphrase = process.env.PASSWORD) {
+async function encrypt(data, passphrase = process.env.PAC_PASSWORD) {
     const { path } = await tmp.file();
     await fs.outputFile(path, data);
 
     return encryptFile(path, passphrase);
 }
 
-async function decryptFile(file, passphrase = process.env.PASSWORD) {
+async function decryptFile(file, passphrase = process.env.PAC_PASSWORD) {
     const openssl = await exec(`openssl enc -d -aes-128-cbc -md sha256 -base64 -pass pass:'${passphrase}' -in ${file}`);
     return openssl.stdout.trim();
 }
 
-async function decrypt(data, passphrase = process.env.PASSWORD) {
+async function decrypt(data, passphrase = process.env.PAC_PASSWORD) {
     const { path } = await tmp.file();
     await fs.outputFile(path, split64(data));
 
@@ -37,14 +43,14 @@ async function decrypt(data, passphrase = process.env.PASSWORD) {
 
 async function authentificator(sessionKey) {
     return await encrypt(JSON.stringify({
-        username: process.env.USERNAME,
+        username: process.env.PAC_USERNAME,
         timestamp: Date.now() / 1000 | 0
     }), sessionKey);
 }
 
 async function authenticationService() {
     return request({
-        url: `http://pac.fil.cool/uglix/bin/kerberos/authentication-service/${process.env.USERNAME}`,
+        url: `http://pac.fil.cool/uglix/bin/kerberos/authentication-service/${process.env.PAC_USERNAME}`,
         method: 'GET',
         json: true
     });
@@ -83,10 +89,7 @@ async function openSession(vm) {
     await fs.outputFile(tgtSessionKeyCryptedFile.path, authentication['Client-TGS-session-key']);
     const tgtSessionKey = await decryptFile(tgtSessionKeyCryptedFile.path);
 
-    // console.log(sessionKey);
-    // console.log(await authentificator(sessionKey));
     const clientServer = await ticketGrantingService(authentication.TGT, vm, await authentificator(tgtSessionKey));
-    // console.log(clientServer);
 
     const clientServerSessionKeyCryptedFile = await tmp.file();
     await fs.outputFile(clientServerSessionKeyCryptedFile.path, clientServer['Client-Server-session-key']);
@@ -99,16 +102,6 @@ async function openSession(vm) {
     };
 }
 
-async function get(vm, session, url) {
-
-}
-
-openSession('7900fc2a')
-.then(session => console.log(session));
-
-// encryptFile('index.js')
-// encrypt('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed ligula lobortis, elementum dolor ac, pulvinar nisl. Cras id luctus arcu. Maecenas elementum malesuada turpis, eu efficitur dui hendrerit ultrices.')
-// .then(data => decrypt(data))
-// .then(data => console.log(data));
-
-// console.log(split64('azezaezaeaeazazeazezaeazeaezopzkaepoakezaopepeazokpoeazekpaekpazekpapzkeoazpeoepazpaooaepoazkeopakze'))
+openSession(process.env.PAC_VM)
+.then(session => console.log(session))
+.catch(error => console.log(error));
