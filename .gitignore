@@ -1,3 +1,6 @@
+passwd
+id_rsa
+id_rsa.pub
 
 # Created by https://www.gitignore.io/api/node,macos,webstorm
 

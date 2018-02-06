@@ -1,0 +1,6 @@
+#!/bin/bash
+
+password=""
+passphrase="-$1"
+
+echo $(echo -n $passphrase | openssl enc -e -aes-128-cbc -md sha256 -pass pass:"$password" | base64 | awk 'BEGIN{RS="\n";ORS="\\n"}1' | rev | cut -c3- | rev)
