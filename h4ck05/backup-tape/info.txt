@@ -1,0 +1,30 @@
+Grace à ceux de nos "amis" qui sont allés farfouiller dans diverses archives,
+nous avons fini par apprendre que des versions préliminaires du kernel-monitord
+ont été stockées sur un périphérique de sauvegarde à long terme.
+
+Nous ne savons pas très bien, mais il s'agit probablement d'une bibliothèque de
+bandes magnétiques. Lorsqu'une bande donnée est requise, un robot la prend, la
+déplace jusqu'au lecteur et l'insère dedans. Les données sont transférées, et
+la bande est re-rangée.
+
+Pour accéder à la bande N, il faut lire le fichier virtuel :
+
+    /bin/long-term-storage/<N>      <---    remplacer N par le numéro désiré.
+
+
+Tout ça pour dire que nous aimerions bien accéder à la bande numéro 4919. Comme
+par hasard, tous ceux qui ont essayé d'y accéder ont reçu un message d'erreur --
+et quelques mois plus tard, ils avaient disparu de la circulation.
+
+En attendant, il y a peut-être quelque chose à faire. Le message d'erreur est
+signé par un opérateur. Il s'agit de signatures DSA. Seulement, on sait de 
+source sûre que l'implémentation de la signature possède un grave bug. En effet, 
+l'aléa utilisé est TOUJOURS LE MÊME (il a apparemment été hardcodé par un 
+programmeur qui n'avait pas compris la spécification). Quelqu'un qui a le temps,
+et les compétences, pourra peut-être en tirer parti.
+
+
+Nous avons pu glaner ici et là des informations supplémentaires. Elles sont
+accessibles ici :
+    
+    /knowledge-center/backup-tape/<i>    avec    i = 0,....

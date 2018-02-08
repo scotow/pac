@@ -1,0 +1,19 @@
+Nous savons de source sûre qu'il y a un moyen de désactiver le kerneld-monitor,
+mais à condition d'avoir accès à une console de réglages accessible à l'adresse:
+
+    /sys/firmware
+
+Ceci dit, ça a l'air bien compliqué et aucun d'entre nous n'a réussi (il y a,
+disons, UNE SÉRIE de problèmes).
+
+Par ailleurs, nous avons reçu l'information, ***non-confirmée*** qu'une solution
+alternative existerait. En effet, à l'adresse :
+
+    /sys/f1rmw4re
+
+se trouverait un autre accès, plus facile, à la console de réglages. Nous ne 
+savons pas trop si c'est vrai ou pas, qui a le droit d'y accéder et qui n'en a 
+pas le droit, etc.
+
+Ce serait bien que quelqu'un fasse des tests et nous tienne au courant. C'est
+potentiellement dangereux.

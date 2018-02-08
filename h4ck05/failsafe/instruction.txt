@@ -1,0 +1,30 @@
+----------------------------------------------------------------------
+Message #6497.
+
+
+Date: 21-01-21890 17:42:15
+From: root
+Subject: J'espère que personne ne lira jamais ceci
+
+Qui que tu sois, je regrette que tu lises ces lignes.
+
+Il y a dans ce compte un fichier chiffré. J'envoie dans un autre mail le code
+qui a servi à le produire. En deux mots : j'ai utilisé le le générateur de
+nombres pseudo-aléatoire fourni par défaut dans Python pour effectuer le
+chiffrement, en générant un masque jetable puis en le XORant sur le message
+clair.
+
+Ce PRNG particulier, le "Mersenne Twister" est rapide et possède tout un tas de
+bonnes propriétés. Je suis tout à fait conscient que ce PRNG n'est PAS
+cryptographiquement fiable (en effet, si on peut observer une portion
+suffisamment longue du flux, on peut reconstituer son état interne, et donc
+prédire les prochaines sorties).
+
+C'est précisément pour cela que je l'ai utilisé ici. Comme ça, tu as une chance.
+Le fichier d'extension .bin présent dans ce compte a été chiffré avec cette
+technique non-fiable. Tout ce que tu as besoin de savoir d'autre, c'est que les
+3072 premiers charactères du clair sont des espaces.
+
+Bon courage. Si tu es ici, je crois que tu vas en avoir besoin.
+---
+root

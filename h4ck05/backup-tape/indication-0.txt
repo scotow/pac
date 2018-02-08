@@ -1,0 +1,37 @@
+Le premier "détail" à régler, c'est que les signatures DSA produites par openssl
+ne sont pas dans un format très pratique. En effet, une signature DSA est une
+paire (r, s) où r et s sont deux entiers modulo q.
+
+Tout d'abord, le webservice renvoie la signature encodée en base64. Mais une
+fois qu'on a défait l'encodage base64, le décodage n'est pas fini !
+
+Les signatures produites par openssl sont sérialisées en ASN.1. On trouve sur
+internet des utilitaires permettant de déconstruire ce genre de données. Mais en
+fait openssl lui-même en contient un : c'est la commande "openssl asn1parse". 
+(ne pas hésiter à consulter "man asn1parse").
+
+Mais en résumé :
+
+*) le premier octet est la valeur 0x30 (qui indique qu'on a affaire à une 
+   séquence de plusieurs valeurs).
+
+*) le deuxième octet indique la taille des valeurs sérialisées ensuite.
+   En principe, cette taille est de 68 octets.
+
+*) le troisième octet doit êre 0x02 (qui indique que ce qui suit est un entier).
+
+*) le quatrième octet doit être la taille de cet entier (c'est r). En principe,
+   cet entier occupe 32 octets (256 bits, normal, il est donc modulo q).
+
+*) les octets [4:36] sont la représentation big-endian du premier entier de la
+   signature.
+
+*) l'octet qui suit (d'offset 36, en principe) doit être 0x02, qui indique que
+   ce qui suit est un entier (c'est s).
+
+*) l'octet qui suit (d'offset 37, en principe) doit être la taille de cet
+   entier. En principe, cet entier occupe 32 octets (256 bits, normal, il est
+   donc modulo q).
+
+*) les octets [38:70] sont la représentation big-endian du deuxième entier de la
+   signature.

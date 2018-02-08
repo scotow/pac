@@ -1,0 +1,38 @@
+Des amis hauts-placés nous ont révélé l'existence d'un utilitaire système 
+mal documenté :
+
+	/sbin/monitor-settings
+
+Il s'agit apparemment d'une interface qui permet de lire une partie de l'état
+interne du kernel-monitord. Malheureusement, cette interface est chiffrée.
+
+Une requête GET sur ce programme renvoie un message chiffré.
+Une requête POST doit être accompagnée de deux arguments "ciphertext" et "IV".
+
+Les contenus chiffrés et les IV sont apparement encodés en base64. Il semble
+crédible qu'il faille aussi POSTer du contenu chiffré encodé en base64.
+
+Vu son interface, nous estimons d'une part que ce programme contient une clef
+secrète K, qui nous est inconnue. D'autre part, il envoie et reçoit du contenu
+chiffré avec cette clef K. La taille des chiffrés, un multiple de 128 bits, et
+la présence d'un "IV", laissebt imaginer un mode opératoire utilisant un 
+chiffrement par blocs avec un mécanisme de bourrage, et un bloc de 128 bits. Il
+s'agit très probablement de l'AES-128-CBC.
+
+Heureusement pout nous, ce programme a un défaut cryptographique majeur : il 
+tente le déchiffrement, et lorsque le mécanisme de bourrage détecte un problème,
+il nous le dit.
+
+Nous pensons que ceci est suffisant pour permettre le déchiffrement de n'importe
+quel message chiffré par la clef K. Ceci doit permettre d'avoir accès à des
+données intéressantes.
+
+Pour vous aider, vous pouvez utiliser du code (open-source) de gestion des blocs
+disponible à l'adresse : 
+
+	/share/blocks.py
+
+Nous avons pu glaner ici et là des informations supplémentaires. Elles sont
+accessibles ici :
+    
+    /knowledge-center/monitor-settings/<i>    avec    i = 0,1,2,3

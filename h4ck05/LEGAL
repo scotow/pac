@@ -1,0 +1,48 @@
+EN CAS DE PROBLÈMES AVEC LA JUSTICE
+-----------------------------------
+
+Ce document rassemble des retours d'expériences utiles en cas de démélés avec
+la justice.
+
+
+QUE SE PASSE-T-IL SI ON EST ACCUSÉ ?
+    Lorqu'on est accusé(e), nos comptes sont suspendus pendant l'enquête.
+    
+    Cependant l'accès à cette machine virtuelle, via kerberos, sera toujours
+    possible.
+
+
+QUELLE ATTITUDE ADOPTER FACE AUX MAGISTRATS ?
+	Il ne faut pas paniquer.
+
+	Le plus sage est de ne rien avouer et de garder le silence. Autant ne 
+	pas leur donner des arguments pour nous accuser.
+
+
+QUE SE PASSE-T-IL SI ON PLAIDE COUPABLE ?
+	Encore une fois, ce n'est pas recommandé. Ceci dit, nous connaissons au
+	moins une personne qui l'a fait, et qui a été remise en liberté sur le
+	champ, car elle était présumée innocente tant que le jugement n'avait pas
+	été rendu. Bref, nous ne savons pas trop.
+
+
+FAUT-IL SOLLICITER UN AVOCAT COMMIS D'OFFICE ?
+	Avocat ou pas, ces simulacres de procès sont truqués quoi qu'il arrive.
+	Le bénéfice d'avoir un avocat n'est pas clair.
+
+
+COMMENT SE PASSE LE PROCÈS ?
+	Le président du tribunal récupère la liste des infractions qui vous sont
+	reprochées depuis une base de donnée. Il vous les expose, et le procureur
+	fait ses réquisitions. Enfin, si vous en avez un, votre avocat prend la parole.
+
+
+Y A-T-IL UN MOYEN D'ÉVITER LE PROCÈS ?
+	Si vous arriviez à expurger la base de données des infractions qui vous
+	concernent, vous seriez en bien meilleure situation dans les débats lors
+	du procès. Si vous disposez des compétences techniques, et que vous êtes
+	dans une situation délicate, alors vous auriez intérêt à consulter une
+	documentation assemblée par un de nos "amis" qui travaille dans le milieu
+	judiciaire. Elle est disponible dans notre machine virttuelle à l'adresse :
+
+		/courthouse-hack

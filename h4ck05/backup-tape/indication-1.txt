@@ -1,0 +1,26 @@
+N'oubliez pas de récupérer la clef publique de l'opérateur avec  l'utilitaire 
+standard :
+
+    /bin/key-management
+
+C'est une clef openssl, encodée en base64, et sérialisée en ASN.1 ! On peut
+examiner son contenu de deux manières :
+
+a) La manière dure
+
+        openssl asn1parse -in pk.pem
+
+    Les 3 entiers affichés sont les paramètres, respectivement p, q et g. Le 
+    problème c'est que le h (la clef publique a proprement parler) est planquée
+    dans le champ de type "bitstring". Pour voir sa valeur il faut refaire :
+
+    	openssl asn1parse -in pk.pem -strparse [offset de la bitstring]
+
+
+b) La manière douce
+
+		openssl pkey -pubin -in pk.pem -text
+
+	Affiche tout dans un format (presque) lisible par des êtres humains. En deux
+	temps trois mouvement on obtient les valeurs de p, q, g et h (ce dernier est
+	nommé "pub" dans la sortie).

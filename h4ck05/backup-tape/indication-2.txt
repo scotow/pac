@@ -1,0 +1,24 @@
+Ces petits problèmes techniques étant derrière nous, attaquons-nous au bug de
+l'implémentation utilisée.
+
+Si on collecte plusieurs signatures, on observe qu'elles ont toutes la même
+valeur de r (la première composante des paires). Ceci signifie que la même
+valeur de k est utilisée à chaque fois.
+
+On peut exploiter ceci quand on a deux signatures (r, s1) et (r, s2) de deux
+messages M1 et M2. En effet, comme :
+
+	s1 = k**(-1) * (SHA-256(M1) + x*r)    [modulo q]
+	s2 = k**(-1) * (SHA-256(M2) + x*r)    [modulo q]
+
+En calculant (s1 - s2), on trouve en fait :
+
+	s1 - s2 = k**(-1) * (SHA-256(M1) - SHA-256(M2))    [modulo q]
+
+Et là-dedans, la seule inconnue, c'est k. Il faut donc résoudre ceci en k. Une
+fois que c'est fait, on peut regarder la définition de s1 ou s2 : la seule
+inconnue est x. Ceci permet de récupérer x, qui est la clef secrète.
+
+L'utilitaire système non-documenté /sbin/keyhack permet alors de produire un
+fichier "clef secrète" lisible par OpenSSL et d'utiliser les codes de login
+sans mot de passe standard.

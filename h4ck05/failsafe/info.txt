@@ -1,0 +1,16 @@
+Nous nous demandions tous ici depuis longtemps à quoi sert le programme (non
+documenté...) /sbin/failsafe.
+
+Une percée a récemment eu lieu sur ce terrain. Nous venons en effet de réussir à
+acquérir le mot de passe du compte système /home/failsafe. Il s'agit de :
+
+    I_hope_you_never_logon_to_this
+
+Ceci dit, nous ne sommes apparemment pas au bout de nos peines... Mais mieux 
+vaut aller se rendre compte soi-même sur place.
+
+
+Nous avons pu glaner ici et là des informations supplémentaires. Elles sont
+accessibles ici :
+    
+    /knowledge-center/failsafe/<i>    avec    i = 0,1,2,3,4,5.
