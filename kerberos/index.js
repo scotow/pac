@@ -7,8 +7,6 @@ const request = require('request-promise-native');
 // Environment variables.
 require('dotenv').config();
 
-console.log(process.env.PAC_USERNAME);
-
 if(!process.env.PAC_USERNAME) throw new Error('Please set PAC_USERNAME environment variable.');
 if(!process.env.PAC_PASSWORD) throw new Error('Please set PAC_PASSWORD environment variable.');
 if(!process.env.PAC_VM) throw new Error('Please set PAC_VM environment variable.');
