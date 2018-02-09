@@ -1,0 +1,8 @@
+Le bug de l'implémentation qu'on peut exploiter est le suivant : le webservice
+tente le déchiffrement, et renvoie des messages d'erreurs différents selon que
+le déchiffrement échoue parce que le padding est invalide, ou bien parce que le
+padding est valide, mais le contenu déchiffré est bidon.
+
+Il est possible d'exploiter cette petite fuite d'information pour faire 
+déchiffrer n'importe quel message. Cette attaque a été découverte en 2002 par 
+Serge Vaudenay.

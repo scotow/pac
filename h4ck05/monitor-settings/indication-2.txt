@@ -1,0 +1,24 @@
+La technique qui sert à récupérer le dernier octet du dernier bloc
+permet en fait de récupérer aussi les autres octets. Voici comment
+faire pour récupérer l'avant-dernier.
+
+On suppose qu'on connaît le dernier octet de D(K, Y[n]) grâce à la
+question précédente.
+
+a) on choisit un nouvel IV aléatoire
+b) on modifie le dernier octet de l'IV de telle sorte que :
+
+    IV ^ D(K, Y[n]) = ..............................02
+
+c) on envoie le message formé d'un bloc Y[n] à l'oracle, avec cet IV.
+d) si l'oracle accepte, alors on sait que :
+
+    IV ^ D(K, Y[n]) = ............................0202
+
+Et de ceci, on peut déduire la valeur de l'avant dernier octet de
+D(K,Y[n]). Ceci permet ensuite facilement de trouver l'avant dernier
+octet du clair.
+
+La technique fonctionne de manière similaire pour les autres octets
+(pour trouve le i-ème en partant de la fin, il faut fixer les (i-1)
+derniers octets de l'IV à la valeur ``i'').

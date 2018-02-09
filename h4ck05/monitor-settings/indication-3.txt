@@ -1,0 +1,26 @@
+Pour déchiffrer le challenge en entier, il faut le déchiffrer bloc par
+bloc. Si vous avez répondu à la deuxième question, alors vous savez
+comment déchiffrer le dernier bloc. Mais en fait la même technique
+s'applique à tous les autres.
+
+Attention cependant aux points suivants :
+
+*) Le dernier bloc contient le padding. Il faudra le retirer pour
+   produire le message original.
+
+*) Vous avez intérêt à stocker les blocs de clair au fur-et-à-mesure
+   qu'ils sont déchiffrés. On ne sait jamais ce qui peut arriver, et
+   ça vous permettra de reprendre l'attaque là où elle s'est
+   interrompue, le cas échéant.
+
+*) Pour le premier bloc, on ne peut pas complètement s'y prendre de la
+   même façon, car il n'y a pas de bloc "précédent". Mais en fait,
+   c'est alors l'IV qui joue ce rôle-là.
+
+
+Une légende urbaine circule sur un h4x0r légendaire qui avait un programme
+qui attaquait tous les blocs à récupérer en parallèle avec des threads, et
+qui optimisait l'ordre des test pour tester d'abord les valeurs les plus
+probables des octets à découvrir (les lettres, les chiffres, etc.)
+
+Bon courage !

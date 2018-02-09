@@ -1,0 +1,98 @@
+On nous donne un message chiffré découpé en n blocs : Y[0], ..., Y[n]. Il s'agit
+du chiffré d'un message clair lui aussi découpé en blocs, noté X[0], ..., X[n].
+
+Le message a été chiffré avec l'AES-128-CBC. Le bourrage standard (padding) a 
+été appliqué sur le clair pour obtenir une taille multiple de 128 bits. Un IV
+aléatoire de 128 bits a été utilisé lors du chiffrement, et on le note Y[-1].
+
+
+Toute l'action se concentre sur le dernier bloc. En effet, c'est là
+que le padding est appliqué. On rappelle que dans le mode CBC, le
+dernier bloc du clair s'obtient par :
+
+    X[n] = D(K, Y[n]) ^ Y[n-1]
+
+où D(K, ...) est le déchiffrement du block-cipher.
+
+Pour que le message soit accepté, il faut que X_n contienne un
+"padding" valide. Ce signifie que :
+
+    X[n] = ..............................01
+
+ou
+
+    X[n] = ............................0202
+
+ou
+
+    X[n] = ..........................030303
+
+etc.
+
+Le web-service auquel on a accès fait office "d'oracle de padding" : on lui 
+donne un chiffré arbitraire, il le déchiffre et il nous indique si le padding 
+est valide.
+
+
+Dans un premier temps, on va utiliser l'oracle de padding pour récupérer la 
+valeur du dernier octet de X[n]. On forme un message chiffré constitué d'un seul 
+bloc
+
+    C = Y[n]
+
+Et on génère un nouvel IV aléatoire. On envoie (IV, C) à l'oracle de padding.
+
+Le processus de déchiffrement va aboutir à un seul bloc de clair (avec padding),
+dont la valeur est :
+
+    X_padded = D(K, Y[n]) ^ IV
+
+à cause du choix aléatoire de l'IV, ceci est une valeur aléatoire (en effet, ici
+l'IV agit comme un "masque jetable").
+
+Il y a une chance sur 256^1 = 256 que le dernier octet de X_padded soit égal à
+0x01, et que le message soit considéré comme valide pour cette raison.
+
+Il y a une chance sur 256^2 que les deux dernier octets de X_padded soient égaux
+à 0x0202, et que le message soit considéré comme valide pour cette raison.
+
+Il y a une chance sur 256^3 que les trois dernier octets de X_padded soient
+égaux à  0x030303, et que le message soit considéré comme valide pour cette
+raison.
+
+etc.
+
+La probabilité que le message soit accepté par l'oracle est donc :
+
+    P[oracle accepte] = sum([ 1 / pow(256, i) for i in range(1, 16) ])
+		                  = 1/255 à 10^(-34) près
+                      = 0.392%
+
+À assez peu de choses près, l'oracle acceptera au bout de 255 essais en moyenne.
+
+En fait, quand l'oracle accepte, le plus probable, d'assez loin, c'est que 
+X_padded finit par 01. Pour les puristes, on peut même calculer la probabilité 
+que ça ait lieu avec la formule de Bayes :
+
+P[padding=01|oracle accepte] = Prob[oracle accepte|padding=01] * P[padding=01] / P[oracle accepte]
+
+L'oracle accepte toujours quand le padding est 01, donc la première probabilité
+du membre droit vaut 1. La probabilité que le padding soit 01 est 1/256, comme
+on l'a déjà dit. On trouve donc :
+
+P[padding=01|oracle accepte] = 99.61%.
+
+Passons sur le calcul des probabilités. Lorsque l'oracle accepte, on est
+quasiment sûr que :
+
+   X_padded = D(K, Y[n]) ^ IV = ..............................01
+
+Le dernier octet de D(K, Y[n]) est donc le dernier octet de (X_padded ^ IV).
+
+Comme on connaît le dernier octet de Y[n-1], dans le "challenge" de départ, on 
+peut calculer le dernier octet du dernier bloc de clair (avec padding) dans le
+challenge.
+
+En toute logique, on va donc tomber sur un octet du padding (on ne
+doit donc pas voir n'importe quoi, ce qui permet de vérifier si on ne
+s'est pas trompé).
