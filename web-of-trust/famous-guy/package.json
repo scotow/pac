@@ -1,0 +1,17 @@
+{
+  "name": "famous-guy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "famous.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Scotow",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^5.0.0",
+    "get-stdin": "^5.0.1",
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5"
+  }
+}

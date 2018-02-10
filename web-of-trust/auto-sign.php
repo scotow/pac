@@ -48,6 +48,9 @@ curl_close($curl);
 
 header("Content-Type: text/plain");
 if($httpcode === 200) {
+    echo "Signer:\n";
+    echo "samanthacrosby\n\n";
+    echo "Signature:\n";
     echo shell_exec("echo -n '$public_key' | openssl dgst -sha256 -sign id_rsa | base64");
 } else {
     http_response_code(403);
