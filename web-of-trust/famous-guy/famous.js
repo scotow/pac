@@ -1,4 +1,4 @@
-// Moduls.
+// Modules.
 const readline = require('readline');
 const crypto = require('crypto');
 const request = require('request-promise-native').defaults({
@@ -45,8 +45,8 @@ function potentialSigners() {
         rl.on('SIGINT', () => {
             cancel = true;
             rl.close();
-            reject(new Error('SIGINT signal received.'));
-        })
+            reject(new Error('Input cenceled.'));
+        });
     });
 }
 
@@ -126,4 +126,4 @@ async function becomeFamous() {
 
 becomeFamous()
 .then(() => console.log('Success.'))
-.catch(error => console.error(error));
+.catch(error => console.error(error.message));

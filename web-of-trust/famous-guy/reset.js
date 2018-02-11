@@ -1,4 +1,4 @@
-// Moduls.
+// Modules.
 const request = require('request-promise-native').defaults({
     jar: true,
     json: true
