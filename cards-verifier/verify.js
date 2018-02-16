@@ -1,4 +1,4 @@
-// Moduls.
+// Modules.
 const fs = require('fs-extra');
 const os = require('os');
 const { exec } = require('child-process-promise');
