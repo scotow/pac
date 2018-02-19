@@ -1,8 +1,16 @@
 <?php
 
+header('Content-Type: text/plain');
+
 if(empty($_GET['user'])) {
     http_response_code(400);
     echo 'Please use the \'user\' GET parameter';
+    exit;
+}
+
+if($_GET['user'] === 'dannyjones') {
+    http_response_code(403);
+    echo 'Don\'t want to share? Go fuck yourself.';
     exit;
 }
 
@@ -46,12 +54,17 @@ $public_key = curl_exec($curl);
 $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 curl_close($curl);
 
-header("Content-Type: text/plain");
 if($httpcode === 200) {
-    echo "Signer:\n";
-    echo "samanthacrosby\n\n";
-    echo "Signature:\n";
-    echo shell_exec("echo -n '$public_key' | openssl dgst -sha256 -sign id_rsa | base64");
+    $signatures = array();
+    foreach(array_reverse(glob('id_rsa_*')) as $private_key_file) {
+        $signature = "Signer:\n";
+        $signature .= str_replace('id_rsa_', '', $private_key_file) . "\n\n";
+        $signature .= "Signature:\n";
+        $signature .= shell_exec("echo -n '$public_key' | openssl dgst -sha256 -sign $private_key_file | base64");
+        $signatures[] = $signature;
+    }
+
+    echo implode("\n" . str_repeat("-", 76) . "\n\n", $signatures);
 } else {
     http_response_code(403);
     echo "An error has occured while fetchting the public key:\n'$public_key'";
