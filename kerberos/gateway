@@ -1,7 +1,7 @@
 #!/bin/bash
 
 [[ -z $PAC_KEY ]]       && echo "Please set PAC_KEY environment variable." && exit 1
-[[ -z $PAC_COOKIE ]]   && echo "Please set PAC_COOKIE environment variable." && exit 1
+[[ -z $PAC_COOKIE ]]    && echo "Please set PAC_COOKIE environment variable." && exit 1
 [[ -z $PAC_VM ]]        && echo "Please set PAC_VM environment variable." && exit 1
 
 set -euo pipefail
