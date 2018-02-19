@@ -1,0 +1,20 @@
+Par exemple, imaginons que x soit un nombre de 5 bits : x = abcde (chaque lettre
+représente un bit).
+
+On calcule y = x ^ (x >> 2). On a donc :
+
+	y = stxyz, 
+
+avec :
+
+	s = a
+	t = b
+	x = c ^ a
+	y = d ^ b
+	z = e ^ c
+
+De y, il n'est pas difficile de retrouver x. C'est l'affaire d'une boucle "for"
+d'une seule ligne.
+
+Le seul "truc", c'est qu'on a besoin de la valeur de c pour reconstituer e, or 
+pour avoir c, il faut d'abord l'avoir calculé à partir de x.

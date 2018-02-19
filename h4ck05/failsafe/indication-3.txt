@@ -1,0 +1,15 @@
+Le problème revient à résoudre les équations suivantes en x:
+
+    y = x ^ ((x >> k) & mask)
+
+            --ou--
+
+    y = x ^ ((x << k) & mask)
+
+connaissant les valeurs de y, k et mask.
+
+Dans un premier temps, c'est plus facile quand le mask n'est pas là (ou bien 
+quand il vaut 0xffffffff, ce qui revient au même).
+
+Ce n'est pas très difficile, mais il faut trouver le truc. Le mieux c'est de 
+s'entrainer sur de petits exemples (petits nombres y, petit décalage).

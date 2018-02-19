@@ -1,0 +1,4 @@
+Don't panic.
+
+Le fait qu'on sache que le début du message contienne des espaces permet de
+reconstituer le début du flux qui sort du PRNG (les 3072 premiers octets).

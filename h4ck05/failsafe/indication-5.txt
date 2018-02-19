@@ -1,0 +1,7 @@
+Pour terminer, un conseil de bon sens. Pour mettre votre code au point :
+
+1) Fixer arbitrairement un état interne que vous connaissez
+2) Générer 624 mots de 32-bits de flux pseudo-aléatoire
+3) Vérifier que vous reconstituez bien l’état interne.
+
+Si ça marche, vous pouvez passer au déchiffrement.

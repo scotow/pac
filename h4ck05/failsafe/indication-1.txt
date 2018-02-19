@@ -1,0 +1,11 @@
+La connaissance des 624 premiers entiers qui sortent du générateur après 
+initialisation est suffisante pour reconstituer entièrement son état interne. 
+Ceci représente 2496 octets.
+
+Une fois que l'état interne du PRNG est connu, on peut s'en servir pour calculer
+la sortie via le mécanisme normal. On peut vérifier qu'on ne s'est pas trompé, 
+car on peut ainsi regénérer la partie [2496:3072] du flux du PRNG, dont on 
+connait déjà la valeur.
+
+Et comme on peut produire le flux pseudo-aléatoire qui suit, on peut effectuer
+le déchiffrement.

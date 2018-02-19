@@ -1,0 +1,9 @@
+En observant les 624 premiers entiers du challenge, on observe en fait :
+
+    [ mersenne._f(MT[i]) for i in range(624) ]
+
+Or, c'est des MT[...] qu'on a besoin. Tout le problème consiste donc à inverser
+la fonction _f.
+
+Heureusement c'est "facile". Elle se compose de 4 étapes. Pour inverser _f, il 
+"suffit" d'inverser les 4 étapes une-par-une, en commençant par la dernière.
