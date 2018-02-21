@@ -120,3 +120,17 @@ class MersenneTwister:
         y ^= (y << 15) & 4022730752
         y ^= y >> 18
         return y
+
+def main():
+    mt = MersenneTwister()
+    #n = mt.rand()
+    tab = [3*i+5 for i in range(624)]
+    mt.set_state(tab)
+    for i in range(5000):
+       mt.rand()
+    n = mt.rand()
+    print('{:032b}'.format(n))
+    # print('{:032b}'.format(n & 0xFF))
+
+if __name__ == "__main__":
+    main()

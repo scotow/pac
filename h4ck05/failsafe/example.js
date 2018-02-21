@@ -80,3 +80,11 @@ const b = 0b10110011101010100100011101010111 | 0;
 const bc = b ^ ((b << 7) & 2636928640);
 console.log('b : ', b);
 console.log('bc: ', unBitshiftLeftXor(bc, 7, 2636928640));
+
+
+let input = 150999088;
+input = reverseRightShiftXor(input, 18);
+input = unBitshiftLeftXor(input, 15, 4022730752);
+input = unBitshiftLeftXor(input, 7, 2636928640);
+input = reverseRightShiftXor(input, 11);
+console.log('input: ', input);
