@@ -1,9 +1,10 @@
-const fs = require('fs');
+// Modules.
+const request = require('request-promise-native').defaults({
+    jar: true,
+    json: true
+});
 
-const bitmask_1 = (2 ** 32) - 1
-const bitmask_2 = 2 ** 31
-const bitmask_3 = (2 ** 31) - 1
-
+// Return a binary (zero padded) representation of a 32 bits number.
 Number.prototype.bin = function() {
    return (
        '0'.repeat(32 - (this >>> 0).toString(2).length) +
@@ -11,6 +12,12 @@ Number.prototype.bin = function() {
    );
 };
 
+// Mersenne Twister masks.
+const bitmask_1 = (2 ** 32) - 1;
+const bitmask_2 = 2 ** 31;
+const bitmask_3 = (2 ** 31) - 1;
+
+// JavaScript version of the random.py script.
 class MersenneTwister {
     constructor() {
         this.MT = Array(624).fill(0).map((e, i) => i +1);
@@ -61,27 +68,32 @@ class MersenneTwister {
     }
 }
 
+// Reverse an equation of the 'y ^= y >>> k' type.
 function reverseRightShiftXor(number, shift) {
+    // Copy first unchanged bits.
     let reversed = (number >>> (32 - shift)) << (32 - shift);
+    // Reverse mask + shift of the following bits.
     for(let i = shift + 1, j = 1; i <= 32; i++, j++) {
         reversed |= ((1 << 32 - i) & number) ^ (((1 << 32 - j) & reversed) >>> shift);
     }
     return reversed;
 }
 
+// Reverse an equation of the 'y ^= (y << k) & x' type.
 function unBitshiftLeftXor(value, shift, mask) {
-  let i = 0;
-  let result = 0;
-  while (i * shift < 32) {
-    let partMask = (-1 >>> (32 - shift)) << (shift * i);
-    let part = value & partMask;
-    value ^= (part << shift) & mask;
-    result |= part;
-    i++;
-  }
-  return result;
+    let i = 0;
+    let result = 0;
+    while (i * shift < 32) {
+        const partMask = (-1 >>> (32 - shift)) << (shift * i);
+        const part = value & partMask;
+        value ^= (part << shift) & mask;
+        result |= part;
+        i++;
+    }
+    return result;
 }
 
+// Reverse MT _f function.
 function reverseF(value) {
     value = reverseRightShiftXor(value, 18);
     value = unBitshiftLeftXor(value, 15, 4022730752);
@@ -90,30 +102,58 @@ function reverseF(value) {
     return value;
 }
 
-const crypted = fs.readFileSync('I_hope_you_never_read_this.bin');
+async function cryptedMessage() {
+    // Open session.
+    await request.post({
+        url: 'http://pac.fil.cool/uglix/bin/login',
+        body: {
+            user: 'failsafe',
+            password: 'I_hope_you_never_logon_to_this'
+        }
+    });
 
-const seeds = Array(624).fill(0);
-for(let i = 0; i < 624; i++) {
-    seeds[i] |= (crypted[i * 4 + 0] ^ 32) << 0;
-    seeds[i] |= (crypted[i * 4 + 1] ^ 32) << 8;
-    seeds[i] |= (crypted[i * 4 + 2] ^ 32) << 16;
-    seeds[i] |= (crypted[i * 4 + 3] ^ 32) << 24;
-    seeds[i] = reverseF(seeds[i]);
+    // Fetch message as buffer.
+    return request.get({
+        url: 'http://pac.fil.cool/uglix/home/failsafe/I_hope_you_never_read_this.bin',
+        encoding: null
+    });
 }
 
-const mt = new MersenneTwister();
-mt.setState(seeds);
-
-const decrypted = Buffer.allocUnsafe(crypted.length - 624 * 4);
-
-let mask;
-for(let i = 624 * 4, j = 0; i < crypted.length; i++, j++) {
-    if(i % 4 === 0) {
-        mask = mt.rand();
+function decrypt(crypted) {
+    // Rebuild MT from the first 2 496 space characters.
+    const seed = Array(624).fill(0);
+    for(let i = 0; i < 624; i++) {
+        seed[i] |= (crypted[i * 4 + 0] ^ 32) << 0;
+        seed[i] |= (crypted[i * 4 + 1] ^ 32) << 8;
+        seed[i] |= (crypted[i * 4 + 2] ^ 32) << 16;
+        seed[i] |= (crypted[i * 4 + 3] ^ 32) << 24;
+        seed[i] = reverseF(seed[i]);
     }
 
-    const maskByte = (mask >> (8 * (i % 4))) & 0xFF;
-    decrypted[j] = crypted[i] ^ maskByte;
-    // console.log(crypted[i] ^ maskByte);
+    // Set seed.
+    const mt = new MersenneTwister();
+    mt.setState(seed);
+
+    // Alloc a buffer for the decrypted message.
+    const decrypted = Buffer.allocUnsafe(crypted.length - 624 * 4);
+
+    // Rebuild the message using the same instance of MT (same seed).
+    let mask;
+    for(let i = 624 * 4, j = 0; i < crypted.length; i++, j++) {
+        // Get a new set of 32 random bits if needed.
+        if(i % 4 === 0) {
+            mask = mt.rand();
+        }
+
+        // Xor a byte of message with the corresponding random byte.
+        decrypted[j] = crypted[i] ^ ((mask >> (8 * (i % 4))) & 0xFF);
+    }
+
+    // Encode to UTF-8, trim and return the message.
+    return decrypted.toString('utf8').trim();
 }
-console.log(decrypted.toString('utf8').trim());
+
+// Main.
+cryptedMessage()
+.then(message => console.log(decrypt(message)))
+.catch(error => console.error(error.message));
