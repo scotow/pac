@@ -27,3 +27,17 @@ x ^ (x >> k)
 X = (Y >> (32 - 2)) << (32 - 2)
 for i = 32 - 2; i >= 0; i--
     X ^= ((1 << i) & Y)
+
+
+
+
+y =  x ^ ((x << 2) & lmnop)
+
+x = abcde
+y = stxyz
+
+    s = a ^ (c & l)
+    t = b ^ (d & m)
+    x = c ^ (e & n)
+    y = d
+    z = e
