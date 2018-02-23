@@ -1,0 +1,33 @@
+----------------------------------------------------------------------
+Message #12125.
+
+
+Date: 23-02-21890 03:20:20
+From: programmer
+Subject: Une version améliorée
+
+mfowler,
+
+J'ai oublié de te dire que le second fichier que je t'avais envoyé l'autre jour
+était chiffré par une version améliorée de ta solution. Plus précisément, le
+PRNG utilisé pour produire la clef a été un peu mis à jour. C'est maintenant
+celui-là :
+
+--------------------------------------------------------------------------------
+uint64_t rand64_state;
+
+void srand64(uint64_t seed) {
+  rand64_state = seed;
+}
+
+uint32_t mrand64() {
+  rand64_state = (0x00000005deece66d * rand64_state + 11);
+  return (rand64_state >> 32);
+}
+--------------------------------------------------------------------------------
+
+Désolé d'avoir oublié de te prévenir.
+
+A bientôt,
+----
+/home/programmer

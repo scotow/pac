@@ -1,0 +1,25 @@
+main.c à l'air d' un programme qui génère une clef symétrique aléatoire, ainsi 
+qu'un IV aléatoire. La clef est affichée (nous supposons qu'elle a été écrite 
+sur un bout de papier quelque part). Le message est chiffré puis écrit dans un 
+fichier, précédé par l'IV, conformément à la documentation ULGIX : 
+    
+    /doc/encryption-advanced
+
+La mauvaise nouvelle, c'est que le fichier est visiblement chiffré avec l'AES. 
+La bonne nouvelle, c'est que le mécanisme utilisé pour générer aléatoirement la
+clef n'a pas l'air terrible (ce doit être le PRNG décrit dans drand48.c).
+
+Tout d'abord, on peut remarquer que l'état interne du PRNG occupe 48 bits (d'où
+son nom). Si on connait l'état interne, on peut calculer "normalement" les
+sorties successives du PRNG. 
+
+Par conséquent, pour pouvoir effectuer le déchiffrement il faut connaître l'état
+interne du PRNG au moment de la génération de la clef. Ceci permet de connaître
+la clef en exécutant 4 fois mrand48().
+
+Nous avons envisagé trois stratégies pour y parvenir :
+    1. Recherche exhaustive sur l'état interne
+    2. Recherche exhaustive sur la graine (seed)
+    3. Reconstitution de l'état interne à partir de l'IV
+
+Ces stratégies sont détaillées dans les notes qui suivent.

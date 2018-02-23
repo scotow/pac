@@ -1,0 +1,24 @@
+Il est possible de tirer davantage parti du fait qu'on observe (un peu) la 
+sortie du PRNG. En effet, on connaît l'IV. Sans rentrer dans trop de
+complications, lorsqu'on récupère :
+
+    IV[0] = mrand48()
+
+On récupère en fait 32 bits (66%) de l'état interne qu'à le PRNG en sortie de
+l'appel à mrand48(). Il suffit donc grosso-modo de faire une recherche
+exhaustive sur les 16 bits restants, en utilisant la suite de l'IV pour
+"confirmer". Ceci permet, avec très peu de calculs, de connaître l'état interne
+après le 5ème appel à mrand48() --- après la génération du premier mot de l'IV.
+
+Pour conclure, il faut "rembobiner" le PRNG et remonter à des états internes 
+antérieurs. En effet, on a :
+
+	state' = (a * state + b) & 0x0000ffffffffffff.
+
+Le ET logique est en fait un moyen efficace de réaliser l'opération :
+
+	state' = (a * state + b) % 0x0001000000000000.
+
+On peut résoudre cette équation pour trouver l'ancienne valeur de l'état interne
+connaissant la nouvelle. Il suffit de répéter ça 5 fois, et on otient l'état
+interne juste après l'appel à srand48().

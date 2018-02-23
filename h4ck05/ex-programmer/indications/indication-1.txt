@@ -1,0 +1,13 @@
+On peut toujours envisager une recherche exhaustive sur l'état interne (c.a.d.
+sur le contenu de la variable "state"). Comme il tient sur 48 bits, il peut
+prendre 2**48 valeurs. On peut toutes les essayer, et vérifier qu'on a obtenu
+la bonne en s'assurant qu'on génère le bon IV :
+
+    for each possible state:
+        K  <--- 4 calls to mrand()
+        IV <--- 4 calls to mrand()
+        if IV is correct:
+            return K
+
+Ceci est cependant assez long (plus de 2**48 opérations, ce qui risque de 
+prendre des heures sans matériel sophistiqué).

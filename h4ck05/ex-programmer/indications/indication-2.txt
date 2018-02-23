@@ -1,0 +1,16 @@
+La recherche exhaustive sur l'état interne est en réalité très sous-optimale,
+car juste après un appel à srand48(), les 16 bits de poids faible de l'état
+interne sont connus.
+
+Il est donc beaucoup plus malin de faire une recherche exhaustive sur la graine
+(l'argument "seed" de srand48), qui lui n'est codé que sur 32 bits :
+
+    for each possible seed:
+        srand48(seed)
+        K  <--- 4 calls to mrand()
+        IV <--- 4 calls to mrand()
+        if IV is correct:
+            return K
+
+Ceci est nettement plus rapide (quelques secondes/minutes) sur un terminal
+raisonnable.
