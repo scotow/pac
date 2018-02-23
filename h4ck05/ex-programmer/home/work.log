@@ -1,0 +1,1041 @@
+Wed Jul 22 18:20:20 2015 +0200 initial import
+Fri Jul 24 15:24:14 2015 +0200 Gestion plus automatique de "you have mail"
+Fri Jul 24 17:12:23 2015 +0200 openssl : détection correcte des erreurs de déchiffrement
+Fri Jul 24 17:12:59 2015 +0200 Factorisation du client
+Fri Jul 24 17:13:31 2015 +0200 sendmail : get
+Fri Jul 24 17:13:52 2015 +0200 whois de base
+Fri Jul 24 17:14:47 2015 +0200 Début d'une longue série de tests
+Fri Jul 24 17:55:37 2015 +0200 Amélioration des fixtures initiales
+Fri Jul 24 17:56:29 2015 +0200 ménage
+Fri Jul 24 19:21:30 2015 +0200 Refactoring de la gestion des fichiers
+Fri Jul 24 20:47:55 2015 +0200 Amélioration du client : le type de requête est explicite
+Fri Jul 24 20:49:11 2015 +0200 Gestion --un peu rudimentaire-- des PUT pour stocker des fichiers
+Sat Jul 25 21:57:01 2015 +0200 Améliorations du client de test
+Sat Jul 25 22:48:02 2015 +0200 Utilisation des signaux django pour le first_login
+Sat Jul 25 22:48:44 2015 +0200 améliorations cosmétiques à l'UI
+Sat Jul 25 23:41:44 2015 +0200 MAJ de la liste des dépendances
+Sat Jul 25 23:43:43 2015 +0200 PUT : un test rudimentaire
+Sat Jul 25 23:44:07 2015 +0200 whois : prise en compte du fichier PK
+Sat Jul 25 23:45:20 2015 +0200 ticket : Déchiffrement à clef publique
+Sun Jul 26 00:11:04 2015 +0200 Factorisation partielle de l'initialisation des tickets
+Sun Jul 26 00:17:53 2015 +0200 Amélioration dans la lecture des emails
+Sun Jul 26 00:23:45 2015 +0200 correction cosmétique
+Mon Aug 3 23:11:35 2015 +0200 améliorations de la doc
+Mon Aug 3 23:12:15 2015 +0200 rationalisation des views, content_type plus systématique
+Mon Aug 3 23:12:39 2015 +0200 centralisation du code du client
+Mon Aug 3 23:13:06 2015 +0200 gestion des fichiers "statiques"
+Mon Aug 3 23:13:33 2015 +0200 le client gère mieux la réception de données binaires
+Mon Aug 3 23:14:36 2015 +0200 ajout de la soundtrack n°1
+Sat Aug 22 12:26:04 2015 +0200 améliorations de la doc
+Sat Aug 22 17:06:49 2015 +0200 changement de l'API pour les fichiers dynamiques
+Sat Aug 22 17:07:06 2015 +0200 retrait d'un msg de debug inutile
+Sat Aug 22 17:07:32 2015 +0200 tickets manager : permet de specifier le password de certains users
+Sat Aug 22 17:08:10 2015 +0200 gestion du login style CHAP
+Sat Aug 22 18:01:25 2015 +0200 gestion raisonnable du content-type des fichiers
+Sat Aug 22 18:02:03 2015 +0200 répercussion du changement de politique sur le content-type
+Sat Aug 22 18:04:17 2015 +0200 ajout du ticket "break login v2"
+Sat Aug 22 18:05:14 2015 +0200 changements cosmétiques
+Tue Sep 1 12:33:50 2015 +0200 adaptation au fait que toute la BDD est dans MySQL
+Tue Sep 1 13:16:27 2015 +0200 "mission poorsod" : les admins envoient un mail "amical"
+Tue Sep 1 13:16:40 2015 +0200 Merge branch 'master' of https://github.com/cbouilla/uglix
+Tue Sep 1 13:17:40 2015 +0200 liste des dépendances plus à jour
+Tue Sep 1 15:19:55 2015 +0200 erreur dans l'envoi du mail
+Tue Sep 1 15:20:17 2015 +0200 helpdesk : un peu plus robste
+Tue Sep 1 15:21:52 2015 +0200 mail inbox : ordonne par ID et pas par date (foireux sur mysql)
+Tue Sep 1 15:22:02 2015 +0200 Merge branch 'master' of https://github.com/cbouilla/uglix
+Tue Sep 1 17:24:55 2015 +0200 fix typo
+Tue Sep 1 17:26:19 2015 +0200 merge
+Tue Sep 1 17:57:37 2015 +0200 this is where the funs happens
+Tue Sep 1 18:25:28 2015 +0200 fixing the mess
+Tue Sep 1 18:27:39 2015 +0200 with the corrects paths
+Tue Sep 1 18:28:22 2015 +0200 merge again
+Thu Sep 3 15:07:11 2015 +0200 Mode d'emploi sur les strings
+Fri Sep 4 09:07:31 2015 +0200 Généralisation de l'usage de sendfile
+Fri Sep 4 09:56:56 2015 +0200 amend previous commit : walk around django 1.7 / 1.8
+Fri Sep 4 10:02:37 2015 +0200 local / global vars in python sucks
+Fri Sep 4 10:03:43 2015 +0200 avec les import c'est mieux
+Fri Sep 4 10:09:04 2015 +0200 fix paths
+Fri Sep 4 10:17:38 2015 +0200 fix path again
+Fri Sep 4 10:50:50 2015 +0200 ajout de doc
+Fri Sep 4 10:53:48 2015 +0200 separate words from the rest
+Fri Sep 11 08:41:57 2015 +0200 Renomé whois en finger
+Fri Sep 11 08:57:14 2015 +0200 helpdesk : ajouts des trucs machine-friendly
+Fri Sep 11 08:58:34 2015 +0200 typo fix
+Fri Sep 11 09:10:31 2015 +0200 one more bug fix for the road
+Fri Sep 11 13:33:56 2015 +0200 78 char
+Fri Sep 11 13:43:24 2015 +0200 accès aux mail par mail-ID
+Thu Sep 17 14:08:01 2015 +0200 clean-up avant partage du code. Fonctionne mieux avec MySQL en mode non-apache.
+Mon Sep 21 12:00:17 2015 +0200 openssl : renforce la tolérance aux erreurs de déchiffrement stupides
+Mon Sep 21 12:00:54 2015 +0200 helpdesk : corrige un bug dans le truc qui affiche juste le titre d'un ticket
+Mon Sep 21 12:02:41 2015 +0200 améliorations du ticket PK-decrypt-101
+Mon Sep 21 12:03:03 2015 +0200 break login v2 : manoeuvre psychologique
+Mon Sep 21 12:03:29 2015 +0200 break login v2 : correction du bug signalé par Valentin
+Mon Sep 21 12:03:51 2015 +0200 ticket tutoriel : correction d'un bug
+Mon Sep 21 12:06:17 2015 +0200 ajouts de fonctions INBOX et finger pour pouvoir faire le TP automatiquement
+Mon Sep 21 12:08:30 2015 +0200 corrige un bug de type de contenu dans textfile()
+Mon Sep 21 12:08:42 2015 +0200 test un login v1 faux
+Mon Sep 21 12:09:20 2015 +0200 Un script qui fait le TP tout seul
+Thu Oct 1 15:12:45 2015 +0200 TODO done, template for finger
+Thu Oct 1 20:41:13 2015 +0200 emacs's doctor like, code name malika
+Fri Oct 2 13:28:57 2015 +0200 rename /bin/malika into /bin/kreature
+Mon Oct 5 08:54:52 2015 +0200 Accueil NASA en html. ---> Contraste avec UGLIX en text/plain
+Tue Oct 6 13:15:12 2015 +0200 Merge remote-tracking branch 'upstream/master'
+Tue Oct 6 23:43:06 2015 +0200 interface web : ajoute une FAQ
+Wed Oct 7 09:14:35 2015 +0200 relooking de la partie HTML
+Wed Oct 7 10:07:12 2015 +0200 more FAQs
+Wed Oct 7 10:07:42 2015 +0200 more intro blabla
+Wed Oct 7 10:08:27 2015 +0200 ajout d'une page /doc/ pour les boulets qui veulent en fait /uglix/doc/
+Wed Oct 7 10:16:42 2015 +0200 bug fix : on ne pouvait as récupérer /share/client.py
+Wed Oct 7 10:33:06 2015 +0200 more FAQs
+Thu Oct 8 08:25:26 2015 +0200 cleanup
+Thu Oct 8 08:25:57 2015 +0200 ajout d'une page de classement des participants
+Thu Oct 8 14:37:21 2015 +0200 PAC : améliorations cosmétiques
+Thu Oct 8 18:24:16 2015 +0200 PAC : amélioration de la réponse en cas d'IU fausse
+Thu Oct 8 18:26:17 2015 +0200 Tests : amélioration. Maintenant on va utiliser Nose
+Thu Oct 8 19:00:31 2015 +0200 typo
+Thu Oct 8 19:04:34 2015 +0200 hybrid cryptosystem
+Thu Oct 8 19:09:08 2015 +0200 Merge remote-tracking branch 'upstream/master'
+Thu Oct 8 19:23:48 2015 +0200 moving virtualStudent, adding a ERROR found file
+Thu Oct 8 18:44:30 2015 +0200 Meilleure gestion des unités informations (découpage par chapitre, etc.)
+Fri Oct 9 09:31:08 2015 +0200 inclus query (plus de dépendance à Google) + scrollspy dans la FAQ
+Fri Oct 9 09:37:54 2015 +0200 micro-changements dans la FAQ
+Fri Oct 9 12:07:49 2015 +0200 Correction d'un gros bug dans la validation des tickets
+Fri Oct 9 12:08:06 2015 +0200 ajout de nouvelles IU
+Fri Oct 9 12:08:55 2015 +0200 Système pour que les tickets puissent renvoyer des IU en cas de succès
+Fri Oct 9 12:14:01 2015 +0200 tests : grosse refonte
+Fri Oct 9 12:39:18 2015 +0200 Une soundtrack plus rapide
+Fri Oct 9 13:25:41 2015 +0200 PAC : empêche les UGLIX-user (ex. "guest") de se loguer dans le dashboard
+Fri Oct 9 13:39:00 2015 +0200 Merge remote-tracking branch 'upstream/master' into dev
+Fri Oct 9 13:58:44 2015 +0200 rétabli l'anti-partage d'utilisateur UGLIX entre étudiants
+Fri Oct 9 13:59:31 2015 +0200 Amélioration du dashboard : affiche les secrets etc.
+Fri Oct 9 14:11:25 2015 +0200 dashboard : déplace les "badges"
+Fri Oct 9 14:14:27 2015 +0200 la page "ranking" était cassée
+Fri Oct 9 14:16:33 2015 +0200 dashboard : le conseil aux débutants ne s'affichait plus
+Fri Oct 9 14:28:41 2015 +0200 Accélère l'affectation des UGLIX-users aux PAC-users
+Fri Oct 9 15:02:03 2015 +0200 Ajout de test pour le partage d'utilisateurs entre étudiants
+Sat Oct 10 12:07:33 2015 +0200 oublié dans le commit précédent : il faut un 2ème user de test
+Sat Oct 10 12:08:19 2015 +0200 ticket tutoriel : ajout de tests
+Sat Oct 10 12:08:55 2015 +0200 ajout de tests pour le ticket "encryption 101" + modification du ticket pour que les tests passent
+Sat Oct 10 12:23:18 2015 +0200 Intégration d'eliza : nom changé en /bin/psycho
+Sat Oct 10 13:08:39 2015 +0200 Modifications et commentaires sur le ticket "hybride"
+Sat Oct 10 13:10:15 2015 +0200 Merge branch 'ready'
+Sat Oct 10 13:18:50 2015 +0200 intégration d'eliza : les urls avaient été oubliées
+Sat Oct 10 13:19:13 2015 +0200 Merge branch 'ready' into integration
+Sat Oct 10 13:21:40 2015 +0200 Merge branch 'ready'
+Sat Oct 10 14:23:58 2015 +0200 préserve la PREMIÈRE date de validation des IU, pas la dernière
+Sat Oct 10 14:27:06 2015 +0200 tests pour le ticket sk_decrypt
+Sat Oct 10 14:28:09 2015 +0200 Plus de tests pour l'interface + correction d'un petit bug (/bin/sendmail)
+Sun Oct 11 11:59:36 2015 +0200 tests pk_101_encryption + fixes pour que ça marche...
+Mon Oct 12 11:20:38 2015 +0200 script pour re-générer les migrations
+Mon Oct 12 11:23:08 2015 +0200 helpdesk user = on stocke dans le modèle la dernière version du protocole de login utilisé
+Mon Oct 12 11:26:11 2015 +0200 réparti la création des tickets selon le protocole de login utilisé, au moment de l'accès au helpdesk
+Mon Oct 12 11:27:24 2015 +0200 guest n'a pas le droit de faire des PUT (anti-DOS)
+Mon Oct 12 11:30:32 2015 +0200 Introduction du CHAP login
+Mon Oct 12 11:43:02 2015 +0200 nouveaux tests pour le login (PAP + CHAP)
+Mon Oct 12 11:48:47 2015 +0200 Force les tests du helpdesk à se faire dans un certain ordre
+Mon Oct 12 11:54:40 2015 +0200 Merge branch 'master' into integration
+Wed Oct 14 10:08:34 2015 +0200 ticket PK101_dec : more tests
+Wed Oct 14 10:09:04 2015 +0200 petites améliorations graphiques
+Thu Oct 15 14:01:39 2015 +0200 typo
+Thu Oct 15 14:03:52 2015 +0200 Merge remote-tracking branch 'upstream/integration' into dev
+Thu Oct 15 14:55:26 2015 +0200 exit le "OpenSSLKeyStore"
+Thu Oct 15 15:03:57 2015 +0200 ticket : Two times pad
+Thu Oct 15 15:05:40 2015 +0200 Merge branch 'master' into integration
+Mon Oct 19 19:23:22 2015 +0200 v1, hybridTicket
+Wed Oct 21 07:55:04 2015 +0200 DRAFT fsck
+Wed Oct 21 08:29:25 2015 +0200 marre des tests qui passent pas
+Wed Oct 21 09:34:20 2015 +0200 Merge le ticket hybride + ajustements divers
+Wed Oct 21 09:36:16 2015 +0200 corrections par dessus le ticket hybride
+Wed Oct 21 19:10:21 2015 +0200 problème de casse
+Wed Nov 4 18:31:47 2015 +0100 test ok hybrid
+Wed Nov 4 20:23:12 2015 +0100 test ko key
+Fri Nov 6 14:15:12 2015 +0100 texte d'une mission twitter
+Fri Nov 6 14:16:00 2015 +0100 debug fsck
+Fri Nov 6 14:43:59 2015 +0100 tente de détecter les problèmes openssl
+Fri Nov 6 14:44:32 2015 +0100 test bugué
+Fri Nov 6 14:45:20 2015 +0100 Merge remote-tracking branch 'valentin/dev' into integration
+Fri Nov 6 16:07:58 2015 +0100 dix bug intermittent dans chiffrement PK (la clef n'avait pas la bonne taille)
+Sat Nov 7 13:38:57 2015 +0100 script d'une mission "collisions sur md5"
+Thu Nov 12 01:40:24 2015 +0100 localhost to 127.0.0.1, proxy problem
+Thu Nov 12 12:47:54 2015 +0100 Ajout d'une doc pour les signatures OpenSSL
+Thu Nov 12 12:49:58 2015 +0100 ajout de fonctions au helpdesk (reopen, etc.)
+Thu Nov 12 12:50:57 2015 +0100 correction d'un micro-bug dans le ticket tutorial
+Thu Nov 12 16:45:49 2015 +0100 ticket hybride : le test doit faire un CHAP login (en principe on aurait dû le jeter avant)
+Thu Nov 12 16:46:35 2015 +0100 boites mail : Nouvelle fonctions d'accès en API
+Thu Nov 12 16:46:53 2015 +0100 module openssl : signature / vérification
+Thu Nov 12 12:53:51 2015 +0100 Nouvelle mission : signature du contrat de travail pour la police
+Fri Nov 13 20:09:24 2015 +0100 Kerberos: auth create and test, tgt create and test(a bit)
+Sat Nov 14 16:24:53 2015 +0100 Kerberos: some more patches and tests
+Sat Nov 14 21:14:10 2015 +0100 Kerberos: Service helloWorld, service decorate, tests, patchs
+Sun Nov 15 12:34:17 2015 +0100 petite motifs du contrat
+Sun Nov 15 15:43:07 2015 +0100 Kerberos review
+Sun Nov 15 18:47:53 2015 +0100 kerberos rename json entries
+Wed Nov 18 19:32:23 2015 +0100 extension du client/testing pour permettre un envoie de "Client-Server-session-key"
+Wed Nov 18 19:36:15 2015 +0100 "service/<service_name>/hello"
+Thu Nov 19 07:11:54 2015 +0100 Permet des POST sans argument
+Thu Nov 19 07:13:20 2015 +0100 ajout de /bin/time pour permettre aux "joueurs" de se synchroniser avec le serveur
+Thu Nov 19 07:26:16 2015 +0100 Incorpore le kerberos de Valentin dans celui que j'ai un peu fait en parallèle
+Thu Nov 19 15:25:57 2015 +0100 client / testing : reparation de bugs dans la gestion des exceptions
+Thu Nov 19 15:28:22 2015 +0100 création d'une nouvelle "app" << police >> et déplacement du code de valentin dedans
+Thu Nov 19 15:29:14 2015 +0100 ajout du middleware, modification du helper
+Thu Nov 19 15:31:36 2015 +0100 séparation fond / forme
+Thu Nov 19 15:32:07 2015 +0100 Merge branch 'my_kerberos_on_top_of_yours' into integration
+Thu Nov 19 15:56:49 2015 +0100 debugging, ajustements, test, déplacement du chiffrement dans le middleware...
+Wed Nov 25 14:48:11 2015 +0100 déplacement des tickets liés à la police... dans la police
+Fri Dec 11 15:29:47 2015 +0100 sync
+Fri Dec 11 15:32:03 2015 +0100 revert stupidity
+Fri Dec 11 15:48:20 2015 +0100 nouvelle app <<common>> qui regroupe les choses communes aux != systèmes de tickets
+Mon Dec 14 09:20:18 2015 +0100 middleware de gestion des exceptions. N'importe qui peut "raise ForbiddenException('toto')", ce qui est plus pratique
+Mon Dec 14 09:21:23 2015 +0100 utilisation du mécanisme centralisé pour le crypto_hepldesk
+Mon Dec 14 09:51:18 2015 +0100 correction de petits problèmes dans l'interface utilisateur (côté PAC)
+Mon Dec 14 09:55:39 2015 +0100 séparé le système de ticket de la police de celui du helpdesk crypto.
+Tue Dec 15 09:27:26 2015 +0100 just to be sure
+Tue Dec 15 12:46:33 2015 +0100 durci les méthodes de login, ajusté les tests en conséquence
+Tue Dec 15 12:52:08 2015 +0100 Fin de la séparation des systèmes de tickets.
+Tue Dec 15 12:52:22 2015 +0100 optimisation de la gestion des flags
+Tue Dec 15 12:52:42 2015 +0100 au moins pour l'instant, on a besoin de voir les stacks lors des exceptions
+Wed Dec 16 08:26:19 2015 +0100 incoming missions
+Wed Dec 16 08:26:26 2015 +0100 fix annoying bug
+Wed Dec 16 09:26:50 2015 +0100 one last police mission
+Fri Dec 18 18:38:17 2015 +0100 doc kerberos
+Wed Dec 23 15:36:59 2015 +0100 Vous ne direz pas qu'on ne vous l'avait pas dit...
+Thu Dec 24 10:10:35 2015 +0100 police : découpage des views
+Thu Dec 24 13:48:52 2015 +0100 Début de boulot sur la "console matérielle" kerberizée
+Thu Dec 24 13:49:25 2015 +0100 correction de petits détails dans kerberos
+Fri Jan 1 15:04:57 2016 +0100 mission console hardware kerberos (90%)
+Fri Jan 1 15:05:45 2016 +0100 ajout des IU pour les autres missions du §3
+Fri Jan 1 15:12:28 2016 +0100 corrige peut-être un problème intermittent du test kerberos.
+Fri Jan 1 19:09:11 2016 +0100 mécanisme plus générique de gestions des différents systèmes de tickets
+Fri Jan 1 19:09:54 2016 +0100 tests génériques pour le ch3
+Fri Jan 1 19:11:24 2016 +0100 ajout d'un ticket hardware au ch3
+Sat Jan 2 00:29:03 2016 +0100 ajout de text/plain ici ou là
+Sat Jan 2 00:29:23 2016 +0100 léger refactoring du client python
+Sat Jan 2 00:29:41 2016 +0100 client kerberos
+Sat Jan 2 00:30:56 2016 +0100 MERGE more text/plain
+Sat Jan 2 00:31:57 2016 +0100 correction de petits bugs kerberos
+Sat Jan 2 00:33:03 2016 +0100 correction d'un bug de test kerberos
+Sat Jan 2 00:48:45 2016 +0100 text/plain : usage raisonné de ce qui existe déjà
+Sat Jan 2 00:49:03 2016 +0100 kerberos middleware : il faut préserver le status HTTP
+Sat Jan 2 00:51:41 2016 +0100 ajout complet du ticket "hardware", kerberisé
+Sat Jan 2 00:58:50 2016 +0100 correction de petits détails (doc kerberos, tests, etc.)
+Sat Jan 2 01:21:06 2016 +0100 logique du TP : une fois qu'on a validé kerberos, on passe aux multiples suites
+Sat Jan 2 01:22:00 2016 +0100 update migrations pour le ticket hardware
+Sun Jan 3 21:15:10 2016 +0100 obsolete script
+Mon Jan 4 08:59:53 2016 +0100 on va avoir des VM's !
+Mon Jan 4 09:00:09 2016 +0100 correction bug kerbros relou (et inexpliqué)
+Mon Jan 4 09:01:02 2016 +0100 <poorsod> a fait de la recherche...
+Wed Jan 6 12:36:48 2016 +0100 Petit bug fix dans les codes HTTP des exceptions
+Wed Jan 6 12:37:55 2016 +0100 migration :  nouvelles IU dans u_vm
+Wed Jan 6 12:49:42 2016 +0100 kerberos : le log des requêtes est plus intéressant
+Wed Jan 6 12:50:26 2016 +0100 police : créée le contenu du HOMEDIR de <poorsod> de façon paresseuse
+Wed Jan 6 12:51:25 2016 +0100 future research
+Wed Jan 6 12:54:46 2016 +0100 u_vm : création PK + proto d'identification de Schnorr
+Wed Jan 6 12:55:23 2016 +0100 correction de petits bugs dans le client normal / kerberos
+Wed Jan 6 12:56:22 2016 +0100 migrations pour les modèles u_vm
+Wed Jan 6 14:32:24 2016 +0100 rajoute des fichiers détruits accidentellement
+Wed Jan 6 15:29:15 2016 +0100 PAC score : la progress bar est dynamique, et le compte de points restant est affiché
+Wed Jan 6 15:30:27 2016 +0100 gestion de la PK de l'H4CK-05
+Wed Jan 6 15:39:40 2016 +0100 tests : la police a besoin de récupérer le user du helpdesk. Le helpdesk n'a pas besoin de récupérer rien du tout.
+Wed Jan 6 15:40:08 2016 +0100 PAC home : petite amélioration de la progress bar
+Thu Jan 7 07:59:19 2016 +0100 Spécification du protocole d'échange de clefs
+Thu Jan 7 12:36:51 2016 +0100 code fourni en supplément
+Thu Jan 7 19:07:35 2016 +0100 connection à H4ck/05 : progrès
+Thu Jan 7 19:07:53 2016 +0100 formatage de texte
+Thu Jan 7 21:39:49 2016 +0100 Améliorations de l'interface PAC
+Fri Jan 8 09:33:17 2016 +0100 nouvelles docs
+Fri Jan 8 10:05:07 2016 +0100 Signature / AKE / docs / tests / etc.
+Fri Jan 8 10:13:28 2016 +0100 Faites ce que je dis, faites pas ce que je fais....
+Fri Jan 8 11:09:03 2016 +0100 changements cosmétiques dans les templates
+Fri Jan 8 11:09:31 2016 +0100 AKE complet
+Fri Jan 8 11:10:17 2016 +0100 middleware pour les connections DH
+Fri Jan 8 11:51:17 2016 +0100 H4ck/05 : minimaliste mais OK.
+Sat Jan 9 12:20:10 2016 +0100 h4ck/05 client + début wot
+Sat Jan 9 13:12:23 2016 +0100 iu qui passe pas, test modifier, premiere passe
+Mon Jan 11 15:06:12 2016 +0100 deployment automatisé
+Mon Jan 11 15:10:46 2016 +0100 Merge branch 'integration'
+Mon Jan 11 16:54:30 2016 +0100 first wave
+Mon Jan 11 15:10:46 2016 +0100 déploiement automatisé, suite
+Mon Jan 11 17:17:22 2016 +0100 Merge remote-tracking branch 'origin/master'
+Mon Jan 11 17:18:17 2016 +0100 changment d'API de django-polymorphic v0.7 à v0.8. Effectuer :
+Mon Jan 11 21:41:15 2016 +0100 Correction d'un gros bug dans le JSON middleware...
+Mon Jan 11 21:41:47 2016 +0100 déploiement automatisé, fin (?)
+Mon Jan 11 21:52:26 2016 +0100 Merge branch 'dev' into review
+Mon Jan 11 22:17:53 2016 +0100 question de style
+Mon Jan 11 22:21:13 2016 +0100 changement : quand on commence la police, on à affaire à 2 tickets (maintenance + 2xPad)
+Mon Jan 11 22:22:39 2016 +0100 le TwisterTicket n'existe pas encore
+Mon Jan 11 22:39:26 2016 +0100 ticket hybride : correction d'un bug intermittent (si le texte contient des signes bizarres)
+Mon Jan 11 22:40:06 2016 +0100 verbosité inutile
+Mon Jan 11 22:40:27 2016 +0100 bug dans l'implémentation de la logique du jeu
+Tue Jan 12 12:46:24 2016 +0100 blindage et tests kerberos
+Tue Jan 12 12:47:27 2016 +0100 un-verbose
+Tue Jan 12 14:13:22 2016 +0100 on frime
+Tue Jan 12 14:13:41 2016 +0100 envoi de mail possible
+Tue Jan 12 14:33:24 2016 +0100 améliorations de l'admin de PAC
+Tue Jan 12 15:25:25 2016 +0100 message de bienvenue par email dans PAC
+Tue Jan 12 15:26:33 2016 +0100 Une minute de tolérance dans le futur pour Kerberos
+Tue Jan 12 15:29:26 2016 +0100 settings avec dev / prod
+Tue Jan 12 15:30:26 2016 +0100 correction de typo
+Tue Jan 12 15:31:47 2016 +0100 settings fix again
+Tue Jan 12 15:35:29 2016 +0100 gestion du timestamp kerberos
+Tue Jan 12 15:49:11 2016 +0100 correction bug envoi de fichier à travers Kerberos (ne pas utiliser sendfile...) + tests améliorés
+Tue Jan 12 15:59:22 2016 +0100 graphviz needed
+Tue Jan 12 16:00:10 2016 +0100 change la soundtrack de la vm + corrige le bug d'envoi de fichier à travers kerberos là aussi
+Tue Jan 12 16:02:31 2016 +0100 typo fix
+Tue Jan 12 16:56:25 2016 +0100 corrige problème d'affiche des "actions"
+Tue Jan 12 16:56:54 2016 +0100 corrige le test après le changement de fichier mp3 -> s3m
+Tue Jan 12 18:07:07 2016 +0100 refactoring des middleware de chiffrement
+Tue Jan 12 18:07:32 2016 +0100 renforcement tests DH-AKE de la vm
+Tue Jan 12 22:11:21 2016 +0100 toilettage du client que les étudiants vont télécharger
+Tue Jan 12 22:12:11 2016 +0100 implémentation plus détaillée du Web-of-trust
+Wed Jan 13 10:03:06 2016 +0100 VM : découpage des views en plusieurs morceaux
+Wed Jan 13 11:44:24 2016 +0100 mise à jour des migrations
+Wed Jan 13 11:45:43 2016 +0100 changements cosmétiques de l'interface
+Thu Jan 14 00:39:23 2016 +0100 Implémentation partielle de la chat-room
+Thu Jan 14 00:40:11 2016 +0100 Le cookie de session expire au bout de 10 minutes
+Thu Jan 14 09:32:16 2016 +0100 migrations : pass moins débiles pour les users par défaut + découplage UGLIX / PAC
+Thu Jan 14 09:32:42 2016 +0100 n'affiche pas les tests-users dans les rankings
+Thu Jan 14 10:06:26 2016 +0100 amélioration du blabla destiné aux étudiants
+Thu Jan 14 11:47:01 2016 +0100 mentionne le proxy dans la FAQ
+Thu Jan 14 11:47:25 2016 +0100 refactoring DRY des clients
+Thu Jan 14 12:45:56 2016 +0100 correction display with de la chat-room
+Thu Jan 14 13:27:08 2016 +0100 envoie vraiment les emails
+Thu Jan 14 16:44:36 2016 +0100 hot fix : finger
+Thu Jan 14 16:53:05 2016 +0100 Ajout de /bin/who
+Thu Jan 14 16:58:19 2016 +0100 /bin/who : mini-bugfix
+Thu Jan 14 19:50:40 2016 +0100 sendmail : durcissement des arguments + no guest posting
+Thu Jan 14 19:51:12 2016 +0100 meilleure gestion des erreurs dans la INBOX
+Thu Jan 14 20:04:11 2016 +0100 Le type de NASA_SETI.bin a été corrigé.
+Fri Jan 15 07:45:42 2016 +0100 goodies : /bin/status
+Fri Jan 15 07:46:37 2016 +0100 helpdesk : correction d'un gros bug (on avait pas accès aux tickets)
+Fri Jan 15 07:47:13 2016 +0100 supprimé du code redondant
+Fri Jan 15 10:04:44 2016 +0100 réglages pour avoir les bug-report par email...
+Fri Jan 15 10:09:23 2016 +0100 doc : HTTP 405
+Fri Jan 15 12:30:00 2016 +0100 encodage : améliore le rendu de la doc sous firefox
+Fri Jan 15 13:56:33 2016 +0100 correction des dingueries dans les settings
+Fri Jan 15 14:10:53 2016 +0100 typo, again...
+Fri Jan 15 14:17:06 2016 +0100 on a pas besoin du module autoindex d'apache
+Fri Jan 15 15:29:50 2016 +0100 Pour bosser on a quand même besoin de voir les exceptions...
+Fri Jan 15 15:30:39 2016 +0100 /bin est visible
+Fri Jan 15 15:32:03 2016 +0100 Maintenance préventive : la création de users UGLIX aléatoire pouvait échouer
+Fri Jan 15 17:52:16 2016 +0100 PAC : la progression était coincée à 23%
+Fri Jan 15 17:52:54 2016 +0100 H4ck/05 : readme
+Fri Jan 15 17:53:25 2016 +0100 police : correction bug (on ne pouvait pas voir les tickets) + 2x pad d'abord
+Fri Jan 15 19:03:04 2016 +0100 revu texte de missions police
+Fri Jan 15 19:02:27 2016 +0100 refactoring / durcicement des "desks"
+Fri Jan 15 19:38:15 2016 +0100 Prévoit la transition police --> hackademy
+Fri Jan 15 19:02:45 2016 +0100 petite correction de tests
+Sat Jan 16 18:33:36 2016 +0100 police/twister
+Sat Jan 16 18:39:06 2016 +0100 test error
+Sat Jan 16 18:50:24 2016 +0100 chronologie modifié
+Sun Jan 17 17:02:11 2016 +0100 police : new "easy" mission (credit cards)
+Mon Jan 18 09:13:37 2016 +0100 mission credit cards
+Mon Jan 18 09:14:19 2016 +0100 tests : si on ne peut pas récupérer le ticket, on ne lance pas les tests suivants
+Mon Jan 18 09:15:58 2016 +0100 nouvelle "app" : hackademy
+Mon Jan 18 09:27:20 2016 +0100 Je veux être notifié des progrès des étudiants
+Mon Jan 18 09:30:47 2016 +0100 ...sauf si c'est moi !
+Mon Jan 18 09:30:47 2016 +0100 ...sauf si c'est moi !
+Mon Jan 18 09:36:38 2016 +0100 Merge causé par ma propre idiotie
+Mon Jan 18 16:20:09 2016 +0100 change le message de présentation des IU dans les tickets
+Mon Jan 18 16:21:11 2016 +0100 police : mise à jour des migrations
+Mon Jan 18 16:22:36 2016 +0100 mission crédit card : finalisation
+Mon Jan 18 16:30:24 2016 +0100 toilettage des tests
+Mon Jan 18 16:47:19 2016 +0100 Merge commit '7bd15220e247b64c87196316f19e98a554da2f0b'
+Mon Jan 18 16:50:06 2016 +0100 Renforce les tests : aussi incroyable que ça puisse paraître, TOUT ce qu'on ne teste pas est cassé !
+Mon Jan 18 17:09:05 2016 +0100 affiche les tests dans le "status"
+Mon Jan 18 17:17:40 2016 +0100 maj de /bin
+Tue Jan 19 12:17:19 2016 +0100 Integration du ticket "twister"
+Tue Jan 19 15:26:44 2016 +0100 adaptation après le merge de valentin
+Tue Jan 19 15:27:06 2016 +0100 Ceci devrait éviter les messages d'erreur que je reçois par email
+Tue Jan 19 15:27:42 2016 +0100 Merge branch 'master' into integration
+Wed Jan 20 17:03:24 2016 +0100 typo signalée par un étudiant
+Wed Jan 20 17:03:47 2016 +0100 amélioration du listing des IU dans l'admin
+Wed Jan 20 17:10:47 2016 +0100 il faut laisser agir la "timezone" par défaut
+Wed Jan 20 17:24:35 2016 +0100 PAC admin : on peut trier les IU par description
+Wed Jan 20 17:24:55 2016 +0100 client.py : plus de doc sur les args
+Wed Jan 20 22:11:14 2016 +0100 correction d'une erreur 500 sans gravité : les exceptions, ça se raise
+Thu Jan 21 07:38:32 2016 +0100 correction d'une autre erreur 500 : envoi de JSON invalide
+Thu Jan 21 07:40:22 2016 +0100 Correction de typo dans la police
+Thu Jan 21 19:26:33 2016 +0100 Amélioration / patch du login CHAP
+Thu Jan 21 19:48:22 2016 +0100 On se fait toper si on uploade sa clef secrète...
+Thu Jan 21 19:54:42 2016 +0100 j'en ai marre de ces trucs
+Thu Jan 21 19:55:33 2016 +0100 Merge branch 'master' into integration
+Fri Jan 22 11:17:48 2016 +0100 maj FAQ
+Fri Jan 22 16:56:48 2016 +0100 modification creation poorsod et mac dans twister
+Fri Jan 22 17:10:30 2016 +0100 petits trucs
+Fri Jan 22 17:23:01 2016 +0100 Merge branch 'integration' into dev
+Fri Jan 22 17:38:22 2016 +0100 PAC : migrations à cause des changements que j'ai fait pour que l'admin soit plus belle
+Fri Jan 22 17:38:57 2016 +0100 migrations police
+Fri Jan 22 18:05:21 2016 +0100 Merge branch 'dev' into integration
+Fri Jan 22 18:40:52 2016 +0100 Réparation des migrations
+Sun Jan 24 12:58:07 2016 +0100 encryption.py new version
+Sun Jan 24 17:10:12 2016 +0100 break twister
+Mon Jan 25 08:36:40 2016 +0100 BUGFIX : openssl.py fourni était boiteux
+Mon Jan 25 08:43:32 2016 +0100 modifications des descriptions de tickets pour les rendre plus claires
+Mon Jan 25 09:01:34 2016 +0100 admin : truc d'envoi de mails aux étudiants à propos de openssl.py
+Mon Jan 25 12:38:52 2016 +0100 Merge branch 'master' into integration
+Mon Jan 25 12:40:40 2016 +0100 update ansible
+Mon Jan 25 12:41:21 2016 +0100 Merge branch 'dev' of https://github.com/zaneck/luglix into integration
+Mon Jan 25 13:50:30 2016 +0100 Merge final pour ticket twister
+Mon Jan 25 18:43:03 2016 +0100 indications dans le ticket 2x pad
+Mon Jan 25 19:01:13 2016 +0100 indications twister + refonte indications
+Mon Jan 25 22:30:22 2016 +0100 petit bug si on confirme mal les tickets
+Mon Jan 25 22:31:38 2016 +0100 On met la pression !
+Mon Jan 25 22:32:57 2016 +0100 typo
+Mon Jan 25 22:37:09 2016 +0100 améliore le rendu de /bin/who
+Tue Jan 26 12:08:17 2016 +0100 ticket hybride : évite les erreurs unicode
+Tue Jan 26 15:05:48 2016 +0100 répare le bug ASCII bizarre dans le twister
+Tue Jan 26 15:22:30 2016 +0100 amélioration de l'admin pour les tickets
+Tue Jan 26 15:40:42 2016 +0100 répare un test de base
+Wed Jan 27 21:05:12 2016 +0100 Il faut leur dire où aller bosser...
+Wed Jan 27 21:13:27 2016 +0100 helpdesk Tutoriel : message d'erreur légèrement plus explicite
+Wed Jan 27 21:47:35 2016 +0100 twister : encryption.py plus cool, élimine la limite de taille % 4 == 0
+Wed Jan 27 22:12:08 2016 +0100 twister : le chiffrement utilise vraiment le PRNG de python (=plus réaliste)
+Wed Jan 27 22:18:14 2016 +0100 et pour le même prix on peut simplifier le modèle
+Thu Jan 28 06:55:48 2016 +0100 PAC : progress bars plus lisibles
+Thu Jan 28 06:56:02 2016 +0100 Merge branch 'integration'
+Thu Jan 28 07:18:58 2016 +0100 typo
+Thu Jan 28 07:21:23 2016 +0100 meilleur habillage des progress-bar
+Thu Jan 28 12:41:38 2016 +0100 Affichage des trainards
+Thu Jan 28 17:16:06 2016 +0100 test d'égalité des chaines plus cool
+Thu Jan 28 18:06:01 2016 +0100 IDEA n'est pas supporté
+Thu Jan 28 19:46:41 2016 +0100 helpdesk : acceptation moins brutale
+Thu Jan 28 19:47:22 2016 +0100 police : doc certificats
+Sun Jan 31 10:08:19 2016 +0100 plantage sur la création des "placeholder"
+Mon Feb 1 00:39:17 2016 +0100 tagging des tests vraiment indispensables pour avancer dans le TP
+Mon Feb 1 00:39:58 2016 +0100 bug fix divers
+Mon Feb 1 00:40:55 2016 +0100 Premiers tickets de la Hackademy
+Tue Feb 2 14:57:41 2016 +0100 ticket calcul log discret
+Tue Feb 2 15:12:47 2016 +0100 amélioration admin UGLIX-user
+Tue Feb 2 15:14:40 2016 +0100 suite de l'épidode précédent
+Tue Feb 2 16:25:11 2016 +0100 durcicement sendmail + meilleur help ticket pk_dec
+Wed Feb 3 10:47:01 2016 +0100 mail annonce relevé
+Wed Feb 3 10:48:48 2016 +0100 on me signale une typo
+Wed Feb 3 10:50:19 2016 +0100 oooups, je dois rester caché
+Wed Feb 3 11:37:42 2016 +0100 fix un bug dans le ticket hybride
+Wed Feb 3 11:44:41 2016 +0100 rend le test silencieux
+Wed Feb 3 16:02:49 2016 +0100 bug ticket credit
+Thu Feb 4 09:22:32 2016 +0100 répare des bugs mineurs dans la présentation des tickets de la police
+Thu Feb 4 09:25:29 2016 +0100 restriction d'accès aux tickets "sensibles" de la police
+Thu Feb 4 09:26:00 2016 +0100 upgrade des tests de la police / réparation test twister
+Thu Feb 4 17:18:22 2016 +0100 fait marcher le poorsod
+Thu Feb 4 17:19:35 2016 +0100 update ticket 2xpad
+Thu Feb 4 18:05:02 2016 +0100 meilleur help hybrid
+Thu Feb 4 18:32:02 2016 +0100 corrections mineures dans les textes des tickets
+Thu Feb 4 18:35:10 2016 +0100 merge master into integration
+Fri Feb 5 08:31:35 2016 +0100 la hackademy est pas encore ouverte
+Fri Feb 5 17:23:09 2016 +0100 fix tests pour le compte du poorsod
+Fri Feb 5 08:09:46 2016 +0100 importation du factoring contest
+Fri Feb 5 17:14:01 2016 +0100 déplace le code qui génère le chatlog du poorsod
+Fri Feb 5 17:17:46 2016 +0100 Ajout d'un ticket "multicollision" dans la police
+Fri Feb 5 17:20:50 2016 +0100 fait passer le stockage des fichiers du type str() au type byte()
+Fri Feb 5 17:21:52 2016 +0100 adapte la passerelle kerberos aux PUT binaires
+Fri Feb 5 17:22:42 2016 +0100 marque certains tests "required"
+Fri Feb 5 18:16:15 2016 +0100 ajout de doc sur les passerelles, modification doc kerberos.
+Fri Feb 5 21:22:35 2016 +0100 refactoring kerberos
+Fri Feb 5 21:23:44 2016 +0100 rééquilibrage du poids de certaines IU + corrections de détail
+Fri Feb 5 21:26:42 2016 +0100 merge integration into master
+Fri Feb 5 21:33:40 2016 +0100 amélioration esthétique
+Sun Feb 7 23:01:00 2016 +0100 fix template pb git
+Mon Feb 8 08:33:20 2016 +0100 multi collision en cours, pas fini
+Mon Feb 8 08:38:28 2016 +0100 je veux être plus au courant des progrès
+Tue Feb 9 21:44:23 2016 +0100 traitor tracing
+Wed Feb 10 09:18:59 2016 +0100 fix un bug credit card
+Thu Feb 11 08:08:15 2016 +0100 fix template credits
+Thu Feb 11 10:06:02 2016 +0100 passage à 25% du semestre
+Thu Feb 11 17:42:10 2016 +0100 fixup templates kerberos
+Thu Feb 11 17:42:29 2016 +0100 tests moins verbeux
+Thu Feb 11 17:47:14 2016 +0100 envoi mail notify kerberos
+Sat Feb 13 17:15:40 2016 +0100 uglix 2, la démo
+Mon Feb 15 12:54:43 2016 +0100 prototype d'un serveur qui communique avec des terminaux 3270... UGLIX v3.0 ?
+Mon Feb 15 14:01:43 2016 +0100 Nouvel intitulé de mission CBC
+Thu Feb 18 17:21:41 2016 +0100 interface ispf-like, version améliorée
+Fri Feb 19 00:37:07 2016 +0100 tagging des tests indispensables à l'obtention des points + retrait de la verbosité
+Fri Feb 19 00:41:37 2016 +0100 introduction d'un contrôle d'accès dans les services Kerberos
+Fri Feb 19 00:41:51 2016 +0100 bugfix brute-force
+Fri Feb 19 00:42:29 2016 +0100 fin du ticket multicollisions
+Fri Feb 19 00:58:05 2016 +0100 merge master into integration
+Fri Feb 19 00:58:56 2016 +0100 ajout test multicollisions + petits fixups tests
+Fri Feb 19 01:12:34 2016 +0100 adaptation des tests de H4ck/05
+Fri Feb 19 01:24:28 2016 +0100 prise en compte de la semaine de vacances
+Fri Feb 19 16:53:44 2016 +0100 petites améliorations u_VM (nouvelles missions, etc.)
+Sat Feb 20 22:20:29 2016 +0100 mission drand48 en cours
+Mon Feb 22 11:12:40 2016 +0100 test mission rand-48 + implémentation partielle mission rand-64
+Tue Feb 23 19:07:23 2016 +0100 mission rand64 terminée
+Tue Feb 23 21:57:36 2016 +0100 micro-amélioration tests uglix
+Tue Feb 23 21:59:24 2016 +0100 Les "missions" H4ck/05 ne sont accessibles qu'aux utilisateurs "trusted"
+Tue Feb 23 22:00:40 2016 +0100 H4ck/05 envoie parfois des signatures invalides (pour voir si les utilisateurs suivent)
+Wed Feb 24 18:52:54 2016 +0100 parsing clefs openssl DSA. ouf
+Wed Feb 24 21:56:00 2016 +0100 infrastructure openssl
+Wed Feb 24 21:57:31 2016 +0100 uglix : correction d'un micro-bug (le /bin/finger aimait pas les "-" dans les username)
+Wed Feb 24 21:58:35 2016 +0100 la mission "backup tape" avance bien
+Wed Feb 24 22:22:09 2016 +0100 anonymization des résultats + classement
+Wed Feb 24 22:23:28 2016 +0100 bugfix : je reste caché
+Wed Feb 24 22:26:26 2016 +0100 moi je dois voir tout le monde
+Thu Feb 25 17:52:13 2016 +0100 fixing typo
+Thu Feb 25 20:47:16 2016 +0100 mission "backup tape" quasi-finie. Reste plus qu'à distribuer les goodies
+Fri Feb 26 10:37:58 2016 +0100 ticket "length extension" en cours (migration à revoir, sha256.py à signaler)
+Fri Feb 26 10:38:14 2016 +0100 corrige un vieux bug dans les indications
+Sun Feb 28 14:45:23 2016 +0100 mission length-extension, OK.
+Sat Feb 13 17:55:48 2016 +0100 avec un commit avant un push c'est mieux
+Sat Feb 13 18:26:34 2016 +0100 factorisation
+Sat Feb 13 19:07:21 2016 +0100 proto solution au ticket
+Wed Feb 24 20:05:17 2016 +0100 adding indication blocks moddif message
+Wed Feb 24 20:07:18 2016 +0100 moddif frob view and create ticket in hardware
+Wed Feb 24 22:39:09 2016 +0100 test and IV extern, old pac inspiration
+Wed Feb 24 23:22:46 2016 +0100 test and update
+Thu Feb 25 18:37:13 2016 +0100 En fait c'était de l'hexa
+Fri Feb 26 17:29:17 2016 +0100 test ok attack ok
+Fri Feb 26 18:55:08 2016 +0100 upgraded, more tests
+Sun Feb 28 23:42:38 2016 +0100 Intégration de toutes les branches en cours.
+Tue Mar 1 15:18:31 2016 +0100 mission CBC, presque OK, reste à voir les détails (blabla, etc.)
+Thu Mar 3 15:45:05 2016 +0100 nouveaux tickets police
+Tue Mar 8 14:15:26 2016 +0100 réorganisation pédagogique
+Wed Mar 9 12:47:12 2016 +0100 bug de casse
+Wed Mar 9 22:06:12 2016 +0100 bugfix signals
+Thu Mar 10 13:55:24 2016 +0100 notification 50%
+Thu Mar 10 13:57:33 2016 +0100 fix oubli
+Thu Mar 10 14:03:28 2016 +0100 update ranking template
+Fri Mar 11 14:15:22 2016 +0100 matplotlib fun
+Fri Mar 11 14:18:47 2016 +0100 fixup : matplotlib headless
+Fri Mar 11 19:00:34 2016 +0100 fix police tests
+Mon Mar 14 10:41:12 2016 +0100 La hackademy va rouvrir, et avec un ticket CRT
+Mon Mar 14 13:43:10 2016 +0100 Merge branch 'master' into integration
+Mon Mar 14 13:52:10 2016 +0100 Affiche les vacances
+Mon Mar 14 15:00:35 2016 +0100 bugfix : les tickets peuvent avoir des listes en pièce-jointe
+Wed Mar 16 14:26:56 2016 +0100 new hackademy tickets + les IU sont filés par les exams
+Wed Mar 16 22:38:15 2016 +0100 Début factorisation
+Wed Mar 16 22:38:44 2016 +0100 Merge branch 'master' into integration
+Wed Mar 16 23:08:09 2016 +0100 polissage
+Wed Mar 16 23:16:05 2016 +0100 ouverture de la hackademy
+Thu Mar 17 17:21:05 2016 +0100 bugfix
+Thu Mar 17 17:53:44 2016 +0100 même type de bugfix
+Sun Mar 20 13:44:09 2016 +0100 mixup généralisé des tickets training
+Sun Mar 20 14:46:58 2016 +0100 Fournit le "crible sans borne" qui n'est pas trivial
+Sun Mar 20 19:02:07 2016 +0100 Factoring stage 2 est en ordre
+Sun Mar 20 19:05:07 2016 +0100 fix factoring data for rho
+Sun Mar 20 19:18:26 2016 +0100 Module admin pour les factorizations réussies
+Sun Mar 20 20:27:05 2016 +0100 Bugs fix importants du log discret
+Mon Mar 21 17:05:43 2016 +0100 meilleur affichage des "certifications" + test bugfix
+Thu Mar 24 07:51:29 2016 +0100 Fix indication prime range
+Thu Mar 24 07:54:16 2016 +0100 tester la présence des indications
+Thu Mar 24 17:15:35 2016 +0100 fix tabs
+Fri Mar 25 09:28:00 2016 +0100 tickets elgamal dans la hackademy
+Fri Mar 25 21:17:22 2016 +0100 accès direct à u/VM, pour tout le monde
+Fri Mar 25 21:42:10 2016 +0100 problème de casse
+Fri Mar 25 22:09:51 2016 +0100 bug fix (maybe) rand64
+Fri Mar 25 23:36:21 2016 +0100 mission backup-tape opérationnelle
+Fri Mar 25 23:56:51 2016 +0100 méthode p-1 : OK
+Sat Mar 26 20:47:40 2016 +0100 fix factorisation stage 3 + test
+Mon Mar 28 15:39:22 2016 +0200 mail u/VM
+Mon Mar 28 15:40:09 2016 +0200 pas d'IU de poids négatif...
+Mon Mar 28 18:45:17 2016 +0200 fix factoring stage 2
+Tue Mar 29 13:20:13 2016 +0200 upgrade u/VM : test for more stupidity
+Tue Mar 29 20:57:52 2016 +0200 bugfix
+Tue Mar 29 21:02:46 2016 +0200 J'en ai marre de recevoir des mails
+Tue Mar 29 21:12:06 2016 +0200 Répare les indications "élément d'un ordre donné"
+Thu Mar 31 17:25:39 2016 +0200 Fix frobincate error
+Wed Apr 20 21:21:59 2016 +0200 refactor baby steps
+Wed Apr 20 21:23:07 2016 +0200 bug fixes mineurs
+Wed Apr 20 21:23:22 2016 +0200 nouvelle app "virtual bank"
+Thu Apr 21 15:12:41 2016 +0200 fix views
+Thu Apr 21 15:17:33 2016 +0200 oubli
+Thu Apr 21 15:18:54 2016 +0200 fix template
+Thu Apr 21 16:42:19 2016 +0200 screenshots ISPF
+Thu Apr 21 16:44:19 2016 +0200 Merge branch 'master' into integration
+Thu Apr 21 16:45:11 2016 +0200 fix graph
+Fri Apr 22 00:06:29 2016 +0200 le début de la fin
+Fri Apr 22 10:50:38 2016 +0200 openssl : bugfix (une seule option dans keygen)
+Fri Apr 22 10:50:57 2016 +0200 PAC : les iu de "root" sont pas nominales
+Fri Apr 22 10:51:58 2016 +0200 met en route l'histoire du firmware
+Fri Apr 22 12:57:56 2016 +0200 avec le firmware
+Fri Apr 22 14:25:50 2016 +0200 prépare le mail de root
+Fri Apr 22 14:26:28 2016 +0200 début de la mission "firmware"
+Fri Apr 22 14:26:37 2016 +0200 Merge branch 'integration'
+Fri Apr 22 14:39:59 2016 +0200 admin : push la notification pour root
+Fri Apr 22 15:32:37 2016 +0200 fix de tests trop verbeux
+Fri Apr 22 15:33:08 2016 +0200 Tente de réparer le problème de X-sendfile à travers un tunnel chiffré
+Fri Apr 22 15:41:07 2016 +0200 la hackademy est pas ouverte à guest ni à root
+Fri Apr 22 16:01:25 2016 +0200 fix tests + templates (crews cyril romano)
+Wed Apr 27 16:56:24 2016 +0200 corrige un petit bug dans les signatures de Schnorr
+Wed Apr 27 17:09:55 2016 +0200 Plus de détails sur le login h4ck/05
+Wed Apr 27 18:35:33 2016 +0200 parking de clefs secrètes RSA
+Thu Apr 28 18:11:32 2016 +0200 update de la date de rendu final
+Thu Apr 28 18:12:35 2016 +0200 RSA en cours
+Thu Apr 28 19:46:44 2016 +0200 petites corrections de détail
+Thu Apr 28 20:32:10 2016 +0200 home : goodies
+Thu Apr 28 20:45:55 2016 +0200 installation de django-hijack
+Thu Apr 28 20:48:28 2016 +0200 bugfix curve note
+Thu Apr 28 20:54:58 2016 +0200 barre d'impersonation
+Thu Apr 28 20:55:18 2016 +0200 réglages graphiques
+Thu Apr 28 21:03:14 2016 +0200 réglages hijack
+Fri Apr 29 13:25:39 2016 +0200 added linear fit
+Tue May 3 17:52:35 2016 +0200 Correction des bugs matplotlib
+Tue May 3 18:20:18 2016 +0200 nouvel email
+Sat May 7 20:55:44 2016 +0200 réparation RSA MSB
+Sat May 7 21:00:01 2016 +0200 mail buggy RSA
+Mon May 9 07:59:44 2016 +0200 root failsafe help.
+Mon May 9 08:04:08 2016 +0200 nouvel email
+Tue May 10 09:57:52 2016 +0200 indique la présence du home root spécial.
+Tue May 10 10:06:25 2016 +0200 vite, répare le firmware
+Tue May 10 10:12:25 2016 +0200 bugfix du bugfix
+Tue May 10 10:21:51 2016 +0200 again
+Sun May 22 06:46:50 2016 +0200 indeed, that was a bug
+Tue May 24 06:34:28 2016 +0200 bugfix RSA
+Fri May 27 08:50:44 2016 +0200 mail de FIN
+Fri May 27 08:55:06 2016 +0200 graphique de fin
+Fri May 27 08:56:04 2016 +0200 amélioration graphique
+Fri Nov 25 14:59:47 2016 +0100 version de travail
+Fri Dec 9 14:13:34 2016 +0100 début boulot chat
+Fri Dec 9 15:01:41 2016 +0100 séance de travail !
+Fri Dec 23 09:37:40 2016 +0100 bugfix : ceci est nécessaire pour lancer le serveur en l'état...
+Sun Dec 25 16:15:32 2016 +0100 nouvelle intro / faq
+Fri Dec 30 21:50:07 2016 +0100 une passe sur les docs
+Mon Jan 2 19:20:09 2017 +0100 amélioration mineure docs
+Mon Jan 2 19:31:10 2017 +0100 NASA-SETI.bin --> NASA.bin
+Mon Jan 2 19:32:02 2017 +0100 No hackademy access right from the start
+Mon Jan 2 19:33:28 2017 +0100 Nettoyage modèles helpdesk
+Mon Jan 2 19:34:07 2017 +0100 Factorisation tests et nettoyage uglix + helpdesk
+Mon Jan 2 19:34:25 2017 +0100 Nettoyage modèles police
+Mon Jan 2 20:22:29 2017 +0100 bug fix in parameters helper
+Mon Jan 2 20:31:51 2017 +0100 /bin/sudo pour faciliter les tests
+Mon Jan 2 20:55:34 2017 +0100 bug fixes (how did it work before ?!?)
+Thu Jan 5 17:08:11 2017 +0100 amélioration intro
+Thu Jan 5 18:46:22 2017 +0100 maj
+Thu Jan 5 22:14:14 2017 +0100 maj_wot_05122017
+Fri Jan 6 10:46:49 2017 +0100 Déplace les modèles PK/Sig dans Uglix (car ils vont servir au helpdesk)
+Fri Jan 6 10:51:09 2017 +0100 petite correction dans la vue
+Fri Jan 6 14:01:54 2017 +0100 préparation de l'UI pour 2017
+Fri Jan 6 14:05:19 2017 +0100 majChat06012017
+Fri Jan 6 14:27:34 2017 +0100 majChat06012017_2
+Fri Jan 6 15:00:06 2017 +0100 maj
+Fri Jan 6 15:36:14 2017 +0100 maj_2
+Fri Jan 6 15:51:32 2017 +0100 banner
+Sun Jan 8 18:35:32 2017 +0100 adapte le graphique à 2017
+Sun Jan 8 18:36:34 2017 +0100 rationalisation des tests police
+Sun Jan 8 18:37:06 2017 +0100 NASA-SETI.bin --> NASA.bin, again
+Sun Jan 8 18:37:39 2017 +0100 more permissive test
+Sun Jan 8 20:05:50 2017 +0100 fix le gros bazar des migrations
+Sun Jan 8 20:06:27 2017 +0100 mini-amélioration au chat
+Sun Jan 8 22:17:14 2017 +0100 maj_wot_08012017
+Fri Jan 13 13:11:05 2017 +0100 key-management OK
+Fri Jan 13 17:49:27 2017 +0100 fix tests in uglix/: /bin/finger is gone
+Fri Jan 13 18:03:54 2017 +0100 merged loik's WOT branch
+Sat Jan 14 08:56:31 2017 +0100 le helpdesk est adapté au WOT
+Sat Jan 14 20:30:30 2017 +0100 /bin/finger --> /bin/key-management [correction des docs]
+Sun Jan 15 14:49:11 2017 +0100 /bin/ps et /bin/kill --> uglix
+Sun Jan 15 15:09:29 2017 +0100 new FAQ
+Sun Jan 15 17:14:24 2017 +0100 more WOT doc
+Sun Jan 15 18:45:18 2017 +0100 wot graph + doc
+Sun Jan 15 21:36:34 2017 +0100 reglages ansible pour déploiement
+Sun Jan 15 21:40:46 2017 +0100 requirements ASCII only
+Sun Jan 15 22:11:50 2017 +0100 le deploiement a l'air OK
+Mon Jan 16 06:58:04 2017 +0100 bugfix : les erreurs de session sont renvoyées en text/plain
+Mon Jan 16 07:33:13 2017 +0100 Protocole STP pour la police
+Mon Jan 16 07:34:24 2017 +0100 Refactoring de la police
+Mon Jan 16 08:29:19 2017 +0100 police refactor : 2xPad, Credit, Tunnel tickets OK
+Mon Jan 16 12:24:23 2017 +0100 Loik a raison : split uglix/views.py
+Mon Jan 16 12:24:58 2017 +0100 Loik a tort : on garde uglix/models.py
+Mon Jan 16 12:25:13 2017 +0100 bugfix dans la signature contrat CLEA
+Mon Jan 16 12:42:57 2017 +0100 merged loik chat
+Mon Jan 16 16:45:00 2017 +0100 chat operational
+Tue Jan 17 10:06:38 2017 +0100 fix migration : need to re-apply
+Tue Jan 17 10:08:30 2017 +0100 Merge branch 'hotfix/chat-migration'
+Tue Jan 17 11:15:09 2017 +0100 gestion administrative des étudiants
+Tue Jan 17 11:15:25 2017 +0100 les étudiants par ordre alphabétique
+Tue Jan 17 11:16:06 2017 +0100 Merge branch 'develop'
+Tue Jan 17 12:51:54 2017 +0100 n'affiche pas mes points dans le graphe global
+Tue Jan 17 12:53:47 2017 +0100 Merge branch 'hotfix/not-my-iu-in-graph'
+Tue Jan 17 12:58:03 2017 +0100 Merge branch 'hotfix/not-my-iu-in-graph' into develop
+Tue Jan 17 13:58:36 2017 +0100 ajout anonymous coward mail
+Tue Jan 17 13:59:01 2017 +0100 gestion du / final dans les URL
+Tue Jan 17 13:59:13 2017 +0100 Merge branch 'develop'. Gestion de problèmes urgents
+Tue Jan 17 14:30:58 2017 +0100 log des login foirés
+Tue Jan 17 14:31:11 2017 +0100 Merge branch 'develop'
+Tue Jan 17 23:21:29 2017 +0100 register student / ip association
+Tue Jan 17 23:21:38 2017 +0100 Merge branch 'develop'
+Thu Jan 19 08:45:04 2017 +0100 sendmail échoue parfois avec des int dans le sujet
+Thu Jan 19 08:51:00 2017 +0100 fix /bin/psycho
+Thu Jan 19 08:51:18 2017 +0100 Merge branch 'hotfix/sendmail'
+Thu Jan 19 08:51:25 2017 +0100 Merge branch 'hotfix/eliza'
+Thu Jan 19 08:59:43 2017 +0100 Merge branch 'hotfix/sendmail' into develop
+Thu Jan 19 08:59:48 2017 +0100 Merge branch 'hotfix/eliza' into develop
+Thu Jan 19 17:46:07 2017 +0100 fix doc
+Thu Jan 19 17:46:19 2017 +0100 Merge branch 'hotfix/doc'
+Thu Jan 19 19:29:02 2017 +0100 fix index
+Thu Jan 19 19:29:13 2017 +0100 Merge branch 'hotfix/doc2'
+Thu Jan 19 19:30:01 2017 +0100 Merge branch 'hotfix/doc' into develop
+Thu Jan 19 19:30:05 2017 +0100 Merge branch 'hotfix/doc2' into develop
+Thu Jan 19 19:58:18 2017 +0100 système des invités
+Thu Jan 19 19:58:27 2017 +0100 Merge branch 'develop'
+Fri Jan 20 12:33:29 2017 +0100 on pouvait fermer le ticker hybride sans rien faire...
+Fri Jan 20 12:34:25 2017 +0100 Merge branch 'hotfix/hybrid'
+Fri Jan 20 12:34:51 2017 +0100 Merge branch 'hotfix/hybrid' into develop
+Fri Jan 20 12:36:26 2017 +0100 nouvelles actions/secrets/goodies
+Fri Jan 20 12:36:42 2017 +0100 Merge branch 'develop'
+Fri Jan 20 15:16:30 2017 +0100 Cleanup police / poorsod
+Fri Jan 20 15:17:27 2017 +0100 cleanup /bin/fsck
+Fri Jan 20 16:09:37 2017 +0100 gestion des tickets additionnels, police
+Sun Jan 22 08:51:55 2017 +0100 amélioration police/poorsod/wot
+Sun Jan 22 11:48:11 2017 +0100 mini-changements dans l'admin
+Sun Jan 22 12:15:31 2017 +0100 poorsod a accès à la police
+Sun Jan 22 12:23:58 2017 +0100 /bin/fsck est restreint
+Sun Jan 22 12:26:34 2017 +0100 renforcement des tests du WOT
+Sun Jan 22 13:56:28 2017 +0100 Mise en ordre de bataille de Kerberos
+Sun Jan 22 15:19:37 2017 +0100 Merge branch 'develop'
+Sun Jan 22 15:37:47 2017 +0100 typo in IU name
+Sun Jan 22 15:37:56 2017 +0100 Merge branch 'hotfix/wot_iu'
+Sun Jan 22 16:19:52 2017 +0100 Merge branch 'hotfix/wot_iu' into develop
+Sun Jan 22 16:54:57 2017 +0100 fix test wot
+Sun Jan 22 16:55:24 2017 +0100 more actions
+Sun Jan 22 16:56:07 2017 +0100 préparation twister / multicoll pour accès uVM
+Sun Jan 22 18:22:49 2017 +0100 police cleanup
+Sun Jan 22 18:24:12 2017 +0100 preparation accès uVM et multicollision
+Sun Jan 22 18:28:37 2017 +0100 chat bot
+Sun Jan 22 18:28:50 2017 +0100 Merge branch 'develop'
+Sun Jan 22 20:11:35 2017 +0100 kerberos finalization
+Sun Jan 22 20:11:44 2017 +0100 corrections mineures doc
+Sun Jan 22 20:20:51 2017 +0100 helpdesk bug fixed
+Sun Jan 22 20:21:01 2017 +0100 police : indique les debriefings
+Sun Jan 22 20:25:22 2017 +0100 fix typo doc
+Sun Jan 22 20:25:43 2017 +0100 Merge branch 'develop'
+Mon Jan 23 09:22:27 2017 +0100 /bin/who : god mode
+Tue Jan 24 00:28:40 2017 +0100 masque le ChatB0t dans /bin/who
+Tue Jan 24 00:28:55 2017 +0100 Merge branch 'hotfix/who_not_bot'
+Tue Jan 24 14:20:51 2017 +0100 on ne peut pas valider 3 tickets police
+Tue Jan 24 14:21:06 2017 +0100 Merge branch 'hotfix/no_hack_invitation'
+Tue Jan 24 14:58:21 2017 +0100 Merge branch 'hotfix/who_not_bot' into develop
+Tue Jan 24 14:58:44 2017 +0100 Merge branch 'hotfix/no_hack_invitation' into develop
+Tue Jan 24 16:03:31 2017 +0100 /bin/who fait la promotion de la chat-room
+Tue Jan 24 16:03:44 2017 +0100 notes pour l'avenir
+Tue Jan 24 16:04:52 2017 +0100 Merge branch 'develop'
+Thu Jan 26 17:26:44 2017 +0100 chat log avec un user pas pac-identifié
+Thu Jan 26 17:26:56 2017 +0100 Merge branch 'hotfix/chat_log_guest'
+Thu Jan 26 17:32:27 2017 +0100 fix the fix
+Thu Jan 26 17:32:35 2017 +0100 Merge branch 'hotfix/chat_log_guest'
+Thu Jan 26 21:54:54 2017 +0100 fix bad case
+Thu Jan 26 21:59:00 2017 +0100 template fixes
+Thu Jan 26 21:59:08 2017 +0100 Merge branch 'develop'
+Thu Jan 26 22:06:05 2017 +0100 secrets/pwnage also for actual PAC-users
+Thu Jan 26 22:06:19 2017 +0100 Merge branch 'develop'
+Thu Jan 26 22:07:57 2017 +0100 fix typo
+Thu Jan 26 22:08:05 2017 +0100 Merge branch 'develop'
+Sun Jan 29 18:12:04 2017 +0100 Fix bug sur /bin/uVM quand on est pas logué
+Sun Jan 29 18:12:21 2017 +0100 Merge branch 'hotfix/uVM'
+Sun Jan 29 18:13:08 2017 +0100 on ne pouvait pas voir la doc en STP
+Sun Jan 29 18:13:36 2017 +0100 Merge branch 'hotfix/gateway_textfile'
+Sun Jan 29 18:13:58 2017 +0100 Merge branch 'hotfix/uVM' into develop
+Sun Jan 29 18:14:03 2017 +0100 Merge branch 'hotfix/gateway_textfile' into develop
+Sun Jan 29 18:14:18 2017 +0100 client : bonne URL par defaut
+Sun Jan 29 20:55:31 2017 +0100 la gateway avait la mauvaise adresse
+Sun Jan 29 20:55:42 2017 +0100 Merge branch 'hotfix/kerberos_gateway'
+Sun Jan 29 20:57:10 2017 +0100 PAC : corrige la progress bar
+Sun Jan 29 20:57:34 2017 +0100 kerberos : plus besoin d'être logué
+Sun Jan 29 20:58:12 2017 +0100 wot : contrôles renforcés
+Sun Jan 29 20:58:24 2017 +0100 Merge branch 'hotfix/kerberos_gateway' into develop
+Mon Jan 30 07:27:37 2017 +0100 bugfixes : all test pass
+Mon Jan 30 07:27:50 2017 +0100 mixup secret / pawnage
+Mon Jan 30 07:28:29 2017 +0100 Merge branch 'develop'
+Mon Jan 30 09:45:09 2017 +0100 jai cassé le ranking
+Mon Jan 30 09:45:22 2017 +0100 Merge branch 'hotfix/ranking'
+Fri Feb 3 16:37:59 2017 +0100 u_vm deplacement tickets + tests
+Sun Feb 5 13:07:19 2017 +0100 fix indication twister
+Sun Feb 5 13:07:51 2017 +0100 evaluation 25% : adaptation 2017
+Sun Feb 5 13:08:06 2017 +0100 Merge branch 'develop'
+Sun Feb 5 13:18:28 2017 +0100 fix message
+Sun Feb 5 13:21:34 2017 +0100 fix templates
+Thu Feb 9 12:01:35 2017 +0100 affiche nom/prénom des étudiants dans l'admin
+Thu Feb 9 12:01:48 2017 +0100 correction d'un micro-bug dans la police
+Fri Feb 10 14:48:07 2017 +0100 u_vm tests length extension
+Fri Feb 10 14:51:20 2017 +0100 police : on doit avoir le ticket (test)
+Fri Feb 10 14:52:04 2017 +0100 centralisation du login + actions "procès"
+Fri Feb 10 15:00:56 2017 +0100 incorporation de develop dans la branche de feature
+Fri Feb 10 15:11:58 2017 +0100 nettoyage trop aggressif
+Fri Feb 10 16:35:36 2017 +0100 adaptation u/VM à kerberos
+Sun Feb 12 15:06:39 2017 +0100 nettoyage u/VM
+Sun Feb 12 15:08:29 2017 +0100 mission u/VM courthouse break
+Sun Feb 12 15:12:23 2017 +0100 nettoyage, petits ajouts, etc.
+Sun Feb 12 17:28:19 2017 +0100 CBC mission
+Sun Feb 12 22:42:42 2017 +0100 le premier relevé est passé
+Sun Feb 12 22:42:58 2017 +0100 répare la mission backup tape
+Sun Feb 12 23:08:25 2017 +0100 fix details before feature merge
+Sun Feb 12 23:29:15 2017 +0100 merge new uVM
+Mon Feb 13 00:25:10 2017 +0100 hotfix : action evade_trial
+Mon Feb 13 00:30:35 2017 +0100 hotfix hotfix
+Mon Feb 13 01:11:07 2017 +0100 fix mp3 metadata
+Thu Feb 16 21:17:03 2017 +0100 fix vm name mess
+Thu Feb 16 21:17:24 2017 +0100 cleanup
+Thu Feb 16 22:11:57 2017 +0100 action accès à la VM
+Wed Mar 1 07:59:27 2017 +0100 stockage des scores des rendus intermédiaires (retroactivement)
+Wed Mar 1 08:00:35 2017 +0100 typo
+Wed Mar 1 08:00:51 2017 +0100 typo
+Wed Mar 1 08:09:04 2017 +0100 debug migration
+Wed Mar 1 08:38:32 2017 +0100 new mail
+Wed Mar 1 09:01:17 2017 +0100 update to PAC/ranking
+Thu Mar 2 18:21:44 2017 +0100 fix minor details in trial
+Thu Mar 2 18:29:07 2017 +0100 fix OST
+Mon Mar 6 08:37:03 2017 +0100 changement date vacances
+Mon Mar 6 08:37:21 2017 +0100 bugfix trial as poorsod
+Thu Mar 9 13:02:24 2017 +0100 new mail
+Mon Mar 13 06:21:11 2017 +0100 DH middleware + tests dans la banque
+Mon Mar 13 07:15:18 2017 +0100 dh client + tests
+Fri Mar 17 16:52:34 2017 +0100 in progress
+Fri Mar 17 16:53:50 2017 +0100 50%
+Fri Mar 17 16:54:05 2017 +0100 fix typo
+Fri Mar 17 16:56:17 2017 +0100 shit
+Fri Mar 17 17:02:14 2017 +0100 UI: 50%
+Thu Mar 23 22:32:49 2017 +0100 Shifumi: progress
+Thu Mar 23 22:33:18 2017 +0100 fix typo backup tape
+Thu Mar 23 22:34:42 2017 +0100 updates and typos
+Fri Mar 24 11:58:19 2017 +0100 vbank: fix tests
+Fri Mar 24 14:24:33 2017 +0100 settingization de l'accès UVM / Hackademy
+Fri Mar 24 14:35:10 2017 +0100 envoi du mail pour l'ouverture hackademy/uVM
+Fri Mar 24 14:42:57 2017 +0100 fix uVM tests
+Tue Mar 28 18:55:36 2017 +0200 backup-tape : seulement 3 indications
+Tue Mar 28 18:56:23 2017 +0200 bugfix rand64 ?
+Tue Mar 28 20:24:54 2017 +0200 amélioration tests hackademy
+Thu Mar 30 17:15:20 2017 +0200 not found en text/plain
+Thu Mar 30 17:18:10 2017 +0200 bugfix ?
+Fri Mar 31 00:56:14 2017 +0200 DRH : fini
+Fri Mar 31 01:16:25 2017 +0200 cleaning tests
+Fri Mar 31 01:16:48 2017 +0200 better test script
+Fri Mar 31 01:16:57 2017 +0200 Merge branch 'feature/shifumi'
+Fri Mar 31 01:21:11 2017 +0200 ne ment pas
+Thu Apr 6 17:12:28 2017 +0200 mail /bin/banks/drh
+Thu Apr 6 17:57:55 2017 +0200 fix templates
+Thu Apr 6 18:14:31 2017 +0200 bugfix bad JSON helper
+Thu Apr 6 18:27:23 2017 +0200 help javascripts noobs
+Thu Apr 6 18:32:22 2017 +0200 bugfix commit précédent
+Fri Apr 21 14:16:16 2017 +0200 préparation de la fin du TP
+Fri Apr 21 14:16:45 2017 +0200 corrections .mp3 et suite de la préparation
+Mon Apr 24 10:37:55 2017 +0200 finalisation de la fin
+Mon Apr 24 11:30:04 2017 +0200 speke must create users
+Mon Apr 24 11:32:03 2017 +0200 bugfix
+Mon Apr 24 11:33:29 2017 +0200 meta bugfix
+Mon Apr 24 12:07:24 2017 +0200 update admin
+Thu Apr 27 17:34:20 2017 +0200 more rewards
+Thu Apr 27 18:11:55 2017 +0200 help debuging
+Thu Apr 27 18:30:53 2017 +0200 fix gateway mess
+Thu Apr 27 18:49:27 2017 +0200 404 plus verbeux
+Thu Apr 27 19:03:03 2017 +0200 gateway no 404
+Fri Apr 28 07:57:47 2017 +0200 relevé 75%
+Fri Apr 28 08:00:46 2017 +0200 I want the grade as well
+Fri Apr 28 08:03:38 2017 +0200 fix mail template
+Fri May 5 13:54:28 2017 +0200 Lancement 4ème relevé
+Fri May 5 13:56:39 2017 +0200 numpy / scipy not needed
+Fri May 5 14:24:58 2017 +0200 fix grades
+Fri May 5 14:26:26 2017 +0200 better hijack
+Fri May 5 14:37:06 2017 +0200 fix ranking
+Fri May 5 16:58:02 2017 +0200 PAC : affiche les notes
+Fri May 5 17:08:29 2017 +0200 admin fix
+Sat May 6 08:33:09 2017 +0200 mail avant l'exam
+Tue Dec 26 10:02:26 2017 +0100 minor adaptations to django version bump
+Tue Dec 26 10:18:06 2017 +0100 PAC : squash migrations, clean IU (non-compétitif)
+Tue Dec 26 10:18:13 2017 +0100 PAC : adaptation django 1.11
+Tue Dec 26 10:19:13 2017 +0100 uglix : squash migrations
+Tue Dec 26 10:19:36 2017 +0100 uglix : exit soundtrack, adapted tests
+Tue Dec 26 10:20:03 2017 +0100 helpdesk : adaptations
+Tue Dec 26 10:22:20 2017 +0100 plugin: nouvelle app, avec gestion musique... et plugins
+Tue Dec 26 10:22:41 2017 +0100 settings: plugins
+Tue Dec 26 16:00:37 2017 +0100 lots of change : reintegrating police + jukebox + migrations
+Tue Dec 26 20:23:22 2017 +0100 new super client !
+Tue Dec 26 20:51:29 2017 +0100 corrections problèmes types de fichier + anonymous.coward MDA
+Wed Dec 27 01:38:39 2017 +0100 hardware music & tuning, tests fixing (no sound...)
+Wed Dec 27 03:16:36 2017 +0100 une première passe sur les tests de la police
+Wed Dec 27 13:22:59 2017 +0100 u_vm on the rails
+Wed Dec 27 13:38:51 2017 +0100 fix requirements
+Wed Dec 27 13:41:08 2017 +0100 fix requirements again
+Wed Dec 27 14:32:42 2017 +0100 quasiment réglé son compte à ansible
+Wed Dec 27 14:32:54 2017 +0100 dealing with encoding problems?
+Wed Dec 27 13:33:24 2017 +0000 fix settings for prod
+Wed Dec 27 15:27:47 2017 +0100 sound effects!
+Wed Dec 27 15:27:53 2017 +0100 Merge branch 'master' of https://forge.lifl.fr/bouillaguet/git/uglix
+Wed Dec 27 16:01:28 2017 +0100 more music, cutsomizations
+Wed Dec 27 20:16:05 2017 +0100 kerberos overhaul
+Wed Dec 27 20:16:17 2017 +0100 music anonymized
+Wed Dec 27 20:33:36 2017 +0100 repercussion /bin/sudo ---> /sbin/sudo + /bin/tree
+Wed Dec 27 21:03:55 2017 +0100 training: squashed migrations
+Thu Dec 28 00:47:19 2017 +0100 une passe sur la FAQ
+Thu Dec 28 00:48:46 2017 +0100 fini la migration. Reste à tout tester!
+Thu Dec 28 00:49:18 2017 +0100 uglix : /bin/tree + more doc
+Thu Dec 28 00:49:26 2017 +0100 pop-up bugfix
+Thu Dec 28 01:04:04 2017 +0100 allusion subtile à /bin/banks/drh
+Thu Dec 28 01:04:31 2017 +0100 bouches-trous
+Thu Dec 28 01:14:31 2017 +0100 allusion subtile au problème des bandes magnétiques
+Thu Dec 28 01:23:39 2017 +0100 détails
+Thu Dec 28 14:59:29 2017 +0100 musiques dans backup tape & shifumi
+Thu Dec 28 15:01:01 2017 +0100 le firmware est vraiment à /sys/firmware
+Thu Dec 28 15:02:19 2017 +0100 fixes
+Thu Dec 28 15:02:52 2017 +0100 ajout de /bin/paddle (non documenté !)
+Thu Dec 28 23:09:11 2017 +0100 subtler client: no useless method
+Thu Dec 28 23:11:18 2017 +0100 better client: add-on
+Thu Dec 28 23:12:08 2017 +0100 notes et adaptation des tests à l'ouverture plus large de la hackademy notamment
+Fri Dec 29 22:55:49 2017 +0100 adaptation django 1.11
+Fri Dec 29 22:56:03 2017 +0100 fix client: enlève code non-obfusqué
+Fri Dec 29 23:05:42 2017 +0100 changement helpdesk : plus "introducing anonymous coward"
+Fri Dec 29 23:57:38 2017 +0100 mission sk101 dec: finalisé
+Sat Dec 30 23:31:55 2017 +0100 gestion des mails de anonymous.coward
+Sat Dec 30 23:38:55 2017 +0100 changements specs ticket hybrid + finalisation sk101dec
+Sun Dec 31 00:04:44 2017 +0100 fixing encrypted client...
+Sun Dec 31 00:18:49 2017 +0100 fixed /bin/fsck. Transition complete!
+Sun Dec 31 10:33:03 2017 +0100 auto-login: plus rationnel
+Mon Jan 1 13:34:25 2018 +0100 tweaks dans le client
+Sat Jan 6 14:38:38 2018 +0100 refactoring
+Sat Jan 6 14:38:50 2018 +0100 FAQ: being a smartass
+Sat Jan 6 14:38:58 2018 +0100 client: presentation
+Sat Jan 6 14:39:16 2018 +0100 corpus: migrations & bugfix
+Sat Jan 6 14:39:54 2018 +0100 helpdesk: 1ère mission avec backup tape (mauvaise dépendance fonctionnelle)
+Sat Jan 6 14:40:09 2018 +0100 détails
+Sat Jan 6 16:21:47 2018 +0100 rumeur du jour
+Sat Jan 6 16:22:08 2018 +0100 chapitre secret
+Sat Jan 6 16:22:43 2018 +0100 amenagements cosmétiques
+Sat Jan 6 16:23:06 2018 +0100 doc pour /bin/longterm-storage
+Sun Jan 7 08:31:47 2018 +0100 passwordless login
+Sun Jan 7 10:16:13 2018 +0100 asn1 : create RSA PK/SK
+Sun Jan 7 10:45:13 2018 +0100 asn1 : forge DSA secret keys
+Sun Jan 7 12:26:42 2018 +0100 refactoring tunnels middleware, stage 1
+Sun Jan 7 12:27:43 2018 +0100 /sbin/key-hack
+Sun Jan 7 12:27:55 2018 +0100 client.py passe les doctests
+Sun Jan 7 12:28:18 2018 +0100 testing.py: key_pair ne logue pas
+Sun Jan 7 17:19:59 2018 +0100 refactoring middleware: pass2
+Sun Jan 7 17:20:36 2018 +0100 training music
+Sun Jan 7 17:20:48 2018 +0100 plugins: détecte l'absence de VLC
+Sun Jan 7 17:21:02 2018 +0100 bugfix changement openssl signature
+Sun Jan 7 17:21:52 2018 +0100 adaptations tests u_vm
+Sun Jan 7 17:22:04 2018 +0100 adaptation tests training
+Sun Jan 7 17:25:16 2018 +0100 revert debug verbosity
+Mon Jan 8 01:30:45 2018 +0100 alternative hackademy
+Mon Jan 8 09:10:43 2018 +0100 fixed paddleball
+Mon Jan 8 09:14:24 2018 +0100 /bin/paddle est visible
+Mon Jan 8 09:18:52 2018 +0100 tentative production
+Tue Jan 9 10:21:43 2018 +0100 sfx in sfx/
+Tue Jan 9 13:44:00 2018 +0100 fixed speke
+Tue Jan 9 13:44:17 2018 +0100 new system users and musics
+Tue Jan 9 18:03:47 2018 +0100 405 cool error message
+Tue Jan 9 18:05:12 2018 +0100 planque un peu plus l'existence de /sbin
+Tue Jan 9 18:07:51 2018 +0100 décentralise root et anonymous.coward
+Tue Jan 9 21:53:58 2018 +0100 isolation helpdesk / uglix
+Tue Jan 9 21:54:26 2018 +0100 split uglix/models.py
+Tue Jan 9 21:56:03 2018 +0100 fix 405 middleware
+Tue Jan 9 21:56:13 2018 +0100 more zik
+Tue Jan 9 21:57:23 2018 +0100 améliorations cosmétiques
+Tue Jan 9 21:57:35 2018 +0100 PAC : chapitres dans l'ordre
+Tue Jan 9 21:57:56 2018 +0100 backup tape: improved /home/bofh
+Tue Jan 9 21:58:21 2018 +0100 goodies, etc planque /etc/sbin
+Wed Jan 10 16:21:35 2018 +0100 fix DH et SPEKE
+Wed Jan 10 16:21:51 2018 +0100 client: changement TRES sioux
+Wed Jan 10 16:24:25 2018 +0100 corrections de détails, nope(...)
+Wed Jan 10 16:25:06 2018 +0100 sépare /bin et /sbin dans les views
+Wed Jan 10 16:26:49 2018 +0100 desk hackademy bimodal
+Wed Jan 10 16:27:13 2018 +0100 corrections
+Wed Jan 10 16:27:18 2018 +0100 code popup
+Thu Jan 11 00:45:37 2018 +0100 SPAAAAAAAAAAAAAAAAAAAACE
+Thu Jan 11 00:55:07 2018 +0100 bufgix
+Thu Jan 11 00:56:11 2018 +0100 rebugfix
+Thu Jan 11 19:03:43 2018 +0100 préparation à la mise en prod 2018
+Thu Jan 11 19:27:20 2018 +0100 bugfixes
+Thu Jan 11 19:31:00 2018 +0100 rebugfix
+Thu Jan 11 19:32:27 2018 +0100 si ça fait ce que c'est censé faire, c'est mieux
+Thu Jan 11 19:39:42 2018 +0100 fix mail to myself
+Thu Jan 11 19:53:39 2018 +0100 fix desk
+Thu Jan 11 20:24:16 2018 +0100 corrections de dernière minute
+Thu Jan 11 21:21:47 2018 +0100 changements mineurs
+Fri Jan 12 08:09:55 2018 +0100 caching des SFX
+Fri Jan 12 15:00:32 2018 +0100 more space
+Fri Jan 12 15:44:06 2018 +0100 space: better timeouts
+Fri Jan 12 18:21:47 2018 +0100 tracks : play count
+Fri Jan 12 18:53:03 2018 +0100 space: polishing
+Fri Jan 12 19:01:14 2018 +0100 bugfix play_music
+Fri Jan 12 19:06:09 2018 +0100 talk faster in space
+Fri Jan 12 19:10:17 2018 +0100 start now if in space
+Fri Jan 12 20:32:23 2018 +0100 fix security problem in tunnels
+Sun Jan 14 14:59:57 2018 +0100 move stuff away
+Sun Jan 14 15:00:46 2018 +0100 system user MDA + instructor mail
+Sun Jan 14 22:38:52 2018 +0100 fix bug welcome
+Sun Jan 14 22:41:30 2018 +0100 fix mail de fix
+Mon Jan 15 01:01:55 2018 +0100 client: more fun
+Mon Jan 15 21:04:05 2018 +0100 fixing charset
+Tue Jan 16 12:38:41 2018 +0100 petits détails
+Tue Jan 16 22:20:44 2018 +0100 fix openssl v1.1 VS v1.0
+Wed Jan 17 00:37:37 2018 +0100 /bin/ragequit
+Wed Jan 17 00:43:08 2018 +0100 /sbin/ragequit, finalement
+Wed Jan 17 00:45:52 2018 +0100 bugfix
+Wed Jan 17 00:47:37 2018 +0100 fix ragequit
+Wed Jan 17 01:28:25 2018 +0100 better ragequit
+Thu Jan 18 11:49:54 2018 +0100 doc hybrid
+Fri Jan 19 12:33:29 2018 +0100 bugfix sudo
+Fri Jan 19 20:18:39 2018 +0100 fixes + factorization login
+Sat Jan 20 10:31:27 2018 +0100 bugfix
+Sat Jan 20 10:42:08 2018 +0100 reevaluation hackademy
+Sat Jan 20 10:51:27 2018 +0100 fix migration
+Sat Jan 20 13:08:18 2018 +0100 screenshots !
+Sat Jan 20 13:10:16 2018 +0100 forgotten
+Sat Jan 20 13:40:52 2018 +0100 screenshot deployment
+Sat Jan 20 13:48:08 2018 +0100 screenshot admin
+Sat Jan 20 14:57:50 2018 +0100 more music
+Sat Jan 20 14:58:36 2018 +0100 Remaniement du BOFH (il a un nom plus normal, maintenant)
+Sat Jan 20 16:21:13 2018 +0100 small fixes
+Sat Jan 20 16:21:20 2018 +0100 no robots
+Sat Jan 20 16:24:09 2018 +0100 remaniement drand48 + ex_programmer
+Sat Jan 20 16:44:08 2018 +0100 fix drand64
+Sat Jan 20 16:58:22 2018 +0100 texte mission backup tape
+Sat Jan 20 17:09:37 2018 +0100 bugfix root failsafe
+Sun Jan 21 13:16:43 2018 +0100 déplacement twister --> u_vm
+Sun Jan 21 13:17:25 2018 +0100 extraction de la gestion de guest hors des views de homedir()
+Sun Jan 21 13:17:43 2018 +0100 bugfixes hackademy...
+Sun Jan 21 18:26:37 2018 +0100 tests : fix la hackademy
+Sun Jan 21 18:39:46 2018 +0100 root tests pass
+Sun Jan 21 18:41:49 2018 +0100 fix music
+Mon Jan 22 01:01:09 2018 +0100 changements de détails dans les textes
+Mon Jan 22 01:08:53 2018 +0100 PAC : ajustement 2018, le cours est vendredi
+Mon Jan 22 01:09:47 2018 +0100 fix
+Mon Jan 22 23:04:23 2018 +0100 fix bug backup !
+Mon Jan 22 23:08:27 2018 +0100 variabilité dans les réponses du bofh
+Mon Jan 22 23:10:22 2018 +0100 fix
+Mon Jan 22 23:12:18 2018 +0100 fix backup doc
+Tue Jan 23 18:50:24 2018 +0100 screenshot improvements
+Tue Jan 23 19:27:42 2018 +0100 better error reporting + more stealth
+Tue Jan 23 19:38:18 2018 +0100 try to fix screenshot on os X
+Tue Jan 23 19:53:45 2018 +0100 screenshot again
+Tue Jan 23 19:57:08 2018 +0100 exception reporting
+Tue Jan 23 20:39:42 2018 +0100 stupidity
+Wed Jan 24 18:36:44 2018 +0100 less shots
+Wed Jan 24 18:45:45 2018 +0100 PAC student admin
+Wed Jan 24 18:47:06 2018 +0100 it was wrong
+Thu Jan 25 00:33:35 2018 +0100 fix bug envoi mail invitation hackademy
+Thu Jan 25 00:35:09 2018 +0100 reformule invitation hackademy
+Fri Jan 26 18:43:03 2018 +0100 UMIX !!!
+Fri Jan 26 22:22:11 2018 +0100 change root pwd
+Sat Jan 27 14:07:30 2018 +0100 z_root tests pass
+Sat Jan 27 14:07:38 2018 +0100 fix speke client
+Sat Jan 27 14:26:01 2018 +0100 music UMIX
+Sat Jan 27 15:30:34 2018 +0100 working on training / hack module
+Sat Jan 27 15:58:35 2018 +0100 /home/programmer again
+Sat Jan 27 18:39:26 2018 +0100 PAC : annonce 1er rendu
+Sat Jan 27 18:42:29 2018 +0100 PAC : annonce 1er relevé
+Sat Jan 27 18:43:02 2018 +0100 /home/sysprog en ordre de bataille
+Sat Jan 27 18:43:19 2018 +0100 safeprime : indication
+Sat Jan 27 18:43:28 2018 +0100 oublié le fichier du sysprog
+Sat Jan 27 18:46:16 2018 +0100 hijack : plus pratique
+Sat Jan 27 19:06:36 2018 +0100 pb migration sysprog
+Sun Jan 28 22:16:21 2018 +0100 /home/lambda
+Sun Jan 28 22:16:31 2018 +0100 meilleur interpreteur UMIX
+Sun Jan 28 22:16:49 2018 +0100 bugfix, random deterministe à cause des rumeurs du jour
+Sun Jan 28 22:20:46 2018 +0100 cache music locally by default
+Tue Jan 30 14:00:11 2018 +0100 details
+Tue Jan 30 14:00:28 2018 +0100 bugfix anonymous.coward : stocke bien la tentative de fraude
+Thu Feb 1 21:22:06 2018 +0100 Finalement, on ne cache pas la musique (problème de téléchargements concurrents)
+Fri Feb 2 18:03:50 2018 +0100 mail instructor plus tôt
+Mon Feb 5 07:30:48 2018 +0100 répare une erreur 500 dans PK dec
+Mon Feb 5 20:57:03 2018 +0100 added "become" option to sudo
+Wed Feb 7 16:53:37 2018 +0100 wot graph
+Fri Feb 9 17:22:25 2018 +0100 corrections doc
+Sun Feb 11 15:06:38 2018 +0100 one-week notice mail
+Sun Feb 11 15:18:58 2018 +0100 fixes PAC (and 2017->2018)
+Mon Feb 12 20:06:29 2018 +0100 true trust graph, non-interactively
+Mon Feb 12 20:08:32 2018 +0100 pouet, bugfix
+Mon Feb 12 20:16:30 2018 +0100 amélioratio trust graph
+Mon Feb 12 20:34:58 2018 +0100 fix helpdesk
+Fri Feb 16 23:44:22 2018 +0100 1er relevé
+Fri Feb 16 23:47:54 2018 +0100 bugfix
+Fri Feb 16 23:50:59 2018 +0100 fix template, et GO
+Tue Feb 20 05:51:07 2018 +0100 no more sc

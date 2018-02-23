@@ -1,0 +1,29 @@
+----------------------------------------------------------------------
+Message #12126.
+
+
+Date: 23-02-21890 03:20:20
+From: archeologist
+Subject: Découverte incroyable
+
+Cher mfowler,
+
+As-tu déjà entendu parler d'un système nommé UMIX ? Je viens de découvrir une
+vieille bande magnétique enterrée derrière des tonnes de déchets, dans le local
+des archives de la bibliothèque. Ça a l'air bootable ! C'est à la fois si
+étrange... et si familier !
+
+Je serais curieux d'avoir ton avis !
+
+Les fichiers sont un peu volumineux, alors j'ai créé un compte spécial pour ça.
+Tu trouveras tout dans :
+
+    /home/umix
+
+Le password est :
+
+    (lambda x: xx)(lambda x: xx)
+
+Regarde vite !
+----
+archeologist
