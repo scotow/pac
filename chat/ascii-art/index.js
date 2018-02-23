@@ -1,5 +1,5 @@
 // Modules.
-const fs = require('fs');
+const fs = require('fs-extra');
 const request = require('request-promise-native').defaults({
     jar: true,
     json: true
@@ -7,7 +7,8 @@ const request = require('request-promise-native').defaults({
 
 function formatMessage(message) {
     return message.split('\n').map(line => {
-        return `.${line}${' '.repeat(60 - line.length - 1)}`;
+        line = line.slice(0, 59);
+        return `.${line}${' '.repeat(59 - line.length)}`;
     }).join('\n');
 }
 
@@ -21,19 +22,19 @@ function openSession() {
     });
 }
 
-async function chat(line) {
+async function sendMessage(message) {
     return request.post({
         url: 'http://pac.fil.cool/uglix/bin/chat-room',
         body: {
-            text: line
+            text: message
         }
     });
 }
 
-async function sendMessage(fileName) {
+async function senfFile(fileName) {
     await openSession();
 
-    const art = fs.readFileSync(fileName);
+    const art = await fs.readFile(fileName);
     const message = formatMessage(art.toString('utf8'));
 
     await chat(message);
@@ -43,6 +44,6 @@ if(!process.argv[2]) {
     throw new Error('Ascii art file require.');
 }
 
-sendMessage(process.argv[2])
+senfFile(process.argv[2])
 .then(() => console.log('Success.'))
 .catch(error => console.error(error));
