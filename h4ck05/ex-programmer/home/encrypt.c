@@ -1,5 +1,7 @@
 #include <stdint.h>
 #include <stdio.h>
+#include <time.h>
+#include "drand48.h"
 
 uint32_t K[4], IV[4];
 FILE *output;
@@ -18,7 +20,7 @@ int main()
 	IV[2] = mrand48();
 	IV[3] = mrand48();
 
-	printf("Randomly generated key : %x-%x-%x-%x\n", K[0], K[1], K[2], K[0])
+	printf("Randomly generated key : %x-%x-%x-%x\n", K[0], K[1], K[2], K[0]);
 
 	ciphertext = aes_128_CBC(plaintext, message_size, K, IV);
 

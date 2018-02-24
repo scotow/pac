@@ -1,3 +1,6 @@
+#include <stdint.h>
+#include "drand48.h"
+
 uint64_t rand48_state;
 
 void srand48(uint32_t seed) {
