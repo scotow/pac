@@ -4,7 +4,7 @@
 
 int main(int argc, char const *argv[]) {
     FILE *file;
-    uint32_t iv_0, iv_1;
+    uint32_t IV[4];
     uint64_t v;
 
     if(argc != 2) {
@@ -18,23 +18,19 @@ int main(int argc, char const *argv[]) {
         exit(EXIT_FAILURE);
     }
 
-    fread(&iv_0, sizeof(uint32_t), 1, file);
-    fread(&iv_1, sizeof(uint32_t), 1, file);
+    fread(IV, 16, 1, file);
     fclose(file);
 
-    // iv_0 = 0x4379c97c;
-    // iv_1 = 0xa873f624;
-
-    printf("iv_0: %x\n", iv_0);
-    printf("iv_1: %x\n", iv_1);
+    printf("%x\n", IV[0]);
+    printf("%x\n", IV[1]);
 
     unsigned int i;
     for(i = 0; i <= 0xFFFF; i++) {
-        v = (iv_0 << 16) | i;
+        v = (IV[0] << 16) + i;
         v = (0x00000005deece66d * v + 11) & 0x0000ffffffffffff;
-        // printf("%llx\n", v);
-        if((v >> 16) == iv_1) {
-            printf("%x\n", i);
+        // printf("%llx\n", v >> 16);
+        if((v >> 16) == IV[1]) {
+            printf("found");
         }
     }
 
