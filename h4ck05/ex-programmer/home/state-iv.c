@@ -21,18 +21,25 @@ int main(int argc, char const *argv[]) {
     fread(IV, 16, 1, file);
     fclose(file);
 
-    printf("%x\n", IV[0]);
-    printf("%x\n", IV[1]);
+    printf("IV[0]: %x\n", IV[0]);
+    printf("IV[1]: %x\n", IV[1]);
+
+    IV[0] = __builtin_bswap32(IV[0]);
+    IV[1] = __builtin_bswap32(IV[1]);
+
+    printf("IV[0]: %x\n", IV[0]);
+    printf("IV[1]: %x\n", IV[1]);
 
     unsigned int i;
     for(i = 0; i <= 0xFFFF; i++) {
-        v = (IV[0] << 16) + i;
+        v = IV[0] << 16;
+        // v = v << 16;
+        v = v | i;
         v = (0x00000005deece66d * v + 11) & 0x0000ffffffffffff;
-        // printf("%llx\n", v >> 16);
         if((v >> 16) == IV[1]) {
-            printf("found");
+            printf("Found: %x", i);
         }
     }
 
-    return 0;
+    return EXIT_SUCCESS;
 }

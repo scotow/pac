@@ -1,0 +1,423 @@
+Cher ami,
+
+Suite à ta demande, je te fais parvenir le code source de la version pré-alpha
+du nouveau système d'interface utilisateur pour UGLIX. Je ne peux pas du tout te
+garantir que ce sera fonctionnel chez toi (nous n'avons pas pu le tester dans
+beaucoup d'environnements différents).
+
+Ce code correspond au commit :
+
+RAND.64:2532:3@912632|2b1b9818f5651411a3c3c83f064a81b9
+
+Comme tu le sais, nous avons upgradé la sécurité depuis la découverte d'une 
+intrusion dans notre réseau interne. Nous ne savons pas de qui il s'agit, mais il
+semble qu'ils aient pénétré notre réseau depuis des mois, et qu'ils essayaient
+de se faire le plus discret possible, tout en exfiltrant des données. Il s'agit
+probablement d'une firme concurrente.
+
+--------------------------------------------------------------------------------
+import curses
+import curses.ascii
+import time
+import threading
+
+import client
+from uglix2_lib import *
+
+BASE_URL = "http://pac.fil.cool/uglix/ispf"
+
+class VirtualScreen:
+    WIDTH = 80
+    HEIGHT = 44
+    # le curseur visible
+    cursor_x = 0 
+    cursor_y = 0
+    # le "curseur" d'écriture
+    x = 0
+    y = 0
+    # les "champs"
+    fields = {}
+
+    def __init__(self, win, lock):
+        self.win = win
+        y, x = win.getmaxyx()
+        self.WIDTH = x
+        self.HEIGHT = y
+        self.lock = lock
+        self.clear()
+        
+    # implémentation des "statements"
+    def clear(self):
+        self.text = [[' ' for _ in range(self.WIDTH)] for _ in range(self.HEIGHT)]
+        self.format = [[0 for _ in range(self.WIDTH)] for _ in range(self.HEIGHT)]
+        self.writable = [[False for _ in range(self.WIDTH)] for _ in range(self.HEIGHT)]
+        with self.lock:
+            self.win.erase()
+        self.x = 0
+        self.y = 0
+        self.fields = {}
+
+    def move(self, y, x):
+        self.y = y
+        self.x = x
+
+    def _render_line(self, line, formating):
+        if self.y > self.HEIGHT:
+            raise ValueError("tentative d'écriture ligne {0} : {1}".format(self.y, line))
+        # improve-me
+        if self.x + len(line) > self.WIDTH:
+                raise ValueError("pb : at {2}/{3}, ``{0}'' [size={4}] with {1}.\nBeginning : {5}" \
+                                   .format(line, formating, self.y, self.x, len(line), ''.join(self.text[self.y]) ))
+        # modifie l'état de curse
+        with self.lock:
+            try:
+                self.win.addstr(self.y, self.x, line, formating)
+            except:
+                pass
+        # modifie mon état
+        for j in line:
+            if self.x >= self.WIDTH:
+                break # si ça dépasse de la ligne, on arrête
+            self.text[self.y][self.x] = j
+            self.format[self.y][self.x] = formating
+            self.x += 1
+
+    def write(self, text, formating):
+        if text == '':
+            return
+
+        lines = text.split('\n')
+        assert len(lines) > 0        
+        
+        # rendu de la première ligne
+        if lines[0]:
+            self._render_line(lines[0], formating)
+
+        # rendu des autres lignes
+        for line in lines[1:]:
+            # équivalent du "\n"
+            self.y += 1
+            self.x = 0
+            if line != '':
+                self._render_line(line, formating)
+    
+    def field(self, id, length, active, protected):
+        self.fields[id] = (self.y, self.x, length, protected)
+        if active:
+            self.cursor_x = self.x
+            self.cursor_y = self.y
+        if not protected:
+            for i in range(self.x, min(self.WIDTH, self.x + length)):
+                self.writable[self.y][i] = True
+    
+    def render_statements(self, statements):
+        for st in statements:
+            st = statement_deserialize(st)
+            if isinstance(st, Clear):
+                self.clear()
+            elif isinstance(st, Move):
+                self.move(st.y, st.x)
+            elif isinstance(st, Write):
+                self.write(st.text, format_decode(st.format))
+            elif isinstance(st, Field):
+                self.field(st.id, st.length, st.active, st.protected)
+            else:
+                raise TypeError("Unknown statement type : {0}".format(st))
+        self.render()
+
+    ## curseur
+    def key_up(self):
+        self._restore()
+        self.cursor_y = max(0, self.cursor_y-1)
+        self._toggle()
+
+    def key_down(self):
+        self._restore()
+        self.cursor_y = min(self.HEIGHT-1, self.cursor_y+1)
+        self._toggle()
+
+    def key_left(self):
+        self._restore()
+        self.cursor_x = max(0, self.cursor_x-1)
+        self._toggle()
+
+    def key_right(self):
+        self._restore()
+        self.cursor_x = min(self.WIDTH-1, self.cursor_x+1)
+        self._toggle()
+
+    def _restore(self):
+        """inverse le caractère à (cursor_x, cursor_y)"""
+        w = self.win
+        y = self.cursor_y
+        x = self.cursor_x
+        c = self.text[y][x]
+        f = self.format[y][x]
+        with self.lock:
+            w.addstr(y, x, c, f)
+    
+    def _toggle(self):
+        """inverse le caractère à (cursor_x, cursor_y)"""
+        w = self.win
+        y = self.cursor_y
+        x = self.cursor_x
+        c = self.text[y][x]
+        f = self.format[y][x]
+        with self.lock:
+            w.addstr(y, x, c, f | curses.A_REVERSE)
+
+    # keyboard input
+    class Protected(Exception):
+        pass
+
+    def normal_key(self, c):
+        s = chr(c)
+        if not self.writable[self.cursor_y][self.cursor_x]:
+                raise self.Protected
+        self.text[self.cursor_y][self.cursor_x] = s
+        self.key_right()
+        
+
+    def key_backspace(self):
+        if not self.writable[self.cursor_y][self.cursor_x]:
+                raise self.Protected
+        self.text[self.cursor_y][self.cursor_x] = ' '
+        self.key_left()
+
+    def _search_field(self, y, x):
+        best_y = -1
+        best_x = -1
+        for (fy, fx, _, prot) in self.fields.values():
+            if prot: # saute les champs non-inscriptibles
+                continue
+            if fy > y or (fy == y and fx > x):
+                # candidat recevable
+                if (best_y == -1) or (fy < best_y or (fy == best_y and fx < best_x)): # c'est le premier, ou il est mieux que l'autre
+                    best_y = fy
+                    best_x = fx
+        return (best_y, best_x)
+
+    def key_tab(self):
+        if len(self.fields) == 0: # pas de champs, on ne fait rien
+            return
+        # phase 1 : on part de là où on est, jusqu'en bas.
+        by, bx = self._search_field(self.cursor_y, self.cursor_x)
+        if by == -1: # on a pas trouvé en dessous, il faut remonter et recommencer.
+            by, bx = self._search_field(-1, -1)
+        assert by != -1
+        #raise ValueError(self.cursor_y, self.cursor_x, self.fields, by, bx)
+        self._restore()
+        self.cursor_y = by
+        self.cursor_x = bx
+        self._toggle()
+
+    def input_key(self, c):
+        #with self.lock:
+        #   self.win.addstr(30, 50, "keycode : {0}                  ".format(c))
+        #if c == curses.KEY_F1:
+        #    with self.lock:
+        #        self.win.addstr(32, 45, "Help is en route !")
+        if c == curses.KEY_UP:
+            self.key_up()
+        elif c == curses.KEY_DOWN:
+            self.key_down()
+        elif c == curses.KEY_LEFT:
+            self.key_left()
+        elif c == curses.KEY_RIGHT:
+            self.key_right()
+        elif c == curses.ascii.BS or c == curses.ascii.DEL:
+            self.key_backspace()
+        elif c == curses.ascii.TAB:
+            self.key_tab()
+        else:
+            self.normal_key(c)
+
+    def render(self):
+        # montre le curseur
+        self._toggle()
+        # go
+        with self.lock:
+            self.win.refresh()
+
+    def collect_fields(self):
+        """Renvoie les valeurs dans les champs"""
+        result = {}
+        fields = self.fields
+        for id, (y, x, length, prot) in fields.items():
+            if prot:        # saute les champs protégés
+                continue
+            s = ''
+            for c in self.text[y][x : x+length]:
+                s += c
+            result[id] = s.strip()
+        return result
+
+    def field_cursor(self):
+        fields = self.fields
+        for id, (y, x, length, _) in fields.items():
+            if self.cursor_y == y and x <= self.cursor_x < x + length:
+                return id
+        return None
+
+
+
+class Emulator:
+    network_activity = False
+    move_around = False
+
+    BUSY = ['-', '\\', '|', '/']
+
+    def __init__(self, stdscr):
+        # initialise les couleurs ncurses
+        # cf le bordel à https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
+        for c in COLORS.values():
+            try:
+                curses.init_pair(1 + c, c, curses.COLOR_BLACK)
+            except:
+                raise ValueError("erreur initialisation couleur {0}".format(c))
+        self.stdscr = stdscr
+
+        screen_y, screen_x = stdscr.getmaxyx()
+        if screen_x < 82:
+            raise RuntimeError("Il faut pouvoir afficher des lignes de 82 caractères. Élargissez le terminal et recommencez.")
+
+        if screen_y < 27:
+            raise RuntimeError("Il faut pouvoir afficher au moins 27 lignes. Agrandissez le terminal et recommencez.")
+
+        if screen_y >= 45: 
+            height = 44
+        else:
+            height = 24
+
+        begin_x = 0
+        begin_y = 0
+        width = 80
+        stdscr.leaveok(1)
+        curses.curs_set(0) # efface le curseur
+
+        # cette fenêtre contient TOUT l'écran virtuel, avec une bordure
+        win = stdscr.subwin(height+2, width+2, begin_y, begin_x)
+        win.border()
+        win.refresh()
+
+        # empêche le thread de court-circuiter le reste des opérations
+        self.lock = threading.Lock()
+        self.status_bar = stdscr.subwin(1   , width+1, height+2, 1)
+
+        # initialise l'écran virtuel
+        inside = win.subwin(height, width, 1, 1)
+        self.vs = VirtualScreen(inside, self.lock)
+
+        # initialise la connection
+        self.connection = client.Connection(BASE_URL)
+    
+        # lance l'horloge en bas
+        clock = threading.Thread(target=self._update, args=())
+        clock.daemon = True
+        clock.start()
+
+        self.ATTENTION_KEYS = { getattr(curses, "KEY_F{0}".format(i)): "F{0}".format(i) for i in range(1, 13) }
+        self.ATTENTION_KEYS[curses.ascii.NL] = 'ENTER'
+        self.ATTENTION_KEYS[curses.KEY_PPAGE] = 'F7'
+        self.ATTENTION_KEYS[curses.KEY_NPAGE] = 'F8'
+
+
+    def render_status_bar(self):
+        win = self.status_bar        
+        with self.lock:
+            win.addstr(0, 0, " "*VirtualScreen.WIDTH)
+            win.addstr(0, 0, time.strftime("%Y-%m-%d %H:%M:%S"), curses.A_DIM)
+            if self.network_activity:
+                na = int(time.time()*10) % 4
+                win.addstr(0, 21, self.BUSY[na])
+            if self.move_around:
+                win.addstr(0, 24, '<-!->')
+            h = self.vs.HEIGHT
+            if h == 24:
+                win.addstr(0, 80-29, 'Terminal type: 3270-2 (80x24)')
+            else:
+                win.addstr(0, 80-29, 'Terminal type: 3270-4 (80x44)')
+            win.refresh()
+
+    def query(self, url):
+        vs = self.vs
+        connection = self.connection
+        self.network_activity = True
+
+        # collect the arguments
+        args = vs.collect_fields()
+        args['ispf__lines'] = vs.HEIGHT    
+        af = vs.field_cursor()
+        if af:
+            args['ispf__activefield'] = af
+        # send the query
+        try:
+            data = connection.post(url, **args)
+            # collect the result
+            statements = data['statements']
+            self.continuations = {}
+            if 'continuations' in data:
+                self.continuations = data['continuations']
+            #raise ValueError(data['continuations'])
+            # update screen
+            self.vs.render_statements(statements)
+        except client.ServerError as e:
+            if e.code == 404:
+                # problème bénin. L'<attention-key> en question n'est pas gérée
+                curses.beep()
+                curses.flash()
+            else:
+                raise
+        finally:
+            self.network_activity = False
+
+
+    def go(self, url=''):
+        vs = self.vs
+        stdscr = self.stdscr
+
+        self.query('/')
+        self.url = '/'
+
+        # main loop
+        while True:
+            #try:
+            c = stdscr.getch()
+            self.move_around = False
+
+            if c in self.ATTENTION_KEYS:
+                # envoie une requête. Détermine à qui !
+                ak = self.ATTENTION_KEYS[c]
+                if ak in self.continuations:
+                    self.url = self.continuations[ak]
+                    url = self.url
+                else:  # fallback par défaut
+                    url = self.url + self.ATTENTION_KEYS[c]
+                # c'est parti
+                self.query(url)
+                
+            else:
+                try:
+                    vs.input_key(c)
+                except vs.Protected:
+                    self.move_around = True
+                    curses.beep()
+
+            vs.render()
+            self.render_status_bar()
+
+    def _update(self):
+        while 1:
+            self.render_status_bar()
+            time.sleep(0.075)
+
+
+                  
+def main(stdscr):
+    emu = Emulator(stdscr)
+    emu.go()
+
+try:
+    curses.wrapper(main)
+except KeyboardInterrupt:
+    pass
