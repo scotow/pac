@@ -1,0 +1,14 @@
+Méfiez-vous cependant que lorsque vous allez essayer de calculer
+
+    mac' = H(S)     avec IV = mac,
+
+le mécanisme de bourrage va entrer en action. Or pour que
+
+    mac' = H(K || M || P || S),
+
+il faut prendre en compte non-seulement la taille de S dans le bourrage appliqué
+à la fin, mais aussi celles de K, M et P.
+
+De manière générale, vous avez tout intérêt, pour mettre au point votre code, à
+choisir une clef vous-même pour pouvoir faire des tests et mettre les choses au
+point, avant de vous frotter au véritable web-service où la clef est inconnue.

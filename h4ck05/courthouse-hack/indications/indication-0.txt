@@ -1,0 +1,10 @@
+Nos amis chez les administrateurs ont mis à notre disposition leur 
+implémentation de SHA-256, que vous pourrez obtenir ici :
+
+    /share/sha256.py
+
+Votre attention est aussi attirée sur un utilitaire accessible à tous :
+
+    /bin/sha256sum
+
+qui fournit des informations de débuguage très pratiques.

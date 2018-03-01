@@ -1,0 +1,18 @@
+Le code d'authentification de message est :
+
+    mac = H(K || M),
+
+où K est une clef de 16 octets inconnue. Par contre, M et le mac sont connus. La
+fonction de hachage SHA-256 traite le message par blocs de 64 octets. Imaginons
+donc le découpage :
+
+      bloc 0         bloc 1       bloc 2
+
+KKKMM.....MM | MMM......MMM | MMM......MMM | MM<bloc incomplet>
+ ^
+ |
+clef 
+
+La clef occupe le quart du premier bloc. Le dernier bloc, incomplet, va être
+rempli par le mécanisme de bourrage. La ruse, c'est qu'on peut prédire ce qui va
+être ajouté au dernier bloc, car on connaît la TAILLE de ce qui est haché.

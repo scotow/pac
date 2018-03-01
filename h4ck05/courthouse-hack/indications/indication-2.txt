@@ -1,0 +1,30 @@
+Dans le dernier bloc, P représente le padding, qu'on peut déterminer.
+
+              bloc 0         bloc 1       bloc 2       bloc 3
+
+    KK....KKMM....MM | MMM....MMM | MMM....MMM | MMPPP...PPP
+[IV]               [h_0]        [h_1]        [h_2]          [mac]
+
+
+
+Toute la feinte consiste à produire un suffixe S qui commence par le
+padding :
+
+    S = PPP....PPPSSS..........SSSS
+
+
+
+Le calcul de H(K || M || S) devient alors :
+
+    KK....KKMM....MM | ... | MMPPP...PPP | SSS... | ...SSS
+[IV]               [h_0] [h_2]         [mac]    [h_4]     [mac']
+                               ^
+                               |
+                        début du suffixe
+
+
+
+On voit alors que le MAC du message "P || S" est [mac']. Or comme on
+connaît [mac] et S, on peut calculer [mac']. Il suffit presque de
+calculer le haché de S en remplaçant l'IV de la fonction de hachage
+par [mac].
