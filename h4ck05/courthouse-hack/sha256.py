@@ -256,24 +256,29 @@ if __name__ == "__main__":
     key = 'ULTRA_SECRET_KEY'
     request = 'SELECT * FROM charges WHERE username="samanthacrosby"'
 
-    message = bytearray()
-    message.extend(key.encode())
-    message.extend(request.encode())
+    get_message = bytearray()
+    get_message.extend(key.encode())
+    get_message.extend(request.encode())
 
     # print(''.join(format(x, '02x') for x in message))
 
-    sha1 = sha256(message)
+    sha1 = sha256(get_message)
 
-    paddingLength = len(message) + 1 + 56 + 2
+    paddingLength = len(get_message) + 1 + 56 + 2
+
+    delete_message = bytearray()
+    delete_message.append(0x80)
+    delete_message.extend(bytearray(56))
+    delete_message.extend([0x02, 0x28])
+    delete_message.extend('; DELETE FROM charges WHERE username="samanthacrosby";'.encode())
+
+    sha2 = sha256(delete_message, sha1.hexdigest(), paddingLength)
+    print(sha2.hexdigest())
 
     message = bytearray()
-    message.append(0x80)
-    message.extend(bytearray(56))
-    message.extend([0x02, 0x28])
-    message.extend('; DELETE FROM charges WHERE username="samanthacrosby";'.encode())
-
-    sha2 = sha256(message, sha1.hexdigest(), paddingLength)
-    print(sha2.hexdigest())
+    message.extend(get_message)
+    message.extend(delete_message)
+    print(base64.b64encode(message))
 
     # print(type(message))
     # print(type(base64.b64encode(bytes(message, 'utf-8'))))
