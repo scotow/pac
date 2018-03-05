@@ -1,3 +1,5 @@
+import base64
+
 class ChainingValue(list):
     def __init__(self, x):
         if isinstance(x, str):
@@ -143,7 +145,7 @@ def F(input_h, m):
 class sha256:
     block_size = 64  # 512-bit message block
 
-    def __init__(self, s=None, IV="6a09e667bb67ae853c6ef372a54ff53a510e527f9b05688c1f83d9ab5be0cd19"):
+    def __init__(self, s=None, IV="6a09e667bb67ae853c6ef372a54ff53a510e527f9b05688c1f83d9ab5be0cd19", addPadding=0):
         # bloc de message en cours
         self.data = MessageBlock()
         # valeur de chainage actuelle
@@ -152,6 +154,8 @@ class sha256:
         self.count = 0
         if s:
             self.update(s)
+
+        self.addPadding = addPadding
 
 
     def compress(self):
@@ -214,6 +218,7 @@ class sha256:
             self.data = MessageBlock([0] * self.block_size)
 
         # écrit le compteur par-dessus les zéros à la fin
+        self.count += self.addPadding
         self.count *= 8
         for i in range(8):
             self.data[63 - i] = (self.count >> (8 * i)) & 0xff
@@ -247,4 +252,29 @@ def test():
     assert 'fbe80d3195306da12154ae2245b530425f933cfdc3fd40ec9f70f88c7da9e797' == s.hexdigest()
 
 if __name__ == "__main__":
-    test()
+    # test()
+    key = 'ULTRA_SECRET_KEY'
+    request = 'SELECT * FROM charges WHERE username="samanthacrosby"'
+
+    message = bytearray()
+    message.extend(key.encode())
+    message.extend(request.encode())
+
+    # print(''.join(format(x, '02x') for x in message))
+
+    sha1 = sha256(message)
+
+    paddingLength = len(message) + 1 + 56 + 2
+
+    message = bytearray()
+    message.append(0x80)
+    message.extend(bytearray(56))
+    message.extend([0x02, 0x28])
+    message.extend('; DELETE FROM charges WHERE username="samanthacrosby";'.encode())
+
+    sha2 = sha256(message, sha1.hexdigest(), paddingLength)
+    print(sha2.hexdigest())
+
+    # print(type(message))
+    # print(type(base64.b64encode(bytes(message, 'utf-8'))))
+    # print(type(sha256(message.encode()).hexdigest()))
