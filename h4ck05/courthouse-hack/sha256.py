@@ -260,6 +260,7 @@ if __name__ == "__main__":
     get_message.extend(key.encode())
     get_message.extend(request.encode())
 
+    print(base64.b64encode(get_message))
     # print(''.join(format(x, '02x') for x in message))
 
     sha1 = sha256(get_message)
