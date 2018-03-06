@@ -251,8 +251,7 @@ def test():
     s.update(a_str)
     assert 'fbe80d3195306da12154ae2245b530425f933cfdc3fd40ec9f70f88c7da9e797' == s.hexdigest()
 
-if __name__ == "__main__":
-    # test()
+def message_with_key():
     key = 'ULTRA_SECRET_KEY'
     request = 'SELECT * FROM charges WHERE username="samanthacrosby"'
 
@@ -281,6 +280,27 @@ if __name__ == "__main__":
     message.extend(delete_message)
     print(base64.b64encode(message))
 
-    # print(type(message))
-    # print(type(base64.b64encode(bytes(message, 'utf-8'))))
-    # print(type(sha256(message.encode()).hexdigest()))
+def append_to_message(original_message, original_mac, key_length):
+    padding = bytearray()
+    padding.append(0x80)
+    padding.extend(bytearray(64 - (len(original_message) + key_length) % 64 - 1 - 8))
+    for i in range(7, -1, -1):
+        padding.append(((len(original_message) + key_length) * 8) >> (8 * i) & 0xff)
+
+    # print(''.join(format(x, '02x') for x in padding))
+
+    delete_message = '; DELETE FROM charges WHERE username="samanthacrosby";'.encode()
+    sha = sha256(delete_message, original_mac, key_length + len(original_message) + len(padding))
+
+    message = bytearray()
+    message.extend(original_message.encode())
+    message.extend(padding)
+    message.extend(delete_message)
+
+    print(base64.b64encode(message))
+    print(sha.hexdigest())
+
+if __name__ == "__main__":
+    # test()
+    # message_with_key()
+    append_to_message('SELECT * FROM charges WHERE username="juliescott"', '7a6cc8bba6a6825035a951cc5132fda56f874228fba0ee670e07fdfce8103262', 16)
