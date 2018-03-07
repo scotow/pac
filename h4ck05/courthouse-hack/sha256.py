@@ -289,7 +289,7 @@ def append_to_message(original_message, original_mac, key_length):
 
     # print(''.join(format(x, '02x') for x in padding))
 
-    delete_message = '; DELETE FROM charges WHERE username="samanthacrosby";'.encode()
+    delete_message = '; DELETE FROM charges WHERE username="samanthacrosby"'.encode()
     sha = sha256(delete_message, original_mac, key_length + len(original_message) + len(padding))
 
     message = bytearray()
