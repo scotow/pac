@@ -1,0 +1,2 @@
+k = (h1 - h2) * inverse(s1 - s2, q) % q
+x = ((k * s1 - h1) * inverse(r1 ,q)) % q

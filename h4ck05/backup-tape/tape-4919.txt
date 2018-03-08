@@ -1,0 +1,58 @@
+PROJET kernel-monitord v0.0.1
+-----------------------------
+
+Ordre du jour de la réunion :
+
+*) FASCIST_MODE
+
+    Quelqu'un s'est amusé à créer une variable globale qui porte ce nom. Je sais
+    que cette réunion tombe le 1er avril, mais la blague n'est pas drôle. Ce qui
+    est encore moins drôle c'est que le commit qui ajoute cette variable dans le
+    code est signé par la cheffe de projet. Merci au petit malin qui a usurpé
+    son identité de cesser tout de suite ces enfantillages.
+
+*) Contrôle de version
+
+    Tout le monde est prié de rebaser ses modifications sur le commit :
+        BACKUP.TAPE:827:5@122552|ad5f125f6399a4584851372325d52fdb
+
+*) PARANOID_MODE
+
+    Comme nous en avions discuté, cette variable devrait passer à True lorsque
+    le système détecte un comportement hautement anormal, comme une
+    cyber-attaque, ou la compromission du noyau. Faire le point sur l'avancée
+    du module de détection. Rediscuter de ce que le programme doit faire en mode
+    parano.
+
+*) TOLÉRANCE AUX PANNES
+
+    Comme tous les appels systèmes sont interceptés par le kernel-monitord,
+    c'est tout l'ensemble du système qui deviendrait inutilisable si le
+    processus kernel-monitord plantait ou bugait. Il faut donc a) qu'il ne
+    plante pas, b) qu'il ne bugue pas et enfin c) avoir un mécanisme de
+    récupération au cas où. La semaine dernière, E. a proposé que ce mécanisme
+    de récupération soit intégré au Firmware de l'hyperviseur matériel, afin
+    qu'il soit accessible même si UGLIX devenait complètement inutilisable.
+
+*) BYPASS_MODE
+
+    L. a proposé qu'il y ait un mode BYPASS dans lequel le kernel-monitord est
+    inactif. Si jamais son fonctionnement posait problème, ce mode dégradé
+    pourrait être activé depuis le mécanisme de récupération.
+
+*) ACCÈS AU FIRMWARE
+
+    En principe, le firmware n'est accessible que depuis la console de pilotage
+    du matériel, ce qui nécessite de se rendre physiquement dans le datacenter
+    où se trouve l'un des noeuds-maîtres d'UGLIX. Ce n'est pas forcément
+    possible, surtout en cas d'urgence. Pour la semaine prochaine : discuter
+    d'un moyen que root (et lui seulement) puisse accéder au firmware. Prévoir
+    un contrôle d'accès sérieux.
+
+*) MOTS-CLEFS
+
+    Les chefs sont formels : on ne peut pas se contenter de détecter certains
+    mots clefs dans les mails d'un utilisateur pour le classer comme suspect,
+    même si ces mots-clefs incluent "h4x0r", "pwnd", "leet", etc. La consigne
+    qui vient d'en haut, c'est qu'il faut une conjonction de ***comportements***
+    suspects. Bref, des actes, pas justes des paroles.
