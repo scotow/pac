@@ -55,16 +55,16 @@ def safe_prime(a,b):
     """
     while True:
         qs = 2*random.randint(a//24, b//24)+1
-        while qs % 7 == 0 or qs % 11 == 0:
+        while qs % 3 == 0 or qs % 5 == 0 or qs % 7 == 0 or qs % 11 == 0:
             qs = 2*random.randint(a//24, b//24)+1
-        qp = 3*qs+1
+        qp = 6*qs+3
         if test_fermat_proba(qp, 2):
-            p = 4*qp + 3
+            p = 12*qs + 7
             if test_fermat_proba(p, 2):
                 return p
-        qp = 3*qs + 2
+        qp = 6*qs + 5
         if test_fermat_proba(qp, 2):
-            p = 4*qp + 3
+            p = 12*qs + 11
             if test_fermat_proba(p, 2):
                 return p
 
@@ -87,8 +87,34 @@ def prime_product(a,b):
                     return res
 
 def generate_prime():
+    """Génère un nombre premier aléatoire de compris entre 2^1 et 2^64
+    """
     found_prime = False
     while not found_prime:
         p = random.randint(2, 2**64)
         if test_fermat_proba(p, 2):
             return p
+
+def generate_big_prime(a):
+    """Génère un nombre premier aléatoire de compris entre 2^a et 2^(a+1)
+    """
+    found_prime = False
+    while not found_prime:
+        p = random.randint(2**a, 2**(a+1))
+        if test_fermat_proba(p, 2):
+            return p
+
+
+def root_prime(a,b):
+    while True:
+        res = []
+        qp = generate_big_prime(383)
+        print(qp.bit_length())
+        res.append(qp)
+        while qp < a:
+            qp = qp * 2
+            res.append(2)
+        if qp < b:
+            print("uol")
+            if test_fermat_proba(sum(res)+1,2):
+                return (res, sum(res)+1)
