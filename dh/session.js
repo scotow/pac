@@ -23,42 +23,35 @@ function parseLargeNumberRequest(data) {
     return params;
 }
 
-function bigIntToBuffer(number) {
-
-}
-
 async function fetchParameters() {
     return parseLargeNumberRequest(await request.get('http://pac.fil.cool/uglix/bin/login/dh/parameters'));
 }
 
-async function login(a) {
+async function login(A) {
     return parseLargeNumberRequest(
         await request({
             url: 'http://pac.fil.cool/uglix/bin/login/dh',
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username: process.env.PAC_USERNAME, A: a })
+            body: `{"username": "${process.env.PAC_USERNAME}", "A": ${A.toString()}}`
         })
     );
 }
 
 async function openSession() {
     const { g, p } = await fetchParameters();
-    const x = 1;
+    const x = bigInt.randBetween('340282366920938463463374607431768211456', '1e100');
 
-    const A = g.mod(p);
-    const { k, B } = await login(A.toJSNumber());
+    const A = g.modPow(x, p);
+    const { k, B } = await login(A);
 
-    const AB = B.mod(p);
+    const AB = B.modPow(x, p);
 
     const hash = crypto.createHash('sha256');
-    hash.update(Buffer.from(AB.toString('16')));
+    hash.update(Buffer.from(AB.toString(16), 'hex'));
     const sessionKey = hash.digest('hex');
-    
-    console.log(sessionKey);
 
-    // hash.update('some data to hash');
-    // console.log(hash.digest('hex'));
+    console.log(sessionKey);
 
     return null;
 }
