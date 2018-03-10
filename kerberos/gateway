@@ -7,7 +7,7 @@
 set -euo pipefail
 
 usage() {
-    echo "session [REQUEST_FILE...]"
+    echo "gateway [REQUEST_FILE...]"
     exit 1
 }
 

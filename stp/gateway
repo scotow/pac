@@ -3,7 +3,7 @@
 set -euo pipefail
 
 usage() {
-    echo "session KEY SESSION_COOKIE [REQUEST_FILE...]"
+    echo "gateway KEY SESSION_COOKIE [REQUEST_FILE...]"
     exit 1
 }
 
