@@ -1,0 +1,20 @@
+La UGLIX Bank est toujours à la recherche de nouveaux talents. Votre candidature
+nous semble particulièrement prometteuse en tout points. Cependant, il faut que 
+vous sachiez que seuls les meilleurs nous intéressent. C'est pourquoi nous 
+pratiquons un petit... test d'embauche. Oh, c'est presque une formalité. Il 
+s'agit de jouer à "pierre-feuille-ciseau" en ligne avec mon assistant.
+
+D'ailleurs, je vais vous le présenter tout de suite :
+
+ASSISTANT v1.0 : GRRRRRRRRRRRR KILL KILL KILL KILL KILL KILL KILL BWAAAAARRFFFFF
+
+Comme vous pouvez le constater, il est en pleine forme. J'aurais préféré qu'il 
+vous explique le jeu lui-même, mais j'ai un peu peur qu'il ne s'en sorte pas.
+Aussi, je vous redirige vers le fichier :
+
+	/bin/banks/drh/rules
+
+Vous devez le battre, puis revenir me voir. Au fait, pour vous aider, vous avez
+le droit à ça :
+
+    BANK.ACCESS:827:3@595781|c30eb47a3aa984d420c639f74decca56

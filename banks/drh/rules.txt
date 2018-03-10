@@ -1,0 +1,85 @@
+Pour pouvoir jouer en ligne de manière à peu près honnête, le système repose sur
+un schéma de mise en gage ("commitment"). On utilise le chiffrement ElGamal. Les
+deux joueurs font leur choix, le chiffrent avec leur clef publique, puis 
+s'échangent les chiffrés. Une fois que l'échange a eu lieu, les deux joueurs 
+ouvrent les mises en gage.
+
+Comme on ne peut pas très facilement s'échanger les mises en gage de manière
+asynchrone, un mécanisme aléatoire est mis en place pour savoir qui envoie sa 
+mise en gage le premier.
+
+Au départ, les deux joueurs ont 32 points. Chaque défaite fait perdre un point.
+Le premier qui arrive à zéro a perdu.
+
+Les trois coups possibles sont :
+
+   ASCII         hexadécimal            décimal
+-------------------------------------------------------
+  PIERRE   -->   0x504945525245  -->    88275625857605
+  FEUILLE  --> 0x464555494C4C45  --> 19779480974019653
+  CISEAUX  --> 0x43495345415558  --> 18939445432636760
+
+
+Chacun doit fournir une clef Elgmal au début du match, c'est à dire un nombre
+premier p, un générateur g et un nombre h modulo p. Il est possible (mais pas
+obligatoire) d'utiliser les paramètres standardisés du "OAKLEY GROUP 2" :
+
+p = int('FFFFFFFFFFFFFFFFC90FDAA22168C234C4C6628B80DC1CD1'
+        '29024E088A67CC74020BBEA63B139B22514A08798E3404DD'
+        'EF9519B3CD3A431B302B0A6DF25F14374FE1356D6D51C245'
+        'E485B576625E7EC6F44C42E9A637ED6B0BFF5CB6F406B7ED'
+        'EE386BFB5A899FA5AE9F24117C4B1FE649286651ECE45B3D'
+        'C2007CB8A163BF0598DA48361C55D39A69163FA8FD24CF5F'
+        '83655D23DCA3AD961C62F356208552BB9ED529077096966D'
+        '670C354E4ABC9804F1746C08CA237327FFFFFFFFFFFFFFFF', base=16)
+g = 2
+
+
+
+0) Générez une clef publique ElGamal et envoyez "p", "g" et h" à l'adresse :
+
+       /bin/banks/assistant/start
+
+   Vous recevez en échange la clef de votre adversaire.
+
+
+1) Pour faire un "round", rendez-vous sur :
+
+       /bin/banks/assistant/round
+
+   Vous recevez un dictionnaire contenant :
+       *) soit "a" et "b" contenant la mise en gage du choix de l'adversaire.
+       *) soit "status" contenant la chaine "waiting".
+
+   Les deux situations se produisent avec probabilité 50% (en principe).
+
+
+2) Vous devez envoyer une mise en gage de votre coup ("a" et "b") à l'adresse :
+
+        /bin/banks/assistant/move
+
+   En gros, il faut choisir un y aléatoire modulo p, calculer a = g^y % p et
+   b = <coup> * h^y % p (c'est le chiffrement ElGamal de votre coup). S'il ne 
+   vous l'avait pas donnée lors de l'étape 1, l'adversaire vous renvoie la mise
+   en gage de son coup.
+
+
+3) L'heure de vérité. Connectez-vous à :
+
+       /bin/banks/assistant/outcome
+
+   Vous devez envoyer un dictionnaire contenant :
+       *) "move"   : votre coup, en ASCII.
+       *) "y"      : le nombre aléatoire utilisé pour produire la mise en gage.
+
+   L'adversaire vous renvoie son coup, son nombre aléatoire. L'arbitre notifie 
+   les deux joueurs de l'issue du round, et effectue le décompte des points.
+
+
+4) Si un des joueurs triche manifestement au niveau de la mise en gage, l'autre
+   peut le dénoncer à l'arbitre en envoyant une requête POST à l'adresse :
+
+       /bin/banks/referee
+
+   Si c'est justifié, le tricheur est sanctionné d'une pénalité de 3 points. 
+   Sinon, c'est le délateur irresponsable qui sera sanctionné.
