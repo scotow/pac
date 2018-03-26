@@ -1,0 +1,95 @@
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
+#include "generate.h"
+
+#define TOTAL_POSIBILITIES 6561
+
+void test_word(char *word) {
+    word[8] = 0;
+    printf("%s\n", word);
+    // if(strcmp(word, "bonjour") == 0) {
+    //     printf("Found\n");
+    //     exit(EXIT_SUCCESS);
+    // }
+}
+
+void force(long int proc_count, unsigned int index, struct god_s *god) {
+    char message[9];
+    size_t i;
+
+    init_next(god, TOTAL_POSIBILITIES / proc_count * index);
+
+    for (i = 0; i < TOTAL_POSIBILITIES / proc_count; i++) {
+        next(god, message);
+        test_word(message);
+    }
+    if(index == proc_count - 1) {
+        for (i = 0; i < TOTAL_POSIBILITIES % proc_count; i++) {
+            next(god, message);
+            test_word(message);
+        }
+    }
+}
+
+int main(int argc, char const *argv[]) {
+    // const long int proc_count = sysconf(_SC_NPROCESSORS_ONLN);
+    const long int proc_count = 1;
+
+    pid_t process_ids[proc_count];
+    size_t proc_index;
+
+    pid_t process_id;
+    unsigned int process_status;
+
+    // Init generation.
+    char *c0 = "abc";
+    char *c1 = "def";
+    char *c2 = "ghi";
+    char *c3 = "jkl";
+    char *c4 = "mno";
+    char *c5 = "pqr";
+    char *c6 = "stu";
+    char *c7 = "vwx";
+    char *c8 = "yz0";
+    char *c9 = "123";
+    char *c10 = "456";
+    char *c11 = "789";
+
+    char **c = malloc(12 * sizeof(char *));
+    c[0] = c0; c[1] = c1; c[2] = c2; c[3] = c3; c[4] = c4; c[5] = c5; c[6] = c6; c[7] = c7; c[8] = c8; c[9] = c9; c[10] = c10; c[11] = c11;
+
+    int pattern[] = {2, 1, 3, 3, 4, 9, 9, 9};
+
+    struct god_s *god = generate(pattern, 8, c, 12);
+
+
+    for (proc_index = 0; proc_index < proc_count; proc_index++) {
+        if ((process_ids[proc_index] = fork()) == 0) {
+            force(proc_count, proc_index, god);
+            exit(EXIT_FAILURE);
+        }
+    }
+
+    for (proc_index = 0; proc_index < proc_count; proc_index++) {
+        process_id = waitpid(-1, &process_status, 0);
+
+        if (process_status == 0) {
+            size_t i;
+            for (i = 0; i < proc_count; i++) {
+                if(process_id == process_ids[i]) {
+                    continue;
+                }
+
+                kill(process_ids[i], SIGKILL);
+            }
+            exit(EXIT_SUCCESS);
+        }
+    }
+
+    exit(EXIT_FAILURE);
+}
