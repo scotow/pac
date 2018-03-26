@@ -95,26 +95,63 @@ def generate_prime():
         if test_fermat_proba(p, 2):
             return p
 
-def generate_big_prime(a):
+def generate_big_prime(a, b):
     """Génère un nombre premier aléatoire de compris entre 2^a et 2^(a+1)
     """
     found_prime = False
     while not found_prime:
-        p = random.randint(2**a, 2**(a+1))
+        p = random.randint(a, b)
         if test_fermat_proba(p, 2):
             return p
 
-
 def root_prime(a,b):
-    while True:
-        res = []
-        qp = generate_big_prime(383)
-        print(qp.bit_length())
-        res.append(qp)
-        while qp < a:
-            qp = qp * 2
-            res.append(2)
-        if qp < b:
-            print("uol")
-            if test_fermat_proba(sum(res)+1,2):
-                return (res, sum(res)+1)
+    borne_inf = ((a >> (math.ceil(math.log2(a))-384)) + 1) >> 1
+    borne_sup = ((b >> (math.ceil(math.log2(b))-384)) + 1) >> 1
+    found = False
+    p = 0
+    while not found:
+        k = random.randint(borne_inf, borne_sup)
+        k = (k << 1) | 1
+        if not test_fermat_proba(k, 2):
+            continue
+
+        k = (k << (math.ceil(math.log2(a)-384))) | 1
+        if test_fermat_proba(k,2):
+            found = True
+            p = k
+    large_root = p - 1
+    res = []
+    for i in range(math.ceil(math.log2(a)-384)):
+        res.append(2)
+        large_root >>= 1
+    res.append(large_root)
+    return (large_root, res)
+
+def egcd(a, b):
+    if a == 0:
+        return b, 0, 1
+    else:
+        g, y, x = egcd(b % a, a)
+        return g, x - (b // a) * y, y
+
+
+def modinv(a, m):
+    g, x, y = egcd(a, m)
+    if g != 1:
+        raise Exception('modular inverse does not exist')
+    else:
+        return x % m
+
+
+def generate_RSA(e, bits=2048):
+    '''
+    Generate an RSA keypair with an exponent of 65537 in PEM format
+    param: bits The key length in bits
+    Return private key and public key
+    '''
+    from Crypto.PublicKey import RSA
+    key = RSA.generate(bits, None, None, e)
+    private_key = key.exportKey('PEM')
+    public_key = key.publickey()
+    #f.write(pubkey.exportKey('OpenSSH'))
+    return private_key, public_key
