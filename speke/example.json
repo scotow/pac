@@ -1,0 +1,7 @@
+{
+    "method": "POST",
+    "url": "/sbin/kill",
+    "args": {
+        "PID": 42
+    }
+}

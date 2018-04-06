@@ -1,0 +1,63 @@
+#!/bin/bash
+
+[[ -z $PAC_KEY ]]       && echo "Please set PAC_KEY environment variable." && exit 1
+[[ -z $PAC_COOKIE ]]    && echo "Please set PAC_COOKIE environment variable." && exit 1
+
+set -euo pipefail
+
+usage() {
+    echo "gateway [REQUEST_FILE...]"
+    exit 1
+}
+
+send_request() {
+    set -euo pipefail
+
+    local FILE
+
+    if [[ "$1" = "-" ]]; then
+        FILE=$(mktemp)
+        cat > "$FILE"
+    else
+        if [[ -f "$1" && -r "$1" ]]; then
+            FILE="$1"
+        else
+            echo "Cannot upload '$1'. Skipping."
+            return
+        fi
+    fi
+
+    local CRYPTED=$(mktemp)
+    openssl enc -aes-128-cbc -md sha256 -pass pass:"$PAC_KEY" -in "$FILE" -out "$CRYPTED"
+
+    local RESPONSE=$(mktemp)
+
+    curl -sL -XPOST \
+        "http://pac.fil.cool/uglix/bin/gateway" \
+        -H 'Content-Type: application/octet-stream' \
+        -H "Cookie: $PAC_COOKIE" \
+        --data-binary "@$CRYPTED" \
+        -o "$RESPONSE"
+
+    if [[ -s "$RESPONSE" ]]; then
+        openssl enc -d -aes-128-cbc -md sha256 -pass pass:"$PAC_KEY" -in "$RESPONSE"
+    else
+        echo "OK"
+    fi
+}
+
+main() {
+    set -euo pipefail
+
+    if [[ "$#" -eq 0 ]]; then
+        send_request "-"
+    else
+        while [[ "$#" -ne 0 ]]
+        do
+            send_request "$1"
+            shift
+        done
+    fi
+}
+
+main "$@"
